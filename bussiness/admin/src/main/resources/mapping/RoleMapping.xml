@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.RoleRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.RoleModel">
+        <result column="NUM" property="num"/>
+        <result column="P_ID" property="pid"/>
+        <result column="NAME" property="name"/>
+        <result column="DEPT_ID" property="deptId"/>
+        <result column="TIPS" property="tips"/>
+        <result column="VERSION" property="version"/>
+        <result column="WXID" property="wxid"/>
+        <result column="DDID" property="ddid"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.num != null and ew.entity.num != '' ">
+            AND t.NUM = #{ew.entity.num}
+        </if>
+        <if test="ew.entity.pid != null and ew.entity.pid != '' ">
+            AND t.P_ID = #{ew.entity.pid}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.deptId != null and ew.entity.deptId != '' ">
+            AND t.DEPT_ID = #{ew.entity.deptId}
+        </if>
+        <if test="ew.entity.tips != null and ew.entity.tips != '' ">
+            AND t.TIPS = #{ew.entity.tips}
+        </if>
+        <if test="ew.entity.version != null and ew.entity.version != '' ">
+            AND t.VERSION = #{ew.entity.version}
+        </if>
+        <if test="ew.entity.wxid != null and ew.entity.wxid != '' ">
+            AND t.WXID = #{ew.entity.wxid}
+        </if>
+        <if test="ew.entity.ddid != null and ew.entity.ddid != '' ">
+            AND t.DDID = #{ew.entity.ddid}
+        </if>
+    </sql>
+
+</mapper>

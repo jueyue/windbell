@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.MenuRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.MenuModel">
+        <result column="ID" property="id"/>
+        <result column="WEB_TYPE" property="webType"/>
+        <result column="CODE" property="code"/>
+        <result column="P_ID" property="pid"/>
+        <result column="NAME" property="name"/>
+        <result column="ICON" property="icon"/>
+        <result column="URL" property="url"/>
+        <result column="NUM" property="num"/>
+        <result column="LEVELS" property="levels"/>
+        <result column="ISMENU" property="ismenu"/>
+        <result column="TIPS" property="tips"/>
+        <result column="PRO_CODE" property="proCode"/>
+        <result column="STATUS" property="status"/>
+        <result column="ISOPEN" property="isopen"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.webType != null and ew.entity.webType != '' ">
+            AND t.WEB_TYPE = #{ew.entity.webType}
+        </if>
+        <if test="ew.entity.pid != null and ew.entity.pid != '' ">
+            AND t.P_ID = #{ew.entity.pid}
+        </if>
+        <if test="ew.entity.pcodes != null and ew.entity.pcodes != '' ">
+            AND t.PCODES = #{ew.entity.pcodes}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.icon != null and ew.entity.icon != '' ">
+            AND t.ICON = #{ew.entity.icon}
+        </if>
+        <if test="ew.entity.url != null and ew.entity.url != '' ">
+            AND t.URL = #{ew.entity.url}
+        </if>
+        <if test="ew.entity.num != null and ew.entity.num != '' ">
+            AND t.NUM = #{ew.entity.num}
+        </if>
+        <if test="ew.entity.levels != null and ew.entity.levels != '' ">
+            AND t.LEVELS = #{ew.entity.levels}
+        </if>
+        <if test="ew.entity.ismenu != null and ew.entity.ismenu != '' ">
+            AND t.ISMENU = #{ew.entity.ismenu}
+        </if>
+        <if test="ew.entity.tips != null and ew.entity.tips != '' ">
+            AND t.TIPS = #{ew.entity.tips}
+        </if>
+        <if test="ew.entity.proCode != null and ew.entity.proCode != '' ">
+            AND t.PRO_CODE = #{ew.entity.proCode}
+        </if>
+        <if test="ew.entity.status != null and ew.entity.status != '' ">
+            AND t.STATUS = #{ew.entity.status}
+        </if>
+        <if test="ew.entity.isopen != null and ew.entity.isopen != '' ">
+            AND t.ISOPEN = #{ew.entity.isopen}
+        </if>
+        <if test="ew.entity.crtUserId != null and ew.entity.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{ew.entity.crtUserId}
+        </if>
+        <if test="ew.entity.crtTime != null and ew.entity.crtTime != '' ">
+            AND t.CRT_TIME = #{ew.entity.crtTime}
+        </if>
+        <if test="ew.entity.mdfUserId != null and ew.entity.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{ew.entity.mdfUserId}
+        </if>
+        <if test="ew.entity.mdfTime != null and ew.entity.mdfTime != '' ">
+            AND t.MDF_TIME = #{ew.entity.mdfTime}
+        </if>
+    </sql>
+
+    <select id="getMenuByRoleId" resultType="cn.afterturn.boot.web.iview.IViewTree">
+        SELECT m.id,m.`NAME` title,case WHEN lrm.id is not null THEN true else false end checked FROM t_system_menu m
+        LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID and lrm.ROLE_ID = #{roleId}
+        <where>
+            <if test="pid != null and pid != ''">
+                m.P_ID = #{pid}
+            </if>
+            <if test="pid == null ">
+                m.P_ID is null
+            </if>
+        </where>
+    </select>
+
+</mapper>

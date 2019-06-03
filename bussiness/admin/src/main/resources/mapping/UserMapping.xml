@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.UserRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.UserModel">
+        <result column="AVATAR" property="avatar"/>
+        <result column="ACCOUNT" property="account"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="SALT" property="salt"/>
+        <result column="NAME" property="name"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="SEX" property="sex"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PHONE" property="phone"/>
+        <result column="DEPT_ID" property="deptId"/>
+        <result column="STATUS" property="status"/>
+        <result column="IS_ADMIN" property="isAdmin"/>
+        <result column="DDID" property="ddid"/>
+        <result column="WXID" property="wxid"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.avatar != null and ew.entity.avatar != '' ">
+            AND t.AVATAR = #{ew.entity.avatar}
+        </if>
+        <if test="ew.entity.account != null and ew.entity.account != '' ">
+            AND t.ACCOUNT = #{ew.entity.account}
+        </if>
+        <if test="ew.entity.password != null and ew.entity.password != '' ">
+            AND t.PASSWORD = #{ew.entity.password}
+        </if>
+        <if test="ew.entity.salt != null and ew.entity.salt != '' ">
+            AND t.SALT = #{ew.entity.salt}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.birthday != null and ew.entity.birthday != '' ">
+            AND t.BIRTHDAY = #{ew.entity.birthday}
+        </if>
+        <if test="ew.entity.sex != null and ew.entity.sex != '' ">
+            AND t.SEX = #{ew.entity.sex}
+        </if>
+        <if test="ew.entity.email != null and ew.entity.email != '' ">
+            AND t.EMAIL = #{ew.entity.email}
+        </if>
+        <if test="ew.entity.phone != null and ew.entity.phone != '' ">
+            AND t.PHONE = #{ew.entity.phone}
+        </if>
+        <if test="ew.entity.deptId != null and ew.entity.deptId != '' ">
+            AND t.DEPT_ID = #{ew.entity.deptId}
+        </if>
+        <if test="ew.entity.status != null and ew.entity.status != '' ">
+            AND t.STATUS = #{ew.entity.status}
+        </if>
+        <if test="ew.entity.isAdmin != null and ew.entity.isAdmin != '' ">
+            AND t.IS_ADMIN = #{ew.entity.isAdmin}
+        </if>
+        <if test="ew.entity.ddid != null and ew.entity.ddid != '' ">
+            AND t.DDID = #{ew.entity.ddid}
+        </if>
+        <if test="ew.entity.wxid != null and ew.entity.wxid != '' ">
+            AND t.WXID = #{ew.entity.wxid}
+        </if>
+    </sql>
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.AreaRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.AreaModel">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="PARENTID" property="parentid"/>
+        <result column="SHORTNAME" property="shortname"/>
+        <result column="LEVELTYPE" property="leveltype"/>
+        <result column="CITYCODE" property="citycode"/>
+        <result column="ZIPCODE" property="zipcode"/>
+        <result column="MERGERNAME" property="mergername"/>
+        <result column="LNG" property="lng"/>
+        <result column="LAT" property="lat"/>
+        <result column="PINYIN" property="pinyin"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.parentid != null and ew.entity.parentid != '' ">
+            AND t.PARENTID = #{ew.entity.parentid}
+        </if>
+        <if test="ew.entity.shortname != null and ew.entity.shortname != '' ">
+            AND t.SHORTNAME = #{ew.entity.shortname}
+        </if>
+        <if test="ew.entity.leveltype != null and ew.entity.leveltype != '' ">
+            AND t.LEVELTYPE = #{ew.entity.leveltype}
+        </if>
+        <if test="ew.entity.citycode != null and ew.entity.citycode != '' ">
+            AND t.CITYCODE = #{ew.entity.citycode}
+        </if>
+        <if test="ew.entity.zipcode != null and ew.entity.zipcode != '' ">
+            AND t.ZIPCODE = #{ew.entity.zipcode}
+        </if>
+        <if test="ew.entity.mergername != null and ew.entity.mergername != '' ">
+            AND t.MERGERNAME = #{ew.entity.mergername}
+        </if>
+        <if test="ew.entity.lng != null and ew.entity.lng != '' ">
+            AND t.LNG = #{ew.entity.lng}
+        </if>
+        <if test="ew.entity.lat != null and ew.entity.lat != '' ">
+            AND t.LAT = #{ew.entity.lat}
+        </if>
+        <if test="ew.entity.pinyin != null and ew.entity.pinyin != '' ">
+            AND t.PINYIN = #{ew.entity.pinyin}
+        </if>
+    </sql>
+
+</mapper>

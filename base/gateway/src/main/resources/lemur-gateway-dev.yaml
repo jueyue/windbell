@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: admin
+          uri: http://localhost:9001
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1
+        - id: loan
+          uri: http://localhost:9003
+          predicates:
+            - Path=/loan/**
+          filters:
+            - StripPrefix=1

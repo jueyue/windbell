@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.LinkDeptDataAuthRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.LinkDeptDataAuthModel">
+        <result column="ID" property="id"/>
+        <result column="DEPT_ID" property="deptId"/>
+        <result column="DATA_DEPT_ID" property="dataDeptId"/>
+        <result column="TYPE" property="type"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.deptId != null and ew.entity.deptId != '' ">
+            AND t.DEPT_ID = #{ew.entity.deptId}
+        </if>
+        <if test="ew.entity.dataDeptId != null and ew.entity.dataDeptId != '' ">
+            AND t.DATA_DEPT_ID = #{ew.entity.dataDeptId}
+        </if>
+        <if test="ew.entity.type != null and ew.entity.type != '' ">
+            AND t.TYPE = #{ew.entity.type}
+        </if>
+    </sql>
+
+</mapper>

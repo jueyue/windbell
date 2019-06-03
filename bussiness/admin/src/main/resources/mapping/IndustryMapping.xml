@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.IndustryRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.IndustryModel">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="PARENT_ID" property="parentId"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.parentId != null and ew.entity.parentId != '' ">
+            AND t.PARENT_ID = #{ew.entity.parentId}
+        </if>
+    </sql>
+
+</mapper>

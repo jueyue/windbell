@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.TenantRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.TenantModel">
+        <result column="ID" property="id"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="MER_TYPE" property="merType"/>
+        <result column="NAME" property="name"/>
+        <result column="STATUS" property="status"/>
+        <result column="CREDIT_CODE" property="creditCode"/>
+        <result column="LINKMAN" property="linkman"/>
+        <result column="PHONE" property="phone"/>
+        <result column="PROVINCE" property="province"/>
+        <result column="CITY" property="city"/>
+        <result column="AREA" property="area"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="INDUSTRY_BIG" property="industryBig"/>
+        <result column="INDUSTRY_SMALL" property="industrySmall"/>
+        <result column="SMS_SIGN" property="smsSign"/>
+        <result column="MEMO" property="memo"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.tenantId != null and ew.entity.tenantId != '' ">
+            AND t.TENANT_ID = #{ew.entity.tenantId}
+        </if>
+        <if test="ew.entity.userId != null and ew.entity.userId != '' ">
+            AND t.USER_ID = #{ew.entity.userId}
+        </if>
+        <if test="ew.entity.merType != null and ew.entity.merType != '' ">
+            AND t.MER_TYPE = #{ew.entity.merType}
+        </if>
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.status != null and ew.entity.status != '' ">
+            AND t.STATUS = #{ew.entity.status}
+        </if>
+        <if test="ew.entity.creditCode != null and ew.entity.creditCode != '' ">
+            AND t.CREDIT_CODE = #{ew.entity.creditCode}
+        </if>
+        <if test="ew.entity.linkman != null and ew.entity.linkman != '' ">
+            AND t.LINKMAN = #{ew.entity.linkman}
+        </if>
+        <if test="ew.entity.phone != null and ew.entity.phone != '' ">
+            AND t.PHONE = #{ew.entity.phone}
+        </if>
+        <if test="ew.entity.province != null and ew.entity.province != '' ">
+            AND t.PROVINCE = #{ew.entity.province}
+        </if>
+        <if test="ew.entity.city != null and ew.entity.city != '' ">
+            AND t.CITY = #{ew.entity.city}
+        </if>
+        <if test="ew.entity.area != null and ew.entity.area != '' ">
+            AND t.AREA = #{ew.entity.area}
+        </if>
+        <if test="ew.entity.address != null and ew.entity.address != '' ">
+            AND t.ADDRESS = #{ew.entity.address}
+        </if>
+        <if test="ew.entity.industryBig != null and ew.entity.industryBig != '' ">
+            AND t.INDUSTRY_BIG = #{ew.entity.industryBig}
+        </if>
+        <if test="ew.entity.industrySmall != null and ew.entity.industrySmall != '' ">
+            AND t.INDUSTRY_SMALL = #{ew.entity.industrySmall}
+        </if>
+        <if test="ew.entity.smsSign != null and ew.entity.smsSign != '' ">
+            AND t.SMS_SIGN = #{ew.entity.smsSign}
+        </if>
+        <if test="ew.entity.memo != null and ew.entity.memo != '' ">
+            AND t.MEMO = #{ew.entity.memo}
+        </if>
+        <if test="ew.entity.crtUserId != null and ew.entity.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{ew.entity.crtUserId}
+        </if>
+        <if test="ew.entity.crtTime != null and ew.entity.crtTime != '' ">
+            AND t.CRT_TIME = #{ew.entity.crtTime}
+        </if>
+        <if test="ew.entity.mdfUserId != null and ew.entity.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{ew.entity.mdfUserId}
+        </if>
+        <if test="ew.entity.mdfTime != null and ew.entity.mdfTime != '' ">
+            AND t.MDF_TIME = #{ew.entity.mdfTime}
+        </if>
+    </sql>
+
+</mapper>

@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: lemur-gateway
+server:
+  port: 16301 #项目端口
+
+---
+
+#开发环境
+spring:
+  profiles: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: dev.cloud.afterturn.cn:8848
+        file-extension: yaml
+        namespace: 40f3d8ad-65d0-4935-967e-e838b97c1db0
+      discovery:
+        server-addr: dev.cloud.afterturn.cn:8848
+---
+
+##########################################################
+###################  生产环境profile  ###################
+##########################################################
+spring:
+  profiles: pro
+  cloud:
+    consul:
+      host: risk.afterturn.cn
+      port: 29500
+      discovery:
+        hostname: risk.afterturn.cn
+        port: ${server.port}
+      config:
+        enabled: true
+        format: YAML
+        prefix: config
+        defaultContext: ${spring.application.name}
+        profileSeparator: ','
+        data-key: data

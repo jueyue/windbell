@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.SequenceRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.SequenceModel">
+        <result column="NAME" property="name"/>
+        <result column="DESC" property="desc"/>
+        <result column="CURRENT_VALUE" property="currentValue"/>
+        <result column="INCREMENT" property="increment"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.name != null and ew.entity.name != '' ">
+            AND t.NAME = #{ew.entity.name}
+        </if>
+        <if test="ew.entity.currentValue != null and ew.entity.currentValue != '' ">
+            AND t.CURRENT_VALUE = #{ew.entity.currentValue}
+        </if>
+        <if test="ew.entity.increment != null and ew.entity.increment != '' ">
+            AND t.INCREMENT = #{ew.entity.increment}
+        </if>
+        <if test="ew.entity.updateTime != null and ew.entity.updateTime != '' ">
+            AND t.UPDATE_TIME = #{ew.entity.updateTime}
+        </if>
+    </sql>
+    <select id="getNext" resultType="java.lang.String">
+        SELECT seq_nextval(#{name})
+        FROM DUAL
+    </select>
+
+</mapper>

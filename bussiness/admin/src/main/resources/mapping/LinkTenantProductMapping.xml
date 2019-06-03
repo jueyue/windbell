@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.admin.repository.LinkTenantProductRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.LinkTenantProductModel">
+        <result column="ID" property="id"/>
+        <result column="PRO_CODE" property="proCode"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="START_TIME" property="startTime"/>
+        <result column="END_TIME" property="endTime"/>
+        <result column="STATUS" property="status"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.proCode != null and ew.entity.proCode != '' ">
+            AND t.PRO_CODE = #{ew.entity.proCode}
+        </if>
+        <if test="ew.entity.tenantId != null and ew.entity.tenantId != '' ">
+            AND t.TENANT_ID = #{ew.entity.tenantId}
+        </if>
+        <if test="ew.entity.startTime != null and ew.entity.startTime != '' ">
+            AND t.START_TIME = #{ew.entity.startTime}
+        </if>
+        <if test="ew.entity.endTime != null and ew.entity.endTime != '' ">
+            AND t.END_TIME = #{ew.entity.endTime}
+        </if>
+        <if test="ew.entity.status != null and ew.entity.status != '' ">
+            AND t.STATUS = #{ew.entity.status}
+        </if>
+        <if test="ew.entity.crtUserId != null and ew.entity.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{ew.entity.crtUserId}
+        </if>
+        <if test="ew.entity.crtTime != null and ew.entity.crtTime != '' ">
+            AND t.CRT_TIME = #{ew.entity.crtTime}
+        </if>
+        <if test="ew.entity.mdfUserId != null and ew.entity.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{ew.entity.mdfUserId}
+        </if>
+        <if test="ew.entity.mdfTime != null and ew.entity.mdfTime != '' ">
+            AND t.MDF_TIME = #{ew.entity.mdfTime}
+        </if>
+    </sql>
+
+</mapper>
