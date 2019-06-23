@@ -7,13 +7,15 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>base-parent</artifactId>
+    <artifactId>bussinses-parent</artifactId>
 
-    <name>base-parent</name>
+    <name>business-parent</name>
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway</module>
+        <module>admin</module>
+        <module>core</module>
+        <module>facade</module>
     </modules>
 
     <build>

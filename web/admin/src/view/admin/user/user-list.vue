@@ -3,15 +3,17 @@
     <Card>
       <div class="search-con search-con-top">
         <Form :model="form" :label-width="80" inline>
+          <FormItem label="账户">
+            <Input v-model="form.account" placeholder=""></Input>
+          </FormItem>
           <FormItem label="用户">
             <Input v-model="form.name" placeholder="张三"></Input>
           </FormItem>
-          <FormItem label="邮件">
-            <Select v-model="form.email">
-              <Option value="beijing">New York</Option>
-              <Option value="shanghai">London</Option>
-              <Option value="shenzhen">Sydney</Option>
-            </Select>
+          <FormItem label="电话">
+            <Input v-model="form.phone" placeholder="13112345678"></Input>
+          </FormItem>
+          <FormItem label="部门">
+            <Input v-model="form.phone" placeholder="13112345678"></Input>
           </FormItem>
           <FormItem label="创建时间">
             <Row>
