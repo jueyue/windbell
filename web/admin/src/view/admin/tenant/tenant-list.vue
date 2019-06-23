@@ -8,6 +8,7 @@
           </FormItem>
           <FormItem label="类型">
             <Select v-model="form.merType">
+              <Option value="" selected="selected">全部</Option>
               <Option :value="item.key" v-for="(item, index) in merTypeOptions" :key="index">{{item.name}}</Option>
             </Select>
           </FormItem>
@@ -19,6 +20,7 @@
           </FormItem>
           <FormItem label="状态">
             <Select v-model="form.status">
+              <Option value="" selected="selected">全部</Option>
               <Option :value="item.key" v-for="(item, index) in statusOptions" :key="index">{{item.name}}</Option>
             </Select>
           </FormItem>
