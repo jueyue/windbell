@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.afterturn</groupId>
     <artifactId>windbell-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <name>windbell-parent</name>
     <packaging>pom</packaging>
@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <spring-boot>2.1.2.RELEASE</spring-boot>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
-        <windbell.version>0.0.1</windbell.version>
+        <windbell.version>0.0.2</windbell.version>
         <mybatisplus-spring-boot-starter.version>3.1.1</mybatisplus-spring-boot-starter.version>
         <shiro.version>1.4.0</shiro.version>
         <fastjson.version>1.2.49</fastjson.version>
@@ -236,7 +236,6 @@
             </dependency>
 
 
-            <!-- 微信和钉钉相关SDK -->
             <dependency>
                 <groupId>com.github.binarywang</groupId>
                 <artifactId>qrcode-utils</artifactId>
@@ -277,6 +276,16 @@
                 <artifactId>httpmime</artifactId>
                 <version>${httpclient.version}</version>
             </dependency>
+
+
+            <!-- 微信和钉钉相关SDK  start -->
+            <!-- 企业号/企业微信 -->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-cp</artifactId>
+                <version>3.4.0</version>
+            </dependency>
+            <!-- 微信和钉钉相关SDK end -->
 
 
 

@@ -7,6 +7,8 @@
 	官网：  https://opensource.afterturn.cn/
 	邮箱：  qrb.jueyue@foxmail.com
 	QQ群:  364192721
+##目标
+简单到没有代码
 
 ## 软件架构
 

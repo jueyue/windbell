@@ -1,4 +1,6 @@
-vue 使用中遇到的问题
+##用到的插件
+
+##vue 使用中遇到的问题
 --------
 问题1: 其中proCode是 int 类型,products的proCode是string类型会照成无法自动选中
 ```html
