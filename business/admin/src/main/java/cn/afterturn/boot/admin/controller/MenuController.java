@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -67,6 +66,13 @@ public class MenuController extends BaseController<IMenuService, MenuModel> impl
         return new SuccessResponse(list);
     }
 
+    @ApiOperation(value = "获取用户权限")
+    @RequestMapping(value = "/getAllByUserId/{userId}", method = RequestMethod.POST)
+    public Response<List<String>> getAllByUserId(@PathVariable String userId) {
+        List<String> access = menuService.getAllByUserId(userId);
+        return new SuccessResponse(access);
+    }
+
 
     @ApiOperation(value = "获取机构树")
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
@@ -74,5 +80,6 @@ public class MenuController extends BaseController<IMenuService, MenuModel> impl
         List<IViewTree> list = menuService.getTreeByRoleId(roleId);
         return new SuccessResponse(list);
     }
+
 
 }

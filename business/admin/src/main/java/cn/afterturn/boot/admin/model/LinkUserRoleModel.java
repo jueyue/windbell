@@ -17,7 +17,9 @@ package cn.afterturn.boot.admin.model;
 
 import cn.afterturn.boot.bussiness.model.IdBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -34,6 +36,15 @@ import lombok.Data;
 public class LinkUserRoleModel extends IdBaseModel<LinkUserRoleModel> {
 
     private static final long serialVersionUID = 1L;
+
+    public LinkUserRoleModel() {
+
+    }
+
+    public LinkUserRoleModel(String userId, String roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
 
     @Excel(name = "用户ID")
     @TableField(value = "USER_ID", strategy = FieldStrategy.NOT_EMPTY)

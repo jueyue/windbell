@@ -31,8 +31,21 @@ spring:
         namespace: 40f3d8ad-65d0-4935-967e-e838b97c1db0
       discovery:
         server-addr: dev.cloud.afterturn.cn:8848
+        namespace: 40f3d8ad-65d0-4935-967e-e838b97c1db0
 ---
-
+#开发环境
+spring:
+  profiles: pg-dev
+  cloud:
+    nacos:
+      config:
+        server-addr: dev.cloud.afterturn.cn:8848
+        file-extension: yaml
+        namespace: 0e3b70b8-1bc3-447b-aec6-5cdb097a181d
+      discovery:
+        server-addr: dev.cloud.afterturn.cn:8848
+        namespace: 0e3b70b8-1bc3-447b-aec6-5cdb097a181d
+---
 ##########################################################
 ###################  生产环境profile  ###################
 ##########################################################

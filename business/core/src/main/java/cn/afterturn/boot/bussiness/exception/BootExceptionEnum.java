@@ -19,6 +19,12 @@ public enum BootExceptionEnum {
     REQUEST_NULL(101, "参数为空"),
     REQUEST_ERROR(100, "参数错误"),
 
+    /**
+     * 数据相关异常 700-799
+     */
+    DATA_SAVE_ERROR(701,"插入失败"),
+    DATA_UPDATE_ERROR(701,"更新ById失败"),
+
 
     /**
      * 系统异常

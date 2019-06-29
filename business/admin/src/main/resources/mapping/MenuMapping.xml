@@ -93,5 +93,11 @@
             </if>
         </where>
     </select>
+    <select id="getAllByUserId" resultType="java.lang.String">
+        SELECT DISTINCT m.`CODE` FROM t_system_menu m
+        LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID
+        LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
+        WHERE lur.USER_ID = #{userId}
+    </select>
 
 </mapper>

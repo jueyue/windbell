@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 // cookie保存的天数
 import config from '@/config'
-import {forEach, hasOneOf, objEqual} from '@/libs/tools'
+import {forEach, hasOneOf, objEqual, oneOf} from '@/libs/tools'
 
 export const TOKEN_KEY = 'token'
 
@@ -44,7 +44,9 @@ export const hasChild = (item) => {
 
 const showThisMenuEle = (item, access) => {
   if (item.meta && item.meta.access && item.meta.access.length) {
-    if (hasOneOf(item.meta.access, access)) {
+    if (item.meta.access instanceof Array && hasOneOf(item.meta.access, access)) {
+      return true
+    } if (oneOf(item.meta.access, access)) {
       return true
     } else {
       return false
@@ -406,12 +408,20 @@ export const getIds = (arr) => {
  * @param judgeVal
  */
 export const getListByFieldJudge = (resultArr, list, childField, judgeFiled, judgeVal) => {
+  let childChecked = false
   list.forEach(val => {
     if (val[judgeFiled] === judgeVal) {
       resultArr.push(val)
+      childChecked = true
     }
     if (val[childField] instanceof Array) {
-      getListByFieldJudge(resultArr, val[childField], childField, judgeFiled, judgeVal)
+      childChecked = getListByFieldJudge(resultArr, val[childField], childField, judgeFiled, judgeVal)
+        ? true : childChecked
+      if (val[judgeFiled] !== judgeVal && childChecked) {
+        resultArr.push(val)
+        childChecked = true
+      }
     }
   })
+  return childChecked
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.paas.im.repository.AppInfoConfigRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.paas.im.model.AppInfoConfigModel">
+        <result column="ID" property="id"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="TYPE" property="type"/>
+        <result column="APP_CODE" property="appCode"/>
+        <result column="APP_ID" property="appId"/>
+        <result column="SECRET" property="secret"/>
+        <result column="SUB_APP_ID" property="subAppId"/>
+        <result column="SUB_APP_CODE" property="subAppCode"/>
+        <result column="SUB_APP_SECRET" property="subAppSecret"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.tenantId != null and ew.entity.tenantId != '' ">
+            AND t.TENANT_ID = #{ew.entity.tenantId}
+        </if>
+        <if test="ew.entity.type != null and ew.entity.type != '' ">
+            AND t.TYPE = #{ew.entity.type}
+        </if>
+        <if test="ew.entity.appCode != null and ew.entity.appCode != '' ">
+            AND t.APP_CODE = #{ew.entity.appCode}
+        </if>
+        <if test="ew.entity.appId != null and ew.entity.appId != '' ">
+            AND t.APP_ID = #{ew.entity.appId}
+        </if>
+        <if test="ew.entity.secret != null and ew.entity.secret != '' ">
+            AND t.SECRET = #{ew.entity.secret}
+        </if>
+        <if test="ew.entity.subAppId != null and ew.entity.subAppId != '' ">
+            AND t.SUB_APP_ID = #{ew.entity.subAppId}
+        </if>
+        <if test="ew.entity.subAppCode != null and ew.entity.subAppCode != '' ">
+            AND t.SUB_APP_CODE = #{ew.entity.subAppCode}
+        </if>
+        <if test="ew.entity.subAppSecret != null and ew.entity.subAppSecret != '' ">
+            AND t.SUB_APP_SECRET = #{ew.entity.subAppSecret}
+        </if>
+        <if test="ew.entity.crtUserId != null and ew.entity.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{ew.entity.crtUserId}
+        </if>
+        <if test="ew.entity.crtTime != null and ew.entity.crtTime != '' ">
+            AND t.CRT_TIME = #{ew.entity.crtTime}
+        </if>
+        <if test="ew.entity.mdfUserId != null and ew.entity.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{ew.entity.mdfUserId}
+        </if>
+        <if test="ew.entity.mdfTime != null and ew.entity.mdfTime != '' ">
+            AND t.MDF_TIME = #{ew.entity.mdfTime}
+        </if>
+    </sql>
+
+</mapper>

@@ -17,6 +17,13 @@
               <Input v-model="form.name" placeholder="张三" :disabled="disable"></Input>
             </FormItem>
           </Col>
+          <Col span="8">
+            <FormItem label="角色" prop="roles">
+              <Select v-model="roles" multiple>
+                <Option :value="item.id" v-for="(item, index) in roleList" :key="index">{{item.name}}</Option>
+              </Select>
+            </FormItem>
+          </Col>
         </Row>
         <Row>
           <Col span="8">
@@ -91,6 +98,8 @@ export default {
           { required: true, message: '手机号不允许为空', trigger: 'blur' }
         ]
       },
+      roles: [],
+      roleList: [],
       deptOptions: [],
       normalizer (node) {
         return {
@@ -118,6 +127,7 @@ export default {
     submit () {
       this.$refs.userForm.validate((valid) => {
         if (valid) {
+          this.form.access = JSON.stringify(this.roles)
           switch (this.type) {
             case 'create':
               C('admin/user', this.form).then(data => {
@@ -142,29 +152,9 @@ export default {
     P('admin/dept/tree', {}).then(data => {
       this.deptOptions = data
     })
+    P('admin/role/list', {pageSize: 100}).then(data => {
+      this.roleList = data.rows
+    })
   }
 }
 </script>
-
-<style scoped>
-  .info-header {
-    height: 40px;
-    color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-  }
-
-  .ivu-modal-header-inner {
-    margin: 10px 15px 0px 0px;
-    padding-left: 15px;
-    height: 40px;
-  }
-
-  .ivu-modal-close {
-    margin: 10px 15px 0px 0px;
-  }
-
-  .ivu-form-item {
-    width: 260px;
-  }
-</style>

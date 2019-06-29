@@ -72,11 +72,18 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
         return list;
     }
 
+    @Override
+    public List<String> getAllByUserId(String userId) {
+        return menuRepository.getAllByUserId(userId);
+    }
+
     private void loadAllSubTree(List<IViewTree> list, String roleId) {
         for (int i = 0; i < list.size(); i++) {
             List<IViewTree> tempList = menuRepository.getMenuByRoleId(roleId, list.get(i).getId());
             if (CollectionKit.isNotEmpty(tempList)) {
                 list.get(i).setChildren(tempList);
+                // 前端设置true会全选
+                list.get(i).setChecked(false);
                 loadAllSubTree(tempList, roleId);
             }
         }

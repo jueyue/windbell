@@ -39,4 +39,11 @@ public interface MenuRepository extends BaseMapper<MenuModel> {
      * @return
      */
     List<IViewTree> getMenuByRoleId(@Param("roleId") String roleId, @Param("pid") String pid);
+
+    /**
+     * 获取用户的所有菜单权限
+     * @param userId
+     * @return
+     */
+    List<String> getAllByUserId(@Param("userId") String userId);
 }

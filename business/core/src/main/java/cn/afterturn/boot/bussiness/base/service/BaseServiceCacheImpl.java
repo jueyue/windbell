@@ -1,5 +1,7 @@
 package cn.afterturn.boot.bussiness.base.service;
 
+import cn.afterturn.boot.bussiness.exception.BootException;
+import cn.afterturn.boot.bussiness.exception.BootExceptionEnum;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -25,6 +27,27 @@ public abstract class BaseServiceCacheImpl<M extends BaseMapper<T>, T> extends S
 
     @Autowired
     protected M baseMapper;
+
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public boolean save(T model) {
+        boolean bool = super.save(model);
+        if (bool) {
+            if (!handlerSave(model)) {
+                throw new BootException(BootExceptionEnum.DATA_SAVE_ERROR);
+            }
+        }
+        return bool;
+    }
+
+    /**
+     * 处理新增相关处理
+     * @param model
+     * @return
+     */
+    protected boolean handlerSave(T model){
+        return true;
+    }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
@@ -55,30 +78,46 @@ public abstract class BaseServiceCacheImpl<M extends BaseMapper<T>, T> extends S
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     @CacheEvict(key = "#root.targetClass + ':id_'+ #p0.id")
-    public boolean updateById(T entity) {
-        return super.updateById(entity);
+    public boolean updateById(T model) {
+        boolean bool = super.updateById(model);
+        if (bool) {
+            if (!handlerUpdateById(model)) {
+                throw new BootException(BootExceptionEnum.DATA_UPDATE_ERROR);
+            }
+        }
+        return bool;
+    }
+
+    /**
+     * 处理修改相关处理
+     * @param model
+     * @return
+     */
+    protected boolean handlerUpdateById(T model){
+        return true;
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     @CacheEvict(allEntries = true)
-    public boolean update(T entity, Wrapper<T> wrapper) {
-        return super.update(entity, wrapper);
+    public boolean update(T model, Wrapper<T> wrapper) {
+        return super.update(model, wrapper);
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     @CacheEvict(allEntries = true)
-    public boolean updateBatchById(Collection<T> entityList) {
-        return super.updateBatchById(entityList);
+    public boolean updateBatchById(Collection<T> modelList) {
+        return super.updateBatchById(modelList);
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     @CacheEvict(allEntries = true)
-    public boolean updateBatchById(Collection<T> entityList, int batchSize) {
-        return super.updateBatchById(entityList, batchSize);
+    public boolean updateBatchById(Collection<T> modelList, int batchSize) {
+        return super.updateBatchById(modelList, batchSize);
     }
 
     @Override

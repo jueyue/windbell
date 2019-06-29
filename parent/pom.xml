@@ -34,7 +34,8 @@
         <swagger.bootstrap.ui.version>1.8.2</swagger.bootstrap.ui.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
-        <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+        <postgre-connector-java.version>42.2.6</postgre-connector-java.version>
         <jwt.version>3.5.0</jwt.version>
         <lombok.version>1.16.20</lombok.version>
         <easypoi.version>4.0.0</easypoi.version>
@@ -123,11 +124,7 @@
                 <artifactId>shiro-ehcache</artifactId>
                 <version>${shiro.version}</version>
             </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -277,6 +274,17 @@
                 <version>${httpclient.version}</version>
             </dependency>
 
+            <!-- 数据库相关 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgre-connector-java.version}</version>
+            </dependency>
 
             <!-- 微信和钉钉相关SDK  start -->
             <!-- 企业号/企业微信 -->

@@ -71,8 +71,9 @@ export default {
             const data = res
             commit('setAvatar', data.avatar)
             commit('setUserName', data.name)
-            commit('setAccess', 'admin')
+            commit('setAccess', JSON.parse(data.access))
             commit('setHasGetInfo', true)
+            sessionStorage.clear()
             resolve(data)
           }).catch(err => {
             reject(err)

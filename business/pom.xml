@@ -16,7 +16,7 @@
         <module>admin</module>
         <module>core</module>
         <module>facade</module>
-        <module>third</module>
+        <module>paas</module>
     </modules>
 
     <build>

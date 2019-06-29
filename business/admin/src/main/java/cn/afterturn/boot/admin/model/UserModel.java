@@ -110,4 +110,7 @@ public class UserModel extends IdTenantBaseModel<UserModel> {
     @TableField(value = "WXID", strategy = FieldStrategy.NOT_EMPTY)
     @ApiModelProperty("微信ID")
     private String wxid;
+
+    @TableField(exist = false)
+    private String access;
 }

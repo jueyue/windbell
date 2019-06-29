@@ -20,8 +20,10 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="营业执照">
-              <Input v-model="form.creditCode" ></Input>
+            <FormItem label="平台">
+              <Select v-model="form.paas">
+                <Option :value="item.key" v-for="(item, index) in passOptions" :key="index">{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
         </Row>
@@ -43,6 +45,11 @@
           </Col>
         </Row>
         <Row>
+          <Col span="8">
+            <FormItem label="营业执照">
+              <Input v-model="form.creditCode" ></Input>
+            </FormItem>
+          </Col>
           <Col span="8">
             <FormItem label="短信签名">
               <Input v-model="form.smsSign"></Input>
@@ -88,6 +95,9 @@ export default {
     Dict('tenant_type').then(data => {
       this.merTypeOptions = data
     })
+    Dict('paas_type').then(data => {
+      this.passOptions = data
+    })
   },
   methods: {
     openModel (type, data) {
@@ -127,26 +137,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .info-header {
-    height: 40px;
-    color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-  }
-
-  .ivu-modal-header-inner {
-    margin: 10px 15px 0px 0px;
-    padding-left: 15px;
-    height: 40px;
-  }
-
-  .ivu-modal-close {
-    margin: 10px 15px 0px 0px;
-  }
-
-  .ivu-form-item {
-    width: 260px;
-  }
-</style>

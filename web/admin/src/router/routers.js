@@ -49,6 +49,7 @@ export default [
     path: '/system',
     name: '系统管理',
     meta: {
+      access: 'system',
       icon: 'ios-book',
       title: '系统管理'
     },
@@ -58,6 +59,7 @@ export default [
         path: 'tenant',
         name: '客户管理',
         meta: {
+          access: 'tenant',
           icon: 'ios-bulb',
           title: '客户管理'
         },
@@ -67,6 +69,7 @@ export default [
         path: 'dept',
         name: '部门管理',
         meta: {
+          access: 'dept',
           icon: 'md-git-network',
           title: '部门管理'
         },
@@ -76,6 +79,7 @@ export default [
         path: 'user',
         name: '用户管理',
         meta: {
+          access: 'user',
           icon: 'ios-contact',
           title: '用户管理'
         },
@@ -85,6 +89,7 @@ export default [
         path: 'role',
         name: '角色管理',
         meta: {
+          access: 'role',
           icon: 'ios-people',
           title: '角色管理'
         },
@@ -94,6 +99,7 @@ export default [
         path: 'dict',
         name: '字典管理',
         meta: {
+          access: 'dict',
           icon: 'md-filing',
           title: '字典管理'
         },
@@ -103,6 +109,7 @@ export default [
         path: 'product',
         name: '产品管理',
         meta: {
+          access: 'product',
           icon: 'ios-flower-outline',
           title: '产品管理'
         },
@@ -112,10 +119,42 @@ export default [
         path: 'menu',
         name: '菜单管理',
         meta: {
+          access: 'menu',
           icon: 'ios-infinite',
           title: '菜单管理'
         },
         component: () => import('@/view/admin/menu/menu-list.vue')
+      }
+    ]
+  },
+  {
+    path: '/config-manager',
+    name: '配置管理',
+    component: Main,
+    meta: {
+      icon: 'ios-book',
+      title: '配置管理'
+    },
+    children: [
+      {
+        path: 'appinfo',
+        name: '应用配置',
+        meta: {
+          title: '应用配置',
+          notCache: true,
+          icon: 'ios-book'
+        },
+        component: () => import('@/view/paas/appinfo/config-list.vue')
+      },
+      {
+        path: 'appinfo',
+        name: '应用配置',
+        meta: {
+          title: '应用配置',
+          notCache: true,
+          icon: 'ios-book'
+        },
+        component: () => import('@/view/paas/appinfo/config-list.vue')
       }
     ]
   },

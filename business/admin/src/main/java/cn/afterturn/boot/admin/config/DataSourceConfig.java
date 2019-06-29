@@ -20,6 +20,8 @@ public class DataSourceConfig {
     private String username;
     private String password;
     private String filters;
+    private String driverClassName;
+    private String dbtype;
 
     @Bean
     public DataSource getDataSource() throws SQLException {
@@ -27,7 +29,9 @@ public class DataSourceConfig {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-        //dataSource.setFilters(filters);
+        dataSource.setFilters(filters);
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setDbType(dbtype);
         return dataSource;
     }
 

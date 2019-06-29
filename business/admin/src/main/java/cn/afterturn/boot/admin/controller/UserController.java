@@ -16,6 +16,7 @@
 package cn.afterturn.boot.admin.controller;
 
 import cn.afterturn.boot.admin.model.UserModel;
+import cn.afterturn.boot.admin.service.IMenuService;
 import cn.afterturn.boot.admin.service.IUserService;
 import cn.afterturn.boot.bussiness.auth.JwtUtil;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
@@ -24,11 +25,13 @@ import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.core.util.ToolUtil;
 import cn.afterturn.boot.facade.admin.IUserFacade;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -38,6 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -59,6 +63,16 @@ public class UserController extends BaseController<IUserService, UserModel> impl
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IMenuService menuService;
+
+    @Override
+    protected Response handlerCreate(UserModel model) {
+        model.setSalt(RandomStringUtils.randomAlphanumeric(8));
+        model.setPassword(ToolUtil.getPassword(model.getPassword(),model.getSalt()));
+        model.setStatus(1);
+        return super.handlerCreate(model);
+    }
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -92,6 +106,9 @@ public class UserController extends BaseController<IUserService, UserModel> impl
     @RequestMapping(value = "/userInfo/{userId}", method = RequestMethod.GET)
     public Response userInfo(@PathVariable String userId) {
         UserModel user = userService.getById(userId);
+        // 获取所有的菜单权限
+        List<String> access = menuService.getAllByUserId(userId);
+        user.setAccess(JSON.toJSONString(access));
         return new SuccessResponse(user);
     }
 

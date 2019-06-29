@@ -98,6 +98,11 @@ public class TenantModel extends IdTenantBaseModel<TenantModel> {
     @ApiModelProperty("短信签名")
     private String smsSign;
 
+    @Excel(name = "平台")
+    @TableField(value = "PAAS")
+    @ApiModelProperty("平台")
+    private String paas;
+
     @Excel(name = "备注信息")
     @TableField(value = "MEMO")
     @ApiModelProperty("备注信息")

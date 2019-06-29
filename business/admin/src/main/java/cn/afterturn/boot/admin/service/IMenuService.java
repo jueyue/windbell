@@ -45,4 +45,11 @@ public interface IMenuService extends IBaseService<MenuModel> {
      * @return
      */
     List<IViewTree> getTreeByRoleId(String roleId);
+
+    /**
+     * 根据用户ID,获取用户的所有权限
+     * @param userId
+     * @return
+     */
+    List<String> getAllByUserId(String userId);
 }

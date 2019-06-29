@@ -64,6 +64,7 @@ export default {
           render: (h, params) => {
             return h('span', getDictVal('tenant_type', params.row.merType))
           } },
+
         { title: '营业执照', key: 'creditCode' },
         { title: '联系人', key: 'linkman' },
         { title: '联系电话', key: 'phone' },
@@ -72,6 +73,11 @@ export default {
           render: (h, params) => {
             return h('span', '【' + params.row.smsSign + '】')
           }},
+        { title: '平台',
+          key: 'pass',
+          render: (h, params) => {
+            return h('span', getDictVal('paas_type', params.row.paas))
+          } },
         { title: '状态',
           key: 'status',
           render: (h, params) => {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken, removeToken } from '@/libs/util'
+import { Message } from 'iview'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -57,7 +58,13 @@ class HttpRequest {
             window.location.href = '/#/login'
             Message.error('未登录，或登录失效，请登录')
           } else {
-            if (data.msg) Message.error(data.msg)
+            if (data.msg) {
+              Message.error({
+                content: data.msg,
+                duration: 10,
+                closable: true
+              })
+            }
           }
           return false
         }
