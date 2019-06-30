@@ -12,7 +12,13 @@ import installPlugin from '@/plugin'
 import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
+// 风铃通用服务
+// 通用请求JS
+import {C, U, R, D, L, G, P} from '@/libs/api.request'
+import { Dict, getDictVal } from '@/libs/common.request'
+// 通用CSS
 import '@/css/info-base.css'
+import '@/css/list-base.css'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
@@ -36,6 +42,20 @@ Vue.prototype.$config = config
  * 注册指令
  */
 importDirective(Vue)
+
+/**
+ * 注册自定义函数
+ */
+Vue.prototype.C = C
+Vue.prototype.U = U
+Vue.prototype.R = R
+Vue.prototype.D = D
+Vue.prototype.L = L
+Vue.prototype.G = G
+Vue.prototype.P = P
+Vue.prototype.Dict = Dict
+Vue.prototype.getDictVal = getDictVal
+
 
 /* eslint-disable no-new */
 new Vue({

@@ -5,16 +5,20 @@
       <a class="ivu-modal-close" @click="closeModel"><i class="ivu-icon ivu-icon-ios-close"></i></a>
     </div>
     <div>
-      <Form ref="appinfoconfigForm" :model="form" :label-width="80" :rules="ruleValidate">
+      <Form ref="appInfoConfigFrom" :model="form" :label-width="80" :rules="ruleValidate">
         <Row>
           <Col span="8">
-            <FormItem label="租户ID" prop="tenantId">
-              <Input v-model="form.tenantId" :disabled="disable"></Input>
+            <FormItem label="租户" prop="tenantId">
+              <Select v-model="form.tenantId" filterable>
+                <Option :value="item.tenantId" v-for="(item, index) in tenantList" :key="index">{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
           <Col span="8">
             <FormItem label="类型" prop="type">
-              <Input v-model="form.type" :disabled="disable"></Input>
+              <Select v-model="form.type" :disabled="disable">
+                <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
           <Col span="8">
@@ -28,8 +32,8 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="APP秘钥" prop="sercet">
-              <Input v-model="form.sercet" :disabled="disable"></Input>
+            <FormItem label="APP秘钥" prop="secret">
+              <Input v-model="form.secret" :disabled="disable"></Input>
             </FormItem>
           </Col>
           <Col span="8">
@@ -64,8 +68,6 @@
 
 <script>
 
-import {C, U} from '@/libs/api.request'
-
 export default {
   name: 'appinfoconfig-info',
   data () {
@@ -74,6 +76,8 @@ export default {
       isShow: false,
       type: 'add',
       disable: false,
+      tenantList: [],
+      typeOptions: [],
       ruleValidate: {
         tenantId: [
           {required: true, message: '租户ID不允许为空', trigger: 'blur'}
@@ -87,7 +91,7 @@ export default {
         appId: [
           {required: true, message: '外部PAPID不允许为空', trigger: 'blur'}
         ],
-        sercet: [
+        secret: [
           {required: true, message: 'APP秘钥不允许为空', trigger: 'blur'}
         ]
       }
@@ -108,19 +112,19 @@ export default {
       this.isShow = false
     },
     submit () {
-      this.$refs.appinfoconfigForm.validate((valid) => {
+      this.$refs.appInfoConfigFrom.validate((valid) => {
         if (valid) {
           switch (this.type) {
             case 'create':
-              C('appinfoconfig', this.form).then(data => {
+              this.C('paas/appinfoconfig', this.form).then(data => {
                 this.isShow = false
-                this.$emit('handleSearch')
+                this.$emit('handle-search')
               })
               break
             case 'update':
-              U('appinfoconfig', this.form).then(data => {
+              this.U('paas/appinfoconfig', this.form).then(data => {
                 this.isShow = false
-                this.$emit('handleSearch')
+                this.$emit('handle-search')
               })
               break
           }
@@ -131,9 +135,12 @@ export default {
     }
   },
   mounted: function () {
+    this.L('admin/tenant', {pageSize: 1000}).then(data => {
+      this.tenantList = data.rows
+    })
+    this.Dict('paas_type').then(data => {
+      this.typeOptions = data
+    })
   }
 }
 </script>
-
-<style scoped>
-</style>

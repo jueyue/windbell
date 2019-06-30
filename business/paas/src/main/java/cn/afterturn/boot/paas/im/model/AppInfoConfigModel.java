@@ -35,12 +35,6 @@ public class AppInfoConfigModel extends IdTenantBaseModel<AppInfoConfigModel> {
 
     private static final long serialVersionUID = 1L;
 
-
-    @Excel(name = "ID")
-    @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty("ID")
-    private String id;
-
     @Excel(name = "类型")
     @TableField(value = "TYPE", strategy = FieldStrategy.NOT_EMPTY)
     @ApiModelProperty("类型")

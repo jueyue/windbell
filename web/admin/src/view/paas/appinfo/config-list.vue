@@ -3,8 +3,17 @@
         <Card>
             <div class="search-con search-con-top">
                 <Form :model="form" :label-width="80" inline>
+                    <FormItem label="客户">
+                      <Select v-model="form.tenantId">
+                        <Option value="">-全部-</Option>
+                        <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
+                      </Select>
+                    </FormItem>
                     <FormItem label="类型">
-                        <Input v-model="form.type"></Input>
+                      <Select v-model="form.type">
+                        <Option value="">-全部-</Option>
+                        <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
+                      </Select>
                     </FormItem>
                     <FormItem label="内部AppId">
                         <Input v-model="form.appCode"></Input>
@@ -12,39 +21,40 @@
                     <FormItem label="外部AppId">
                         <Input v-model="form.appId"></Input>
                     </FormItem>
-                    <Button @click="handleSearch" class="search-btn" type="primary">
-                        <Icon type="search"/>
-                        搜索
-                    </Button>
                 </Form>
-                <div>
+                <div class="toolbar">
                     <Button type="primary" icon="md-add" @click="handleCreate">新增</Button>
                     <Button type="primary" icon="md-trash" @click="handleDelete">删除</Button>
+                  <Button @click="handleSearch" icon="md-search" class="search-btn" type="primary">搜索</Button>
                 </div>
             </div>
             <tables ref="tables" v-model="tableData" :columns="columns" @on-search="handleSearch"
                     @on-update="handleUpdate" @on-detail="handleDetail" @on-selection-change="selectionChange"/>
         </Card>
-        <appinfoconfigInfo ref="appinfoconfigInfoRef" ></appinfoconfigInfo>
+        <appInfoConfigInfo ref="appInfoConfigInfoRef" @handle-search="handleSearch"></appInfoConfigInfo>
     </div>
 </template>
 
 <script>
 import Tables from '_c/tables'
-import {L, D} from '@/libs/api.request'
-import appinfoconfigInfo from './config-info'
+import appInfoConfigInfo from './config-info'
 import {getIds} from '@/libs/util'
 
 export default {
   name: 'appinfoconfig-list',
   components: {
     Tables,
-    appinfoconfigInfo
+    appInfoConfigInfo
   },
   data () {
     return {
       columns: [
-        {title: '类型', key: 'type'},
+        {title: '', key: 'id', type: 'selection', width: 60 },
+        {title: '客户', key: 'tenantId'},
+        {title: '类型', key: 'type',
+          render: (h, params) => {
+            return h('span', this.getDictVal('paas_type', params.row.type))
+          } },
         {title: '内部AppID', key: 'appCode'},
         {title: '外部AppID', key: 'appId'},
         {title: 'APP秘钥', key: 'secret'},
@@ -69,21 +79,22 @@ export default {
         map: {}
       },
       selectedData: [],
+      typeOptions: [],
       infoIsShow: false
     }
   },
   methods: {
     handleUpdate (param) {
-      this.$refs.appinfoconfigInfoRef.openModel('update', param.row)
+      this.$refs.appInfoConfigInfoRef.openModel('update', param.row)
     },
     handleDetail (param) {
-      this.$refs.appinfoconfigInfoRef.openModel('detail', param.row)
+      this.$refs.appInfoConfigInfoRef.openModel('detail', param.row)
     },
     handleCreate () {
-      this.$refs.appinfoconfigInfoRef.openModel('create')
+      this.$refs.appInfoConfigInfoRef.openModel('create')
     },
     handleDelete () {
-      D('appinfoconfig', getIds(this.selectedData)).then(data => {
+      this.D('paas/appinfoconfig', getIds(this.selectedData)).then(data => {
         this.$Message.success(data)
         this.handleSearch()
       })
@@ -101,17 +112,16 @@ export default {
         model: this.form,
         map: this.form.map
       }
-      L('appinfoconfig', param).then(data => {
+      this.L('paas/appinfoconfig', param).then(data => {
         this.tableData = data
       })
     }
   },
   mounted () {
     this.handleSearch()
+    this.Dict('paas_type').then(data => {
+      this.typeOptions = data
+    })
   }
 }
 </script>
-
-<style>
-
-</style>

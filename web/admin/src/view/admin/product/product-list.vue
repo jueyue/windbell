@@ -26,7 +26,7 @@
             搜索
           </Button>
         </Form>
-        <div>
+        <div class="toolbar">
           <Button type="primary" icon="md-add" @click="handleCreate">新增</Button> &nbsp;&nbsp;
           <Button type="primary" icon="md-trash" @click="handleDelete">删除</Button>
         </div>

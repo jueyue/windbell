@@ -147,10 +147,10 @@ export default [
         component: () => import('@/view/paas/appinfo/config-list.vue')
       },
       {
-        path: 'appinfo',
-        name: '应用配置',
+        path: 'appinfo2',
+        name: '应用配置2',
         meta: {
-          title: '应用配置',
+          title: '应用配置2',
           notCache: true,
           icon: 'ios-book'
         },

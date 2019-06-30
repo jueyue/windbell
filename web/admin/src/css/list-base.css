@@ -1,0 +1,8 @@
+.toolbar button{
+  margin-left: 20px;
+}
+
+.toolbar .search-btn{
+  position: fixed;
+  right: 200px;
+}
