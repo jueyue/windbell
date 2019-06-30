@@ -26,7 +26,14 @@ import java.util.Collection;
  */
 public class CacheKit {
 
-    private static ICache defaultCacheFactory = new J2CacheFactory();
+    private static ICache defaultCacheFactory = new JsonCacheFactory();
+
+
+    //因为j2cache不支持过期问题,提供redis原生的key提供其他服务
+
+    public static void put(String cacheName, String key, Object value, long expiresTime) {
+        defaultCacheFactory.put(cacheName, key, value, expiresTime);
+    }
 
     public static void put(String cacheName, String key, Object value) {
         defaultCacheFactory.put(cacheName, key, value);

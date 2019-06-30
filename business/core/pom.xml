@@ -103,6 +103,10 @@
             <artifactId>spring-tx</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
 
     </dependencies>
 </project>

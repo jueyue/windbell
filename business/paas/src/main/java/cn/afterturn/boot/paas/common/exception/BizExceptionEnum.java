@@ -8,6 +8,9 @@ package cn.afterturn.boot.paas.common.exception;
  */
 public enum BizExceptionEnum {
 
+    NOT_EXISTS_APP_SECRET(-7001, "没有找到正确的秘钥"),
+    GET_TOKEN_ERROR(-7002, "获取Token失败"),
+
     /**
      * 参数异常
      */

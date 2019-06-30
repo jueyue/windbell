@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-2017, Chill Zhuang 庄骞 (smallchill@163.com).
+ * Copyright 2017-2018 JueYue (qrb.jueyue@foxmail.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.afterturn.boot.core.cache;
+package cn.afterturn.boot.facade.paas.im;
 
-import java.util.Collection;
+import cn.afterturn.boot.bussiness.base.controller.IBaseController;
+import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
+import org.springframework.cloud.openfeign.FeignClient;
 
 /**
- * 通用缓存接口
+ * 三方平台用户信息
  *
- * @author jueyue
+ * @author JueYue
+ * @Date 2019-06-27 16:40:25
  */
-public interface ICache {
-
-    void put(String cacheName, String key, Object value, long expiresTime);
-
-    void put(String cacheName, String key, Object value);
-
-    <T> T get(String cacheName, String key);
-
-    Collection<String> getKeys(String cacheName);
-
-    void remove(String cacheName, String key);
-
-    void removeAll(String cacheName);
-
-    boolean exists(String cacheName, String key);
+@FeignClient(value = "paasUserFacade")
+public interface IPaasUserFacade extends IBaseController<PaasUserRequestModel> {
 
 }

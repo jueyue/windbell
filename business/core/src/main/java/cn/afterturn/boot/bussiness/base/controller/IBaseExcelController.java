@@ -1,6 +1,6 @@
 package cn.afterturn.boot.bussiness.base.controller;
 
-import cn.afterturn.boot.bussiness.model.RequestParams;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

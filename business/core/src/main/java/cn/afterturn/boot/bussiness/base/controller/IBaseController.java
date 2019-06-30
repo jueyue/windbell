@@ -1,6 +1,6 @@
 package cn.afterturn.boot.bussiness.base.controller;
 
-import cn.afterturn.boot.bussiness.model.RequestParams;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +25,7 @@ public interface IBaseController<T> {
      * @param request
      * @return
      */
+    @ApiOperation(value = "列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public Response<Page<T>> list(@RequestBody RequestParams<T> params, HttpServletRequest request);
 
@@ -44,6 +45,7 @@ public interface IBaseController<T> {
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public Response delete(@PathVariable String id);
 
@@ -63,6 +65,7 @@ public interface IBaseController<T> {
      * @param model
      * @return
      */
+    @ApiOperation(value = "更新")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Response update(T model);
 
@@ -82,6 +85,7 @@ public interface IBaseController<T> {
      * @param model
      * @return
      */
+    @ApiOperation(value = "详情")
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public Response<T> detailByObj(T model);
 }

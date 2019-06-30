@@ -2,6 +2,7 @@ package cn.afterturn.boot.core.cache;
 
 import cn.afterturn.boot.core.util.SpringContextHolder;
 import net.oschina.j2cache.CacheChannel;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Collection;
 
@@ -11,6 +12,11 @@ import java.util.Collection;
 public class J2CacheFactory implements ICache {
 
     private CacheChannel cacheChannel;
+
+    @Override
+    public void put(String cacheName, String key, Object value, long expiresTime) {
+        throw new NotImplementedException();
+    }
 
     @Override
     public void put(String cacheName, String key, Object value) {

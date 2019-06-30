@@ -17,7 +17,9 @@ package cn.afterturn.boot.paas.im.model;
 
 import cn.afterturn.boot.bussiness.model.IdTenantBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -34,6 +36,16 @@ import lombok.Data;
 public class AppInfoConfigModel extends IdTenantBaseModel<AppInfoConfigModel> {
 
     private static final long serialVersionUID = 1L;
+
+    public AppInfoConfigModel() {
+
+    }
+
+    public AppInfoConfigModel(String type, String tenantId, String appCode) {
+        this.type = type;
+        this.appCode = appCode;
+        super.setTenantId(tenantId);
+    }
 
     @Excel(name = "类型")
     @TableField(value = "TYPE", strategy = FieldStrategy.NOT_EMPTY)

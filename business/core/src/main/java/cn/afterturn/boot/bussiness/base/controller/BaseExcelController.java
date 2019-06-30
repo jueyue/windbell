@@ -2,7 +2,7 @@ package cn.afterturn.boot.bussiness.base.controller;
 
 import cn.afterturn.boot.bussiness.base.service.IBaseService;
 import cn.afterturn.boot.bussiness.constant.factory.PageFactory;
-import cn.afterturn.boot.bussiness.model.RequestParams;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;

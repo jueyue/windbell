@@ -1,4 +1,4 @@
-package cn.afterturn.boot.bussiness.model;
+package cn.afterturn.boot.bussiness.request;
 
 import cn.afterturn.boot.bussiness.constant.state.Order;
 import io.swagger.annotations.ApiModel;

@@ -18,7 +18,7 @@ package cn.afterturn.boot.admin.controller;
 import cn.afterturn.boot.admin.model.MenuModel;
 import cn.afterturn.boot.admin.service.IMenuService;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
-import cn.afterturn.boot.bussiness.model.RequestParams;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.core.support.BeanKit;

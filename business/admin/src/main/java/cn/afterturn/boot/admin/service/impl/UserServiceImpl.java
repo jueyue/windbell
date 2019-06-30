@@ -21,6 +21,8 @@ import cn.afterturn.boot.admin.repository.UserRepository;
 import cn.afterturn.boot.admin.service.ILinkUserRoleService;
 import cn.afterturn.boot.admin.service.IUserService;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
+import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
+import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang.StringUtils;
@@ -47,6 +49,8 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
     private UserRepository       userRepository;
     @Autowired
     private ILinkUserRoleService linkUserRoleService;
+    @Autowired
+    private IPaasUserFacade      paasUserFacade;
 
     @Override
     protected boolean handlerSave(UserModel model) {
@@ -55,6 +59,9 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
             return false;
         }
         //同步三方数据
+        if (!paasUserFacade.create(new PaasUserRequestModel()).isSuccess()) {
+            return false;
+        }
         return true;
     }
 

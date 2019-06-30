@@ -26,6 +26,12 @@
     <logger name="org.apache.ibatis" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
+    <logger name="org.springframework.cloud.openfeign" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="io.github.openfeign" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
 </configuration>
 

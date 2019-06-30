@@ -1,4 +1,4 @@
-package cn.afterturn.boot.bussiness.model;
+package cn.afterturn.boot.bussiness.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,6 +16,14 @@ import java.util.Map;
 @EqualsAndHashCode
 @ApiModel("参数(包含扩展)")
 public class RequestParams<T> extends PageParams<T> {
+
+    public RequestParams() {
+
+    }
+
+    public RequestParams(T model) {
+        super.setModel(model);
+    }
 
     @ApiModelProperty("扩展参数")
     private Map<String, String> map;

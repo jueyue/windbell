@@ -6,6 +6,9 @@ import lombok.Data;
  * @author by jueyue on 19-6-30.
  */
 public enum AppIdEnum {
+
+
+    ENTERPRISE(1000, "企业ID"),
     /**
      * 1*** 都是paas平台自带的应用
       */
@@ -25,15 +28,7 @@ public enum AppIdEnum {
         return appId;
     }
 
-    public void setAppId(int appId) {
-        this.appId = appId;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

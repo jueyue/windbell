@@ -13,11 +13,13 @@ public class SuccessResponse<T> extends Response {
 
     public SuccessResponse() {
         super.code = 200;
+        super.success = true;
         super.data = "操作成功";
     }
 
     public SuccessResponse(T data) {
         super.code = 200;
+        super.success = true;
         super.data = data;
 
     }

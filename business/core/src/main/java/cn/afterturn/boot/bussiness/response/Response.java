@@ -13,9 +13,11 @@ import lombok.Data;
 public abstract class Response<T> {
 
     @ApiModelProperty("数据")
-    protected T data;
+    protected T       data;
     @ApiModelProperty("返回值")
-    protected int code;
+    protected int     code;
+    @ApiModelProperty("是否成功")
+    protected boolean success;
     @ApiModelProperty("描述")
-    protected String msg;
+    protected String  msg;
 }

@@ -20,7 +20,7 @@ import cn.afterturn.boot.admin.service.IDictService;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.base.page.PageInfo;
 import cn.afterturn.boot.bussiness.constant.factory.PageFactory;
-import cn.afterturn.boot.bussiness.model.RequestParams;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.facade.admin.IDictFacade;
@@ -34,7 +34,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 

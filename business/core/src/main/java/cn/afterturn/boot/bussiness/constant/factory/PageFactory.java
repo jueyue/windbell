@@ -1,7 +1,7 @@
 package cn.afterturn.boot.bussiness.constant.factory;
 
 import cn.afterturn.boot.bussiness.constant.state.Order;
-import cn.afterturn.boot.bussiness.model.PageParams;
+import cn.afterturn.boot.bussiness.request.PageParams;
 import cn.afterturn.boot.core.util.ToolUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
