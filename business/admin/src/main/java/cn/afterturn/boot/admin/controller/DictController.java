@@ -56,7 +56,7 @@ public class DictController extends BaseController<IDictService, DictModel> impl
     @Override
     @ApiOperation(value = "查询列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public Response<Page<DictModel>> list(@RequestBody RequestParams<DictModel> params, HttpServletRequest request) {
+    public Response<Page<DictModel>> list(@RequestBody RequestParams<DictModel> params) {
         Page<DictModel> page = PageFactory.init(params);
         QueryWrapper wrapper = new QueryWrapper<>(params.getModel());
         // 如果查询条件为空,就要求只能查询最顶级字典

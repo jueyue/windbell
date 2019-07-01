@@ -45,7 +45,7 @@ public abstract class BaseController<S extends IBaseService<T>, T> implements IB
     @Override
     @ApiOperation(value = "查询列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public Response<Page<T>> list(@RequestBody RequestParams<T> params, HttpServletRequest request) {
+    public Response<Page<T>> list(@RequestBody RequestParams<T> params) {
         Page<T> page = PageFactory.init(params);
         QueryWrapper wrapper = new QueryWrapper<>(params.getModel());
         if (params.getMap() != null) {

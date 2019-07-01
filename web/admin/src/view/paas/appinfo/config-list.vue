@@ -51,7 +51,8 @@ export default {
       columns: [
         {title: '', key: 'id', type: 'selection', width: 60 },
         {title: '客户', key: 'tenantId'},
-        {title: '类型', key: 'type',
+        {title: '类型',
+          key: 'type',
           render: (h, params) => {
             return h('span', this.getDictVal('paas_type', params.row.type))
           } },

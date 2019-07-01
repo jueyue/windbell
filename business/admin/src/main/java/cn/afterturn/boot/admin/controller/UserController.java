@@ -32,6 +32,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -69,7 +70,10 @@ public class UserController extends BaseController<IUserService, UserModel> impl
     @Override
     protected Response handlerCreate(UserModel model) {
         model.setSalt(RandomStringUtils.randomAlphanumeric(8));
-        model.setPassword(ToolUtil.getPassword(model.getPassword(),model.getSalt()));
+        if (StringUtils.isEmpty(model.getPassword())) {
+            model.setPassword(model.getAccount());
+        }
+        model.setPassword(ToolUtil.getPassword(model.getPassword(), model.getSalt()));
         model.setStatus(1);
         return super.handlerCreate(model);
     }

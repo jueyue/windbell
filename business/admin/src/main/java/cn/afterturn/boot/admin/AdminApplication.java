@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableCaching
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"cn.afterturn.boot.facade.paas.im"})
 @EnableConfigurationProperties
 @SpringBootApplication(scanBasePackages = "cn.afterturn.boot")
 public class AdminApplication {

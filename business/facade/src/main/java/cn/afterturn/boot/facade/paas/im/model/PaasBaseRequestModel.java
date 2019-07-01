@@ -13,5 +13,5 @@ public class PaasBaseRequestModel {
     private String tenantId;
 
     @ApiModelProperty("App编码")
-    private String appCode;
+    private int appCode;
 }

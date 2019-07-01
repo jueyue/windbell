@@ -23,11 +23,13 @@ import cn.afterturn.boot.admin.service.IUserService;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
 import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
+import cn.afterturn.boot.facade.paas.im.model.enums.AppIdEnum;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,10 +61,17 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
             return false;
         }
         //同步三方数据
-        if (!paasUserFacade.create(new PaasUserRequestModel()).isSuccess()) {
+        if (!paasUserFacade.create(getPaasUserRequestModel(model)).isSuccess()) {
             return false;
         }
         return true;
+    }
+
+    private PaasUserRequestModel getPaasUserRequestModel(UserModel model) {
+        PaasUserRequestModel paasUserRequestModel = new PaasUserRequestModel();
+        BeanUtils.copyProperties(model, paasUserRequestModel);
+        paasUserRequestModel.setAppCode(AppIdEnum.CONTACTS.getAppId());
+        return paasUserRequestModel;
     }
 
     @Override

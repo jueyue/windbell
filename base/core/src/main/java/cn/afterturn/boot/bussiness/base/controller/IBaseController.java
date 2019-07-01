@@ -22,12 +22,11 @@ public interface IBaseController<T> {
      * 分页查询数据
      *
      * @param params
-     * @param request
      * @return
      */
     @ApiOperation(value = "列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public Response<Page<T>> list(@RequestBody RequestParams<T> params, HttpServletRequest request);
+    public Response<Page<T>> list(@RequestBody RequestParams<T> params);
 
     /**
      * 新增对象

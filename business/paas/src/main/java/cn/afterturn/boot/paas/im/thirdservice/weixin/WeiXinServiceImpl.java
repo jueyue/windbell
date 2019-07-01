@@ -2,11 +2,11 @@ package cn.afterturn.boot.paas.im.thirdservice.weixin;
 
 import cn.afterturn.boot.core.cache.CacheKey;
 import cn.afterturn.boot.core.cache.CacheKit;
+import cn.afterturn.boot.facade.paas.im.model.enums.AppIdEnum;
+import cn.afterturn.boot.facade.paas.im.model.enums.PassTypeEnum;
 import cn.afterturn.boot.paas.common.exception.BizException;
 import cn.afterturn.boot.paas.common.exception.BizExceptionEnum;
 import cn.afterturn.boot.paas.im.model.AppInfoConfigModel;
-import cn.afterturn.boot.paas.im.model.enums.AppIdEnum;
-import cn.afterturn.boot.paas.im.model.enums.PassTypeEnum;
 import cn.afterturn.boot.paas.im.service.IAppInfoConfigService;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.clients.IWeiXinTokenClient;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.result.WeiXinTokenResultModel;

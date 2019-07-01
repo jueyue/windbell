@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.model.enums;
+package cn.afterturn.boot.facade.paas.im.model.enums;
 
 /**
  * @author by jueyue on 19-6-30.
