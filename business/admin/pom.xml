@@ -71,7 +71,7 @@
         </dependency>
         <dependency>
             <groupId>cn.afterturn</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>windbell-core</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.afterturn</groupId>
