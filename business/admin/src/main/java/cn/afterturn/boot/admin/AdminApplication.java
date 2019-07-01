@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 系统管理微服务
@@ -14,6 +15,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableCaching
 @EnableDiscoveryClient
+@EnableFeignClients
 @EnableConfigurationProperties
 @SpringBootApplication(scanBasePackages = "cn.afterturn.boot")
 public class AdminApplication {
