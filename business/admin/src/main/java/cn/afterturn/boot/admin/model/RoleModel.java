@@ -24,6 +24,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 角色表
  *
@@ -77,4 +79,8 @@ public class RoleModel extends IdTenantBaseModel<RoleModel> {
     @TableField(value = "DDID", strategy = FieldStrategy.NOT_EMPTY)
     @ApiModelProperty("钉钉ID")
     private String ddid;
+
+    @ApiModelProperty("子角色")
+    @TableField(exist = false)
+    private List<RoleModel> children;
 }

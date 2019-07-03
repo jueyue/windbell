@@ -86,4 +86,5 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
     }
 
 
+
 }

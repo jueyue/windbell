@@ -18,8 +18,12 @@ package cn.afterturn.boot.admin.controller;
 import cn.afterturn.boot.admin.model.RoleModel;
 import cn.afterturn.boot.admin.service.IRoleService;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
+import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
+import cn.afterturn.boot.bussiness.response.SuccessResponse;
+import cn.afterturn.boot.core.support.BeanKit;
 import cn.afterturn.boot.facade.admin.IRoleFacade;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -27,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -52,6 +57,18 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
         roleService.saveAuth(roleId,menuIds);
         return SUCCESS_RESPONSE;
     }
-
+    @ApiOperation(value = "获取角色列表")
+    @RequestMapping(value = "/tree", method = RequestMethod.POST)
+    public Response<List<RoleModel>> tree(@RequestBody RequestParams<RoleModel> params, HttpServletRequest request) {
+        QueryWrapper wrapper = new QueryWrapper<>(params.getModel());
+        if (params.getMap() != null) {
+            handlerWrapper(wrapper, params.getMap(), params);
+        }
+        if (BeanKit.isAllFieldNullNoTransient(params.getModel())) {
+            wrapper.isNull("P_ID");
+        }
+        List<RoleModel> list = roleService.tree(wrapper);
+        return new SuccessResponse(list);
+    }
 
 }

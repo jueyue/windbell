@@ -11,5 +11,4 @@ import cn.afterturn.boot.bussiness.base.service.IBaseService;
  * @Date 2018-09-03 23:21:00
  */
 public interface ITenantService extends IBaseService<TenantModel> {
-
 }

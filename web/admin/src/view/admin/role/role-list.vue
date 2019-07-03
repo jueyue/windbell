@@ -6,6 +6,9 @@
                     <FormItem label="角色名称">
                         <Input v-model="form.name"></Input>
                     </FormItem>
+                  <FormItem label="上级角色">
+                    <Input v-model="form.pid"></Input>
+                  </FormItem>
                     <FormItem label="备注">
                         <Input v-model="form.tips"></Input>
                     </FormItem>
@@ -57,12 +60,14 @@ export default {
   data () {
     return {
       columns: [
+        { title: '', key: 'id', type: 'selection', width: 60 },
         { title: '角色名称', key: 'name' },
+        { title: '上级角色', key: 'pid' },
         { title: '备注', key: 'tips' },
         {
           title: '操作',
           key: 'handle',
-          minWidth: 200,
+          minWidth: 300,
           options: ['update', 'detail'],
           button: [
             (h, params, vm) => {

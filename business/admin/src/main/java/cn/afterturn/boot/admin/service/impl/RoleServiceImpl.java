@@ -21,6 +21,7 @@ import cn.afterturn.boot.admin.repository.RoleRepository;
 import cn.afterturn.boot.admin.service.ILinkRoleMenuService;
 import cn.afterturn.boot.admin.service.IRoleService;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
+import cn.afterturn.boot.core.support.CollectionKit;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,4 +58,24 @@ public class RoleServiceImpl extends BaseServiceCacheImpl<RoleRepository, RoleMo
         linkRoleMenuService.remove(new QueryWrapper<LinkRoleMenuModel>().eq("ROLE_ID", roleId));
         linkRoleMenuService.saveBatch(linkList);
     }
+
+
+    @Override
+    public List<RoleModel> tree(QueryWrapper wrapper) {
+        List<RoleModel> list = list(wrapper);
+        loadAllSubRole(list);
+        return list;
+    }
+    public void loadAllSubRole(List<RoleModel> list) {
+        RoleModel role = new RoleModel();
+        for (int i = 0; i < list.size(); i++) {
+            role.setPid(list.get(i).getId());
+            List<RoleModel> tempList = list(role);
+            if (CollectionKit.isNotEmpty(tempList)) {
+                list.get(i).setChildren(tempList);
+                loadAllSubRole(tempList);
+            }
+        }
+    }
+
 }

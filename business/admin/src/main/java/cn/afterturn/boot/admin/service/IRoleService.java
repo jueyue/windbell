@@ -17,6 +17,7 @@ package cn.afterturn.boot.admin.service;
 
 import cn.afterturn.boot.admin.model.RoleModel;
 import cn.afterturn.boot.bussiness.base.service.IBaseService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.List;
 
@@ -35,4 +36,6 @@ public interface IRoleService extends IBaseService<RoleModel> {
      * @param menuIds
      */
     void saveAuth(String roleId, List<String> menuIds);
+
+    List<RoleModel> tree(QueryWrapper wrapper);
 }
