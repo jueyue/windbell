@@ -6,8 +6,8 @@
                     <FormItem label="角色名称">
                         <Input v-model="form.name"></Input>
                     </FormItem>
-                  <FormItem label="上级角色">
-                    <Input v-model="form.pid"></Input>
+                  <FormItem label="租户">
+                    <Input v-model="form.tenantId"></Input>
                   </FormItem>
                     <FormItem label="备注">
                         <Input v-model="form.tips"></Input>
@@ -62,7 +62,7 @@ export default {
       columns: [
         { title: '', key: 'id', type: 'selection', width: 60 },
         { title: '角色名称', key: 'name' },
-        { title: '上级角色', key: 'pid' },
+        { title: '租户', key: 'tenantId' },
         { title: '备注', key: 'tips' },
         {
           title: '操作',
