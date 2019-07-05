@@ -7,6 +7,7 @@
         <result column="P_ID" property="pid"/>
         <result column="NAME" property="name"/>
         <result column="DEPT_ID" property="deptId"/>
+        <result column="TENANT_ID" property="tenantId"/>
         <result column="TIPS" property="tips"/>
         <result column="VERSION" property="version"/>
         <result column="WXID" property="wxid"/>
@@ -38,6 +39,9 @@
         </if>
         <if test="ew.entity.ddid != null and ew.entity.ddid != '' ">
             AND t.DDID = #{ew.entity.ddid}
+        </if>
+        <if test="ew.entity.tenantId != null and ew.entity.tenantId != '' ">
+            AND t.TENANT_ID = #{ew.entity.tenantId}
         </if>
     </sql>
 

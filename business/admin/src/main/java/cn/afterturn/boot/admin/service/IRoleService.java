@@ -36,6 +36,4 @@ public interface IRoleService extends IBaseService<RoleModel> {
      * @param menuIds
      */
     void saveAuth(String roleId, List<String> menuIds);
-
-    List<RoleModel> tree(QueryWrapper wrapper);
 }

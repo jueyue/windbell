@@ -11,9 +11,8 @@ import lombok.Data;
  */
 @Data
 public abstract class IdTenantBaseModel<T> extends IdBaseModel {
-
-    @ApiModelProperty("租户")
     @TableField("TENANT_ID")
+    @ApiModelProperty("租户")
     private String tenantId;
 
     @TableField(exist = false)

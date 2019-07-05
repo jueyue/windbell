@@ -133,6 +133,7 @@ public abstract class BaseServiceCacheImpl<M extends BaseMapper<T>, T> extends S
 
     @Override
     public List<T> list(T model) {
+
         return baseMapper.selectList(new QueryWrapper<>(model));
     }
 

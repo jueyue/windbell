@@ -23,6 +23,7 @@
                 </div>
             </div>
             <Row>
+
               <Col span="18">
                 <tables ref="tables" v-model="tableData" :columns="columns" @on-search="handleSearch"
                         @on-update="handleUpdate" @on-detail="handleDetail" @on-selection-change="selectionChange"/>
@@ -97,6 +98,7 @@ export default {
       form: {
         map: {}
       },
+      tenantOptions: [],
       selectedData: [],
       authRole: null,
       menuData: []
@@ -152,6 +154,7 @@ export default {
   },
   mounted () {
     this.handleSearch()
+
   }
 }
 </script>

@@ -15,7 +15,7 @@
 
           <Col span="8">
           <FormItem label="租户" prop="tenantId">
-            <Select v-model="form.tenantId" >
+            <Select v-model="form.tenantId" :disabled="disable">
               <Option :value="item.tenantId" v-for="(item, index) in tenantOptions" :key="index">{{item.name}}</Option>
             </Select>
           </FormItem>

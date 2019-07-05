@@ -80,9 +80,6 @@ public class RoleModel extends IdTenantBaseModel<RoleModel> {
     @ApiModelProperty("钉钉ID")
     private String ddid;
 
-    @ApiModelProperty("子角色")
-    @TableField(exist = false)
-    private List<RoleModel> children;
 
 
 }
