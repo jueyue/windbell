@@ -15,7 +15,9 @@
  */
 package cn.afterturn.boot.admin.controller;
 
+import cn.afterturn.boot.admin.model.LinkUserRoleModel;
 import cn.afterturn.boot.admin.model.RoleModel;
+import cn.afterturn.boot.admin.service.ILinkUserRoleService;
 import cn.afterturn.boot.admin.service.IRoleService;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.response.Response;
@@ -27,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -46,12 +47,23 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
 
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private ILinkUserRoleService linkUserRoleService;
 
     @ApiOperation(value = "保存权限")
     @RequestMapping(value = "/saveAuth/{roleId}", method = RequestMethod.POST)
     public Response saveAuth(@PathVariable String roleId, @RequestBody List<String> menuIds) {
         roleService.saveAuth(roleId,menuIds);
         return SUCCESS_RESPONSE;
+    }
+    @ApiOperation(value = "查看角色下的用户")
+    @RequestMapping(value = "/getUserByRole", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getUserByRole(@RequestParam String roleId) {
+        LinkUserRoleModel model = new LinkUserRoleModel();
+        model.setRoleId(roleId);
+        List<LinkUserRoleModel> list =  linkUserRoleService.list(model);
+        return list!=null&&list.size()>0?list:"no";
     }
 
 
