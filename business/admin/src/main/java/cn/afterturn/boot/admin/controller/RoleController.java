@@ -21,6 +21,7 @@ import cn.afterturn.boot.admin.service.ILinkUserRoleService;
 import cn.afterturn.boot.admin.service.IRoleService;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.response.Response;
+import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.facade.admin.IRoleFacade;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,11 +60,11 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
     @ApiOperation(value = "查看角色下的用户")
     @RequestMapping(value = "/getUserByRole", method = RequestMethod.POST)
     @ResponseBody
-    public Object getUserByRole(@RequestParam String roleId) {
+    public Response getUserByRole(@RequestParam String roleId) {
         LinkUserRoleModel model = new LinkUserRoleModel();
         model.setRoleId(roleId);
         List<LinkUserRoleModel> list =  linkUserRoleService.list(model);
-        return list!=null&&list.size()>0?list:"no";
+        return list!=null&&list.size()>0?new SuccessResponse(list):new SuccessResponse("error");
     }
 
 
