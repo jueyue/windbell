@@ -31,14 +31,14 @@ public class WeiXinServiceImpl {
     @Autowired
     private IWeiXinTokenClient    weiXinTokenClient;
 
-    public String getToken(String tenantId, String appCode) {
+    public String getToken(String tenantId, int appCode) {
         String token = CacheKit.get(applicationName, CacheKey.get(tenantId).append(appCode).toString());
         if (StringUtils.isEmpty(token)) {
             AppInfoConfigModel companyCode = appInfoConfigService.getOne(new AppInfoConfigModel(PassTypeEnum.WEI_XIN.getCode(), tenantId, AppIdEnum.ENTERPRISE.getAppId() + ""));
             if (companyCode == null || StringUtils.isEmpty(companyCode.getSecret())) {
                 throw new BizException(BizExceptionEnum.NOT_EXISTS_APP_SECRET);
             }
-            AppInfoConfigModel app = appInfoConfigService.getOne(new AppInfoConfigModel(PassTypeEnum.WEI_XIN.getCode(), tenantId, appCode));
+            AppInfoConfigModel app = appInfoConfigService.getOne(new AppInfoConfigModel(PassTypeEnum.WEI_XIN.getCode(), tenantId, appCode + ""));
             if (app == null || StringUtils.isEmpty(app.getSecret())) {
                 throw new BizException(BizExceptionEnum.NOT_EXISTS_APP_SECRET);
             }

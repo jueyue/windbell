@@ -138,7 +138,7 @@ export default {
     this.L('admin/tenant', {pageSize: 1000}).then(data => {
       this.tenantList = data.rows
     })
-    this.Dict('paas_type').then(data => {
+    this.dict('paas_type').then(data => {
       this.typeOptions = data
     })
   }

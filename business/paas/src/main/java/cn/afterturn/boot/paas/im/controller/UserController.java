@@ -2,10 +2,13 @@ package cn.afterturn.boot.paas.im.controller;
 
 import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
+import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
 import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
+import cn.afterturn.boot.paas.im.thirdservice.weixin.WeiXinServiceImpl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,17 +21,21 @@ import java.util.List;
  */
 @Api("Paas用户管理")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/im/user")
 public class UserController implements IPaasUserFacade {
 
+    @Autowired
+    private WeiXinServiceImpl weiXinService;
+
     @Override
-    public Response<Page<PaasUserRequestModel>> list(RequestParams<PaasUserRequestModel> params, HttpServletRequest request) {
+    public Response<Page<PaasUserRequestModel>> list(RequestParams<PaasUserRequestModel> params) {
         return null;
     }
 
     @Override
     public Response create(@Valid PaasUserRequestModel model) {
-        return null;
+        //weiXinService.getToken(model.getTenantId(),model.getAppCode());
+        return new SuccessResponse();
     }
 
     @Override

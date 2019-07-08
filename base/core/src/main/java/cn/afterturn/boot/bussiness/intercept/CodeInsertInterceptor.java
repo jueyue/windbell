@@ -30,15 +30,15 @@ public class CodeInsertInterceptor implements Interceptor {
         for (int i = 0; i < args.length; i++) {
             Object parameterObject = args[i];
             //第一个参数处理。根据它判断是否给“操作属性”赋值。
-            if (parameterObject instanceof MappedStatement) {//如果是第一个参数 MappedStatement
+            if (parameterObject instanceof MappedStatement) {
                 MappedStatement ms = (MappedStatement) parameterObject;
                 SqlCommandType sqlCommandType = ms.getSqlCommandType();
-                if (sqlCommandType == SqlCommandType.INSERT) {//如果是“增加”或“更新”操作，则继续进行默认操作信息赋值。否则，则退出
+                if (sqlCommandType == SqlCommandType.INSERT) {
                     continue;
                 } else {
                     break;
                 }
-            } else if (parameterObject instanceof Map) {//如果是map，有两种情况：（1）使用@Param多参数传入，由Mybatis包装成map。（2）原始传入Map
+            } else if (parameterObject instanceof Map) {
                 Map map = (Map) parameterObject;
                 for (Object obj : map.values()) {
                     setProperty(obj);

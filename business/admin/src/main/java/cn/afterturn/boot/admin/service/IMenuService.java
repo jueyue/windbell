@@ -49,7 +49,8 @@ public interface IMenuService extends IBaseService<MenuModel> {
     /**
      * 根据用户ID,获取用户的所有权限
      * @param userId
+     * @param productCode
      * @return
      */
-    List<String> getAllByUserId(String userId);
+    List<String> getAllByUserId(String userId,String productCode);
 }

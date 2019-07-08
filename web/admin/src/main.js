@@ -15,7 +15,7 @@ import '@/assets/icons/iconfont.css'
 // 风铃通用服务
 // 通用请求JS
 import {C, U, R, D, L, G, P} from '@/libs/api.request'
-import { Dict, getDictVal } from '@/libs/common.request'
+import { dict, getDictVal, numDict } from '@/libs/common.request'
 // 通用CSS
 import '@/css/info-base.css'
 import '@/css/list-base.css'
@@ -53,8 +53,10 @@ Vue.prototype.D = D
 Vue.prototype.L = L
 Vue.prototype.G = G
 Vue.prototype.P = P
-Vue.prototype.Dict = Dict
+Vue.prototype.dict = dict
+Vue.prototype.numDict = numDict
 Vue.prototype.getDictVal = getDictVal
+Vue.prototype.PAGE_SIZE_MAX = 100
 
 
 /* eslint-disable no-new */

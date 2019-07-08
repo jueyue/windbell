@@ -15,7 +15,13 @@
  */
 package cn.afterturn.boot.facade.admin;
 
+import cn.afterturn.boot.bussiness.response.Response;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 /**
  * 菜单表接口
@@ -23,7 +29,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author JueYue
  * @Date 2018-10-12 14:51:42
  */
-@FeignClient(value = "menuFacade")
+@FeignClient(value = "menuFacade", contextId = "lemur-admin", path = "/menu")
 public interface IMenuFacade {
 
 }

@@ -1,5 +1,6 @@
 package cn.afterturn.boot.core.config;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
@@ -32,6 +33,7 @@ public class DefaultFastjsonConfig {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         converter.setFastJsonConfig(fastjsonConfig());
         converter.setSupportedMediaTypes(getSupportedMediaType());
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
         return converter;
     }
 
@@ -53,6 +55,7 @@ public class DefaultFastjsonConfig {
         };
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
         fastJsonConfig.setSerializeFilters(valueFilter);
+
         return fastJsonConfig;
     }
 

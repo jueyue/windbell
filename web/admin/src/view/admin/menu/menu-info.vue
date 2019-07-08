@@ -35,11 +35,6 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="URL地址" prop="url">
-              <Input v-model="form.url" :disabled="disable"></Input>
-            </FormItem>
-          </Col>
-          <Col span="8">
             <FormItem label="排序号" prop="num">
               <Input v-model="form.num" :disabled="disable"></Input>
             </FormItem>
@@ -90,7 +85,7 @@
 <script>
 
 import { C, U, P } from '@/libs/api.request'
-import { Dict } from '@/libs/common.request'
+import { dict } from '@/libs/common.request'
 
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
@@ -199,13 +194,13 @@ export default {
     }
   },
   mounted: function () {
-    Dict('yes_no').then(data => {
+    dict('yes_no').then(data => {
       this.yesNoOptions = data
     })
-    Dict('status').then(data => {
+    dict('status').then(data => {
       this.statusOptions = data
     })
-    Dict('menu_web_type').then(data => {
+    dict('menu_web_type').then(data => {
       this.webTypeOptions = data
     })
   }

@@ -19,6 +19,6 @@ public interface IWeiXinTokenClient {
      * @param corpsecret
      * @return
      */
-    @RequestMapping(value = "/gettoken", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/gettoken", method = RequestMethod.GET)
     WeiXinTokenResultModel getToken(@RequestParam String corpid, @RequestParam String corpsecret);
 }

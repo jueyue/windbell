@@ -73,8 +73,8 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
     }
 
     @Override
-    public List<String> getAllByUserId(String userId) {
-        return menuRepository.getAllByUserId(userId);
+    public List<String> getAllByUserId(String userId,String productCode) {
+        return menuRepository.getAllByUserId(userId,productCode);
     }
 
     private void loadAllSubTree(List<IViewTree> list, String roleId) {

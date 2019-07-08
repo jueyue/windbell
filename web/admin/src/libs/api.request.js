@@ -1,6 +1,7 @@
 import HttpRequest from '@/libs/axios'
 import config from '@/config/index'
 import { Message } from 'iview'
+import {getUserId} from '../api/user'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
@@ -27,9 +28,12 @@ export const G = (path) => {
  * @constructor
  */
 export const P = (path, data) => {
-  if (!path || !data) {
-    Message.warning('地址或数据不允许为空')
+  if (!path) {
+    Message.warning('地址不允许为空')
     return
+  }
+  if (!data) {
+    data = {}
   }
   return axios.post(path, data)
 }
@@ -54,9 +58,12 @@ export const D = (path, ids) => {
  * @returns {*}
  */
 export const L = (path, params) => {
-  if (!path || !params) {
-    Message.warning('地址或查询数据不允许为空')
+  if (!path) {
+    Message.warning('地址不允许为空')
     return
+  }
+  if (!params) {
+    params = {pageSize: this.PAGE_SIZE_MAX}
   }
   return axios.post(path + '/list', params)
 }
@@ -86,6 +93,9 @@ export const C = (path, params) => {
     Message.warning('新增数据不允许为空')
     return
   }
+  if (!params['crtUserId']) {
+    params.crtUserId = getUserId()
+  }
   return axios.post(path + '/create', params).then(data => {
     if (data) {
       Message.success('新增成功')
@@ -104,6 +114,9 @@ export const U = (path, params) => {
   if (!params) {
     Message.warning('修改数据不允许为空')
     return
+  }
+  if (!params['mdfUserId']) {
+    params.mdfUserId = getUserId()
   }
   return axios.post(path + '/update', params).then(data => {
     if (data) {

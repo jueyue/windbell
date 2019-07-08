@@ -124,6 +124,16 @@ export default [
           title: '菜单管理'
         },
         component: () => import('@/view/admin/menu/menu-list.vue')
+      },
+      {
+        path: 'resource',
+        name: '资源管理',
+        meta: {
+          access: 'resource',
+          icon: 'ios-cloud-outline',
+          title: '资源管理'
+        },
+        component: () => import('@/view/admin/resource/resource-list.vue')
       }
     ]
   },

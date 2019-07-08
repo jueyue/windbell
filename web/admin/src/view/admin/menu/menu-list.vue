@@ -35,9 +35,9 @@
         :data="tableData"
         :columns="columns">
         <template slot="options" slot-scope="scope">
-          <div>
-            <Button type="primary" icon="ios-create-outline" @click="handleUpdate(scope.row)">修改</Button> &nbsp;&nbsp;
-            &nbsp;&nbsp;
+          <div class="toolbar ">
+            <Button type="primary" icon="ios-create-outline" @click="handleUpdate(scope.row)">修改</Button>
+            <Button type="primary" icon="ios-cloud-outline" @click="handleResource(scope.row)">资源</Button>
             <Button type="primary" icon="md-trash" @click="handleDelete(scope.row.id)">删除</Button>
           </div>
         </template>
@@ -56,20 +56,23 @@
       </zk-table>
     </Card>
     <menuInfo ref="menuInfoRef" @handle-search="handleSearch"></menuInfo>
+    <resourceTree ref="resourceTreeRef" @handle-search="handleSearch"></resourceTree>
   </div>
 </template>
 
 <script>
 import ZkTable from 'vue-table-with-tree-grid'
 import { D, P } from '@/libs/api.request'
-import { getDictVal, Dict } from '@/libs/common.request'
+import { getDictVal, dict } from '@/libs/common.request'
 import menuInfo from './menu-info'
+import resourceTree from '@/view/admin/resource/resource-tree'
 
 export default {
   name: 'menu-list',
   components: {
     ZkTable,
-    menuInfo
+    menuInfo,
+    resourceTree
   },
   data () {
     return {
@@ -81,7 +84,6 @@ export default {
           type: 'template',
           template: 'webType'
         },
-        { label: 'URL地址', prop: 'url' },
         { label: '排序号', prop: 'num' },
         { label: '归属产品', prop: 'proCode' },
         { label: '状态',
@@ -91,7 +93,7 @@ export default {
         {
           label: '操作',
           type: 'template',
-          minWidth: 240,
+          minWidth: 260,
           template: 'options'
         }
       ],
@@ -114,6 +116,9 @@ export default {
     },
     handleCreate () {
       this.$refs.menuInfoRef.openModel('create')
+    },
+    handleResource (param) {
+      this.$refs.resourceTreeRef.openModel(param)
     },
     handleDelete (id) {
       D('admin/menu', [id]).then(data => {
@@ -144,10 +149,10 @@ export default {
   },
   mounted () {
     this.handleSearch()
-    Dict('menu_web_type').then(data => {
+    dict('menu_web_type').then(data => {
       this.webTypeOptions = data
     })
-    Dict('status').then(data => {
+    dict('status').then(data => {
       this.statusOptions = data
     })
   }

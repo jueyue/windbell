@@ -26,14 +26,11 @@
               </Col>
             </Row>
           </FormItem>
-          <Button @click="handleSearch" class="search-btn" type="primary">
-            <Icon type="search"/>
-            搜索
-          </Button>
         </Form>
         <div class="toolbar">
           <Button type="primary" icon="md-add" @click="handleCreate">新增</Button> &nbsp;&nbsp;
           <Button type="primary" icon="md-trash" @click="handleDelete">删除</Button>
+          <Button @click="handleSearch" icon="md-search" class="search-btn" type="primary">搜索 </Button>
         </div>
       </div>
       <tables ref="tables" v-model="tableData" :columns="columns" @on-search="handleSearch"

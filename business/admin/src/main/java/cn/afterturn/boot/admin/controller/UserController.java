@@ -18,7 +18,6 @@ package cn.afterturn.boot.admin.controller;
 import cn.afterturn.boot.admin.model.UserModel;
 import cn.afterturn.boot.admin.service.IMenuService;
 import cn.afterturn.boot.admin.service.IUserService;
-import cn.afterturn.boot.bussiness.auth.JwtUtil;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.response.ErrorResponse;
 import cn.afterturn.boot.bussiness.response.Response;
@@ -26,6 +25,8 @@ import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.core.util.ToolUtil;
 import cn.afterturn.boot.facade.admin.IUserFacade;
 import com.alibaba.fastjson.JSON;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
@@ -33,15 +34,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +60,8 @@ public class UserController extends BaseController<IUserService, UserModel> impl
 
     @Value("${jwt.secret}")
     private String jwtSecret;
+    @Value("${jwt.expiration}")
+    private int    expiration;
 
     @Autowired
     private IUserService userService;
@@ -80,38 +81,50 @@ public class UserController extends BaseController<IUserService, UserModel> impl
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response login(@RequestBody @ApiParam(value = "{\"account\":登录用户,\"password\":密码(md5小写)}") Map<String, String> map) {
+    public Response login(@RequestBody @ApiParam(value = "{\"account\":登录用户,\"password\":密码(md5小写)},\"product\":产品编码}") Map<String, String> map) {
         String    account  = map.get("account");
         String    password = map.get("password");
+        String    product  = map.get("product");
         Wrapper   wrapper  = new QueryWrapper<UserModel>().eq("account", account);
         UserModel user     = userService.getOne(wrapper);
         if (user == null) {
-            return new ErrorResponse(401, "未找到改用户");
+            return new ErrorResponse(401, "账号或密码不对");
         }
-        Subject               currentUser = SecurityUtils.getSubject();
-        UsernamePasswordToken token       = new UsernamePasswordToken(account, ToolUtil.getPassword(password, user.getSalt()));
-        currentUser.login(token);
+        if (!user.getPassword().equalsIgnoreCase(ToolUtil.getPassword(password, user.getSalt()))) {
+            return new ErrorResponse(401, "账号或密码不对");
+        }
         map.put("userId", user.getId());
-        map.put("token", JwtUtil.sign(user.getId(), getAllRoles(user), user.getName(), jwtSecret));
+        map.put("token", sign(user.getId(), product, user.getName(), jwtSecret));
         return new SuccessResponse(map);
+    }
+
+    private String sign(String userId, String product, String userName, String secret) {
+        try {
+            Date      date      = new Date(System.currentTimeMillis() + expiration);
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            // 附带username信息
+            return JWT.create()
+                    .withClaim("userId", userId)
+                    .withClaim("userName", userName)
+                    .withClaim("product", product)
+                    .withExpiresAt(date)
+                    .sign(algorithm);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @ApiOperation("登出")
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public Response logout() {
-        SecurityUtils.getSubject().logout();
         return new SuccessResponse();
-    }
-
-    private String getAllRoles(UserModel user) {
-        return null;
     }
 
     @RequestMapping(value = "/userInfo/{userId}", method = RequestMethod.GET)
     public Response userInfo(@PathVariable String userId) {
         UserModel user = userService.getById(userId);
         // 获取所有的菜单权限
-        List<String> access = menuService.getAllByUserId(userId);
+        List<String> access = menuService.getAllByUserId(userId, "1001");
         user.setAccess(JSON.toJSONString(access));
         return new SuccessResponse(user);
     }

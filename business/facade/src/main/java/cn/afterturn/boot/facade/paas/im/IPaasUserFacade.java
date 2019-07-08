@@ -25,7 +25,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author JueYue
  * @Date 2019-06-27 16:40:25
  */
-@FeignClient(value = "paasUserFacade")
+@FeignClient(value = "paasUserFacade", contextId = "lemur-paas", path = "/im/user")
 public interface IPaasUserFacade extends IBaseController<PaasUserRequestModel> {
 
 }

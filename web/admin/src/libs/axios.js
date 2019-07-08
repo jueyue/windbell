@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-import { getToken, removeToken } from '@/libs/util'
+import { getToken, removeToken, setToken } from '@/libs/util'
 import { Message } from 'iview'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
@@ -23,6 +23,7 @@ class HttpRequest {
     const config = {
       baseURL: this.baseUrl,
       headers: {
+        productCode: 1001,
         token: getToken()
       }
     }
@@ -49,6 +50,13 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(res => {
       this.destroy(url)
+      if (res.status !== 200) {
+        Message.error('url:' + url + ', 访问失败,异常码:' + res.status)
+        return false
+      }
+      if (res.headers.token) {
+        setToken(res.headers.token)
+      }
       let { data } = res
       if (!(data instanceof Blob)) {
         if (data.code !== 200) {

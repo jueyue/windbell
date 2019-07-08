@@ -52,7 +52,16 @@ public abstract class BaseController<S extends IBaseService<T>, T> implements IB
             handlerWrapper(wrapper, params.getMap(), params);
         }
         baseService.page(page, wrapper);
+        handlerResult(page.getRecords());
         return new SuccessResponse(new PageInfo<T>((page)));
+    }
+
+    /**
+     * 自定义处理返回结果
+     * @param records
+     */
+    protected void handlerResult(List<T> records){
+
     }
 
     protected void handlerWrapper(QueryWrapper wrapper, Map<String, String> map, RequestParams<T> params) {

@@ -3,6 +3,6 @@
 }
 
 .toolbar .search-btn{
-  position: fixed;
-  right: 200px;
+  float: right;
+  margin-right: 120px;
 }

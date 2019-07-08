@@ -5,6 +5,8 @@ spring:
     name: lemur-admin
   cache:
     type: GENERIC
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 9001 #项目端口
 

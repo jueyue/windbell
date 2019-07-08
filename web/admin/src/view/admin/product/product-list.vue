@@ -42,7 +42,7 @@
 import Tables from '_c/tables'
 import { L, D } from '@/libs/api.request'
 import productInfo from './product-info'
-import { getDictVal, Dict } from '@/libs/common.request'
+import { getDictVal, dict } from '@/libs/common.request'
 import { getIds } from '@/libs/util'
 
 export default {
@@ -131,10 +131,10 @@ export default {
   },
   mounted () {
     this.handleSearch()
-    Dict('product_type').then(data => {
+    dict('product_type').then(data => {
       this.proTypeOptions = data
     })
-    Dict('product_status').then(data => {
+    dict('product_status').then(data => {
       this.statusOptions = data
     })
   }

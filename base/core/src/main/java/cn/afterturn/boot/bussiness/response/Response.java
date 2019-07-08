@@ -10,7 +10,11 @@ import lombok.Data;
  * @Date 2017年1月11日 下午11:58:00
  */
 @Data
-public abstract class Response<T> {
+public class Response<T> {
+
+    public Response() {
+
+    }
 
     @ApiModelProperty("数据")
     protected T       data;

@@ -66,19 +66,18 @@ public class MenuController extends BaseController<IMenuService, MenuModel> impl
         return new SuccessResponse(list);
     }
 
-    @ApiOperation(value = "获取用户权限")
-    @RequestMapping(value = "/getAllByUserId/{userId}", method = RequestMethod.POST)
-    public Response<List<String>> getAllByUserId(@PathVariable String userId) {
-        List<String> access = menuService.getAllByUserId(userId);
-        return new SuccessResponse(access);
-    }
-
-
     @ApiOperation(value = "获取机构树")
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
     public Response<List<IViewTree>> tree(@RequestParam String roleId) {
         List<IViewTree> list = menuService.getTreeByRoleId(roleId);
         return new SuccessResponse(list);
+    }
+
+    @ApiOperation(value = "查询用户访问权限")
+    @GetMapping(value = "/queryUserPermissions/{productCode}/{userId}")
+    public Response<List<String>> queryUserPermissions(@PathVariable String productCode,@PathVariable String userId) {
+        List<String> access = menuService.getAllByUserId(userId,productCode);
+        return new SuccessResponse(access);
     }
 
 

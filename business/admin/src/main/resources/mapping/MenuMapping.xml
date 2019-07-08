@@ -98,6 +98,9 @@
         LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID
         LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
         WHERE lur.USER_ID = #{userId}
+        <if test="productCode != null and productCode != ''">
+            and m.PRO_CODE = #{productCode}
+        </if>
     </select>
 
 </mapper>

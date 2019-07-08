@@ -68,7 +68,7 @@
 <script>
 
 import { C, U } from '@/libs/api.request'
-import { Dict } from '@/libs/common.request'
+import { dict } from '@/libs/common.request'
 
 export default {
   name: 'tenant-info',
@@ -92,10 +92,10 @@ export default {
     }
   },
   created: function () {
-    Dict('tenant_type').then(data => {
+    dict('tenant_type').then(data => {
       this.merTypeOptions = data
     })
-    Dict('paas_type').then(data => {
+    dict('paas_type').then(data => {
       this.passOptions = data
     })
   },

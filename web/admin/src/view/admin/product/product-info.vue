@@ -49,7 +49,7 @@
 <script>
 
 import { C, U } from '@/libs/api.request'
-import { Dict } from '@/libs/common.request'
+import { dict } from '@/libs/common.request'
 
 export default {
   name: 'product-info',
@@ -118,10 +118,10 @@ export default {
     }
   },
   mounted: function () {
-    Dict('product_type').then(data => {
+    dict('product_type').then(data => {
       this.proTypeOptions = data
     })
-    Dict('product_status').then(data => {
+    dict('product_status').then(data => {
       this.statusOptions = data
     })
   }

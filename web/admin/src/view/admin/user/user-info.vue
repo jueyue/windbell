@@ -115,6 +115,7 @@ export default {
       this.type = type
       if (data) {
         this.form = data
+        this.form.sex = this.form.sex + ''
       } else {
         this.form = {}
       }
@@ -148,11 +149,11 @@ export default {
       })
     }
   },
-  mounted: function () {
-    P('admin/dept/tree', {}).then(data => {
+  beforeCreate: function () {
+    P('admin/dept/tree').then(data => {
       this.deptOptions = data
     })
-    P('admin/role/list', {pageSize: 100}).then(data => {
+    P('admin/role/list').then(data => {
       this.roleList = data.rows
     })
   }

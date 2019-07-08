@@ -413,6 +413,8 @@ export const getListByFieldJudge = (resultArr, list, childField, judgeFiled, jud
     if (val[judgeFiled] === judgeVal) {
       resultArr.push(val)
       childChecked = true
+    } else {
+      childChecked = false
     }
     if (val[childField] instanceof Array) {
       childChecked = getListByFieldJudge(resultArr, val[childField], childField, judgeFiled, judgeVal)

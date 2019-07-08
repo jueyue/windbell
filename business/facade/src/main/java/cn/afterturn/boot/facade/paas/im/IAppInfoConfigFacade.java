@@ -23,7 +23,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author JueYue
  * @Date 2019-06-27 16:40:25
  */
-@FeignClient(value = "appInfoConfigFacade")
+@FeignClient(value = "appInfoConfigFacade", contextId = "lemur-paas", path = "/appinfocofig")
 public interface IAppInfoConfigFacade {
 
 }
