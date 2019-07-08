@@ -64,7 +64,8 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
         LinkUserRoleModel model = new LinkUserRoleModel();
         model.setRoleId(roleId);
         List<LinkUserRoleModel> list =  linkUserRoleService.list(model);
-        return list!=null&&list.size()>0?new SuccessResponse(list):new SuccessResponse("error");
+        SuccessResponse res =  list!=null&&list.size()>0?new SuccessResponse(list):new SuccessResponse("");
+        return res;
     }
 
 
