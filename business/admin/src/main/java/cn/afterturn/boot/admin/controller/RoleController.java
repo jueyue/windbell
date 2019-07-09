@@ -19,10 +19,13 @@ import cn.afterturn.boot.admin.model.LinkUserRoleModel;
 import cn.afterturn.boot.admin.model.RoleModel;
 import cn.afterturn.boot.admin.service.ILinkUserRoleService;
 import cn.afterturn.boot.admin.service.IRoleService;
+import cn.afterturn.boot.bussiness.annotion.Permission;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.facade.admin.IRoleFacade;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mysql.cj.Query;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -60,12 +63,9 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
     @ApiOperation(value = "查看角色下的用户")
     @RequestMapping(value = "/getUserByRole", method = RequestMethod.POST)
     @ResponseBody
+    @Permission
     public Response getUserByRole(@RequestParam String roleId) {
-        LinkUserRoleModel model = new LinkUserRoleModel();
-        model.setRoleId(roleId);
-        List<LinkUserRoleModel> list =  linkUserRoleService.list(model);
-        SuccessResponse res =  list!=null&&list.size()>0?new SuccessResponse(list):new SuccessResponse("");
-        return res;
+        return new SuccessResponse(linkUserRoleService.count(new QueryWrapper<>(new LinkUserRoleModel(null,roleId))));
     }
 
 
