@@ -116,7 +116,7 @@ export default {
     },
     handleDelete () {
       P('admin/role/getUserByRole?roleId=' + getIds(this.selectedData), {}).then(data => {
-        if(data ==='0' || data === ''){
+        if(data ===0){
           D('admin/role', getIds(this.selectedData)).then(data => {
             this.$Message.success(data)
             this.handleSearch()

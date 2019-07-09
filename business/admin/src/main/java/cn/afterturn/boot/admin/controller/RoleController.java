@@ -63,7 +63,6 @@ public class RoleController extends BaseController<IRoleService, RoleModel> impl
     @ApiOperation(value = "查看角色下的用户")
     @RequestMapping(value = "/getUserByRole", method = RequestMethod.POST)
     @ResponseBody
-    @Permission
     public Response getUserByRole(@RequestParam String roleId) {
         return new SuccessResponse(linkUserRoleService.count(new QueryWrapper<>(new LinkUserRoleModel(null,roleId))));
     }
