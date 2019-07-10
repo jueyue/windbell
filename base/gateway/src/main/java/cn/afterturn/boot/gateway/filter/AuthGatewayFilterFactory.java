@@ -43,6 +43,11 @@ public class AuthGatewayFilterFactory implements GlobalFilter {
         if (WhiteListUtil.isWhiteList(exchange.getRequest().getPath().pathWithinApplication().value())) {
             return chain.filter(exchange);
         }
+        if(WhiteListUtil.isLogout(exchange.getRequest().getPath().pathWithinApplication().value())){
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+            return chain.filter(exchange);
+        }
         Subject subject = SecurityUtils.getSubject();
         subject.login(new JwtToken(exchange.getRequest().getHeaders().getFirst(HeaderEnum.TOKEN.getName())));
         String permission = getUrls(exchange);
@@ -63,26 +68,6 @@ public class AuthGatewayFilterFactory implements GlobalFilter {
 
     private String getUrls(ServerWebExchange exchange) {
         String url = exchange.getRequest().getPath().pathWithinApplication().value();
-        /*String[] paths = url.split("/");
-        switch (paths.length) {
-            case 0:
-            case 1:
-            case 2:
-                return new String[]{url};
-            case 3:
-                if (StringUtils.isEmpty(paths[0])) {
-                    return new String[]{"/" + paths[1] + "/" + paths[2]};
-                } else {
-                    return new String[]{"/" + paths[0] + "/" + paths[1], "/" + paths[0] + "/" + paths[1] + "/" + paths[2]};
-                }
-            default:
-                if (StringUtils.isEmpty(paths[0])) {
-                    return new String[]{"/" + paths[1] + "/" + paths[2], "/" + paths[1] + "/" + paths[2] + "/" + paths[3]};
-                } else {
-                    return new String[]{"/" + paths[0] + "/" + paths[1], "/" + paths[0] + "/" + paths[1] + "/" + paths[2]};
-                }
-        }*/
-
         String permission = cache.getIfPresent(url);
         if (StringUtils.isEmpty(permission)) {
             permission = url.replaceAll("/", ":");

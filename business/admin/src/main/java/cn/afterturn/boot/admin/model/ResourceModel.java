@@ -18,6 +18,7 @@ package cn.afterturn.boot.admin.model;
 import cn.afterturn.boot.bussiness.model.IdBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -44,7 +45,7 @@ public class ResourceModel extends IdBaseModel<ResourceModel> {
     private String pid;
 
     @Excel(name = "资源名称")
-    @TableField(value = "NAME", strategy = FieldStrategy.NOT_EMPTY)
+    @TableField(value = "NAME", strategy = FieldStrategy.NOT_EMPTY, condition = SqlCondition.LIKE)
     @ApiModelProperty("资源名称")
     private String name;
 

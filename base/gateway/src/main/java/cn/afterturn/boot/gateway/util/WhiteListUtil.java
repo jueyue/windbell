@@ -12,4 +12,11 @@ public class WhiteListUtil {
         }
         return false;
     }
+
+    public static boolean isLogout(String path) {
+        if (path.startsWith("/user/logout")) {
+            return true;
+        }
+        return false;
+    }
 }

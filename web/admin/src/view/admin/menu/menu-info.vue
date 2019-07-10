@@ -125,9 +125,6 @@ export default {
         name: [
           { required: true, message: '名称不允许为空', trigger: 'blur' }
         ],
-        icon: [
-          { required: true, message: '图标不允许为空', trigger: 'blur' }
-        ],
         url: [
           { required: true, message: 'URL地址不允许为空', trigger: 'blur' }
         ],
