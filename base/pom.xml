@@ -15,6 +15,7 @@
     <modules>
         <module>gateway</module>
 		<module>core</module>
+		<module>opendoc</module>
     </modules>
 
     <build>

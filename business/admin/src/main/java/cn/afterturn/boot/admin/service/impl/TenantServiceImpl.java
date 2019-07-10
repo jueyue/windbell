@@ -49,6 +49,7 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
         tenantRepository.insert(entity);
         //Step 2 创建部门
         DeptModel dept = getDeptModel(entity);
+        dept.setTenantId(tenantId);
         deptService.save(dept);
         //Step 3 创建管理员
         userService.save(getUserModel(entity, dept));
@@ -82,6 +83,7 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
         user.setPhone(entity.getPhone());
         user.setName(entity.getLinkman());
         user.setPassword(entity.getPhone());
+        user.setTenantId(entity.getTenantId());
         return user;
     }
 

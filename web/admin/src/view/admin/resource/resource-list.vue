@@ -60,7 +60,6 @@ export default {
           render: (h, params) => {
             return h('span', this.getDictVal('status', params.row.status))
           } },
-        {title: '备注', key: 'tips'},
         {title: '创建时间', key: 'crtTime'},
         {title: '修改时间', key: 'mdfTime'},
         {
