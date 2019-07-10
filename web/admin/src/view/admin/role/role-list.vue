@@ -116,14 +116,13 @@ export default {
     },
     handleDelete () {
       P('admin/role/getUserByRole?roleId=' + getIds(this.selectedData), {}).then(data => {
-        if(data ===0){
+        if (data === 0) {
           D('admin/role', getIds(this.selectedData)).then(data => {
             this.$Message.success(data)
             this.handleSearch()
           })
-         } else {
+        } else {
           Message.warning('有用户正在使用该角色请核实解除使用权限后删除')
-
         }
       })
     },
@@ -161,7 +160,6 @@ export default {
   },
   mounted () {
     this.handleSearch()
-
   }
 }
 </script>

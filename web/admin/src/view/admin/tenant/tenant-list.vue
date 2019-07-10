@@ -39,116 +39,114 @@
 </template>
 
 <script>
-  import Tables from '_c/tables'
-  import { L, D } from '@/libs/api.request'
-  import { getDictVal, Dict } from '@/libs/common.request'
-  import tenantInfo from './tenant-info'
-  import { getIds } from '@/libs/util'
+import Tables from '_c/tables'
+import tenantInfo from './tenant-info'
+import { getIds } from '@/libs/util'
 
-  export default {
-    name: 'tables_page',
-    components: {
-      Tables,
-      tenantInfo
-    },
-    data () {
-      return {
-        columns: [
-          { title: '', key: 'id', type: 'selection', width: 60 },
-          { title: '名称', key: 'name' },
-          { title: '类型',
-            key: 'merType',
-            render: (h, params) => {
-              return h('span', getDictVal('tenant_type', params.row.merType))
-            } },
+export default {
+  name: 'tables_page',
+  components: {
+    Tables,
+    tenantInfo
+  },
+  data () {
+    return {
+      columns: [
+        { title: '', key: 'id', type: 'selection', width: 60 },
+        { title: '名称', key: 'name' },
+        { title: '类型',
+          key: 'merType',
+          render: (h, params) => {
+            return h('span', getDictVal('tenant_type', params.row.merType))
+          } },
 
-          { title: '营业执照', key: 'creditCode' },
-          { title: '联系人', key: 'linkman' },
-          { title: '联系电话', key: 'phone' },
-          { title: '短信签名',
-            key: 'smsSign',
-            render: (h, params) => {
-              return h('span', '【' + params.row.smsSign + '】')
-            }},
-          { title: '平台',
-            key: 'pass',
-            render: (h, params) => {
-              return h('span', getDictVal('paas_type', params.row.paas))
-            } },
-          { title: '状态',
-            key: 'status',
-            render: (h, params) => {
-              return h('span', getDictVal('tenant_status', params.row.status))
-            } },
-          { title: '创建时间', key: 'crtTime', sortType: 'desc' },
-          {
-            title: '操作',
-            key: 'handle',
-            minWidth: 200,
-            options: ['update', 'detail']
-          }
-        ],
-        tableData: {
-          rows: [],
-          total: 0
-        },
-        form: {
-          map: {}
-        },
-        selectedData: [],
-        merTypeOptions: [],
-        statusOptions: []
-      }
-    },
-    methods: {
-      handleUpdate (param) {
-        this.$refs.tenantInfoRef.openModel('update', param.row)
-      },
-      handleDetail (param) {
-        this.$refs.tenantInfoRef.openModel('detail', param.row)
-      },
-      handleCreate () {
-        this.$refs.tenantInfoRef.openModel('create')
-      },
-      handleDelete () {
-        D('admin/tenant', getIds(this.selectedData)).then(data => {
-          this.$Message.success(data)
-          this.handleSearch()
-        })
-      },
-      selectionChange (selection) {
-        this.selectedData = selection
-      },
-      exportExcel () {
-        this.$refs.tables.exportCsv({
-          filename: `table-${(new Date()).valueOf()}.csv`
-        })
-      },
-      handleSearch (page, pageSize) {
-        if (isNaN(page)) {
-          page = 1
+        { title: '营业执照', key: 'creditCode' },
+        { title: '联系人', key: 'linkman' },
+        { title: '联系电话', key: 'phone' },
+        { title: '短信签名',
+          key: 'smsSign',
+          render: (h, params) => {
+            return h('span', '【' + params.row.smsSign + '】')
+          }},
+        { title: '平台',
+          key: 'pass',
+          render: (h, params) => {
+            return h('span', getDictVal('paas_type', params.row.paas))
+          } },
+        { title: '状态',
+          key: 'status',
+          render: (h, params) => {
+            return h('span', getDictVal('tenant_status', params.row.status))
+          } },
+        { title: '创建时间', key: 'crtTime', sortType: 'desc' },
+        {
+          title: '操作',
+          key: 'handle',
+          minWidth: 200,
+          options: ['update', 'detail']
         }
-        var param = {
-          page: page,
-          pageSize: pageSize,
-          model: this.form,
-          map: this.form.map
-        }
-        L('admin/tenant', param).then(data => {
-          this.tableData = data
-        })
-      }
+      ],
+      tableData: {
+        rows: [],
+        total: 0
+      },
+      form: {
+        map: {}
+      },
+      selectedData: [],
+      merTypeOptions: [],
+      statusOptions: []
+    }
+  },
+  methods: {
+    handleUpdate (param) {
+      this.$refs.tenantInfoRef.openModel('update', param.row)
     },
-    mounted () {
-      this.handleSearch()
-      Dict('tenant_type').then(data => {
-        this.merTypeOptions = data
+    handleDetail (param) {
+      this.$refs.tenantInfoRef.openModel('detail', param.row)
+    },
+    handleCreate () {
+      this.$refs.tenantInfoRef.openModel('create')
+    },
+    handleDelete () {
+      this.D('admin/tenant', getIds(this.selectedData)).then(data => {
+        this.$Message.success(data)
+        this.handleSearch()
       })
-      Dict('tenant_status').then(data => {
-        this.statusOptions = data
+    },
+    selectionChange (selection) {
+      this.selectedData = selection
+    },
+    exportExcel () {
+      this.$refs.tables.exportCsv({
+        filename: `table-${(new Date()).valueOf()}.csv`
+      })
+    },
+    handleSearch (page, pageSize) {
+      if (isNaN(page)) {
+        page = 1
+      }
+      var param = {
+        page: page,
+        pageSize: pageSize,
+        model: this.form,
+        map: this.form.map
+      }
+      this.L('admin/tenant', param).then(data => {
+        this.tableData = data
       })
     }
+  },
+  mounted () {
+    this.handleSearch()
+    this.dict('tenant_type').then(data => {
+      this.merTypeOptions = data
+    })
+    this.dict('tenant_status').then(data => {
+      this.statusOptions = data
+    })
   }
+}
 </script>
 
 <style>
