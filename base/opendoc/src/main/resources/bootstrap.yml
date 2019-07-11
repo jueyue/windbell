@@ -6,7 +6,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 16301 #项目端口
+  port: 16302 #项目端口
 
 ---
 
