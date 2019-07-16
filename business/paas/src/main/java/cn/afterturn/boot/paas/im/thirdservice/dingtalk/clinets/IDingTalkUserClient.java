@@ -1,11 +1,11 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.clinets;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets;
 
-import cn.afterturn.boot.paas.im.thirdservice.dingding.config.DingTalkConfiguration;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.DingTalkUserModel;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.DingTalkBaseResultModel;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.user.DingTalkUserCommonResultModel;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.user.DingTalkUserListResultModel;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.user.DingTalkUserResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.config.DingTalkConfiguration;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.DingTalkUserModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.DingTalkBaseResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.user.DingTalkUserCommonResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.user.DingTalkUserListResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.user.DingTalkUserResultModel;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

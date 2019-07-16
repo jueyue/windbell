@@ -1,6 +1,6 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.clinets;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets;
 
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.DingTalkTokenResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.DingTalkTokenResultModel;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author by jueyue on 19-7-14.
  */
-@FeignClient(name = "dingTalkTokenClient", contextId = "dingtalk", url = "https://oapi.dingtalk.com/")
+@FeignClient(name = "dingTalkTokenClient", url = "https://oapi.dingtalk.com/")
 public interface IDingTalkTokenClient {
 
     /**

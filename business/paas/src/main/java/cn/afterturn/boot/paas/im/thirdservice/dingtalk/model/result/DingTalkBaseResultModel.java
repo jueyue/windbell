@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.model.result;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result;
 
 import lombok.Data;
 

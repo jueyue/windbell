@@ -574,7 +574,11 @@ public class RedisKit {
 
     private static RedisTemplate<String, Object> getRedisTemplate() {
         if (redisTemplate == null) {
-            redisTemplate = SpringContextHolder.getBean("redisTemplate");
+            // 有限使用j2cache配置的redis
+            redisTemplate = SpringContextHolder.getBean("j2CacheRedisTemplate");
+            if (redisTemplate == null) {
+                redisTemplate = SpringContextHolder.getBean("redisTemplate");
+            }
         }
         return redisTemplate;
     }

@@ -5,6 +5,8 @@ spring:
     name: lemur-paas
   cache:
     type: GENERIC
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 9002 #项目端口
 
@@ -45,6 +47,21 @@ spring:
       discovery:
         server-addr: dev.cloud.afterturn.cn:8848
         namespace: 0e3b70b8-1bc3-447b-aec6-5cdb097a181d
+---
+
+
+#测试环境
+spring:
+  profiles: test
+  cloud:
+    nacos:
+      config:
+        server-addr: dev.cloud.afterturn.cn:8848
+        file-extension: yaml
+        namespace: 6908a236-e009-4966-9e6d-c977e2e0514e
+      discovery:
+        server-addr: dev.cloud.afterturn.cn:8848
+        namespace: 6908a236-e009-4966-9e6d-c977e2e0514e
 ---
 ##########################################################
 ###################  生产环境profile  ###################

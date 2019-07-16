@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.model;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.config;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.config;
 
-import cn.afterturn.boot.paas.im.thirdservice.dingding.interceptor.DingTalkAuthRequestInterceptor;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.interceptor.DingTalkAuthRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 
 /**

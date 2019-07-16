@@ -3,7 +3,6 @@ package cn.afterturn.boot.paas.im.thirdservice;
 import cn.afterturn.boot.core.cache.CacheKey;
 import cn.afterturn.boot.core.cache.RedisKit;
 import cn.afterturn.boot.paas.im.service.ITokenService;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +12,6 @@ import java.util.Map;
  *
  * @author by jueyue on 19-7-15.
  */
-@Component
 public class ThirdServiceContext {
 
     public static final String TENANT_ID = "tenantId";
@@ -24,7 +22,7 @@ public class ThirdServiceContext {
 
     private static ThreadLocal<Map> mapThreadLocal = new ThreadLocal<Map>();
 
-    public void put(String key, String val) {
+    public static void put(String key, String val) {
         Map<String, String> map = mapThreadLocal.get();
         if (map == null) {
             map = new HashMap<>();
@@ -38,7 +36,7 @@ public class ThirdServiceContext {
      *
      * @return
      */
-    public String getToken(ITokenService tokenService) {
+    public static String getToken(ITokenService tokenService) {
         Map<String, String> map      = mapThreadLocal.get();
         String              tenantId = map.get(TENANT_ID);
         String              appCode  = map.get(APP_CODE);

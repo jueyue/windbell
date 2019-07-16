@@ -1,7 +1,7 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.user;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.user;
 
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.DingTalkUserModel;
-import cn.afterturn.boot.paas.im.thirdservice.dingding.model.result.DingTalkBaseResultModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.DingTalkUserModel;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.DingTalkBaseResultModel;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 

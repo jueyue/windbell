@@ -24,6 +24,19 @@ spring:
         namespace: 40f3d8ad-65d0-4935-967e-e838b97c1db0
 ---
 
+#测试环境
+spring:
+  profiles: test
+  cloud:
+    nacos:
+      config:
+        server-addr: dev.cloud.afterturn.cn:8848
+        file-extension: yaml
+        namespace: 6908a236-e009-4966-9e6d-c977e2e0514e
+      discovery:
+        server-addr: dev.cloud.afterturn.cn:8848
+        namespace: 6908a236-e009-4966-9e6d-c977e2e0514e
+---
 ##########################################################
 ###################  生产环境profile  ###################
 ##########################################################

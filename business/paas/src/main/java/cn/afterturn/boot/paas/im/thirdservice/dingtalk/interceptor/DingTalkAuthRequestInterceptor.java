@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingding.interceptor;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.interceptor;
 
 import cn.afterturn.boot.paas.im.service.ITokenService;
 import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
@@ -13,9 +13,6 @@ import javax.annotation.Resource;
  */
 public class DingTalkAuthRequestInterceptor implements RequestInterceptor {
 
-    @Autowired
-    private ThirdServiceContext thirdServiceContext;
-
     @Resource(name = "dingTalkTokenService")
     private ITokenService tokenService;
 
@@ -25,6 +22,6 @@ public class DingTalkAuthRequestInterceptor implements RequestInterceptor {
     }
 
     private String getToken() {
-        return thirdServiceContext.getToken(tokenService);
+        return ThirdServiceContext.getToken(tokenService);
     }
 }
