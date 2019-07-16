@@ -14,7 +14,7 @@ export default {
    */
   baseUrl: {
     dev: 'http://localhost/api/',
-    pro: 'http://cloud.afterturn.cn/api/'
+    pro: 'http://windbell.afterturn.cn/api/'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home

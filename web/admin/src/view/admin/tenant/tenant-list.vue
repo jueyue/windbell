@@ -71,12 +71,12 @@ export default {
         { title: '平台',
           key: 'pass',
           render: (h, params) => {
-            return h('span', getDictVal('paas_type', params.row.paas))
+            return h('span', this.getDictVal('paas_type', params.row.paas))
           } },
         { title: '状态',
           key: 'status',
           render: (h, params) => {
-            return h('span', getDictVal('tenant_status', params.row.status))
+            return h('span', this.getDictVal('tenant_status', params.row.status))
           } },
         { title: '创建时间', key: 'crtTime', sortType: 'desc' },
         {

@@ -90,8 +90,8 @@ public class RedisKit {
      * @param key 键
      * @return 值
      */
-    public static Object get(String key) {
-        return key == null ? null : getRedisTemplate().opsForValue().get(key);
+    public static <T> T get(String key) {
+        return key == null ? null : (T) getRedisTemplate().opsForValue().get(key);
     }
 
     /**

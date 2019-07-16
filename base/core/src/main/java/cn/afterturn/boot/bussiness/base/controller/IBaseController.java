@@ -46,7 +46,7 @@ public interface IBaseController<T> {
      */
     @ApiOperation(value = "删除")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public Response delete(@PathVariable String id);
+    public Response delete(@PathVariable("id") String id);
 
     /**
      * 批量删除对象
@@ -76,7 +76,7 @@ public interface IBaseController<T> {
      */
     @ApiOperation(value = "详情ById")
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
-    public Response<T> detail(@PathVariable String id);
+    public Response<T> detail(@PathVariable("id") String id);
 
     /**
      * 查询对象详情

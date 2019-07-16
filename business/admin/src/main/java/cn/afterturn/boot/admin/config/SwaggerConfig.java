@@ -37,7 +37,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .groupName("基础管理")
                 .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.basePackage("cn.afterturn.boot.admin"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalResponseMessage(RequestMethod.GET, getResponseMessages())

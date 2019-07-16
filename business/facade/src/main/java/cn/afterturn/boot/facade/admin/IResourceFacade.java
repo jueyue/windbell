@@ -41,6 +41,6 @@ public interface IResourceFacade {
      */
     @ApiOperation(value = "查询用户产品")
     @GetMapping(value = "/queryUserPermissions/{productCode}/{userId}")
-    public Response<List<String>> queryUserPermissions(@PathVariable String productCode, @PathVariable String userId);
+    public Response<List<String>> queryUserPermissions(@PathVariable("productCode") String productCode, @PathVariable("userId") String userId);
 
 }

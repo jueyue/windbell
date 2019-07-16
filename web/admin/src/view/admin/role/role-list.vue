@@ -50,7 +50,7 @@ import Tables from '_c/tables'
 import { L, D, P } from '@/libs/api.request'
 import roleInfo from './role-info'
 import { getIds, getListByFieldJudge } from '@/libs/util'
-import { Message } from 'iview'  
+import { Message } from 'iview'
 
 export default {
   name: 'role-list',
@@ -122,7 +122,7 @@ export default {
             this.handleSearch()
           })
         } else {
-          Message.warning('有用户正在使用该角色请核实解除使用权限后删除')
+          this.$Message.warning('有用户正在使用该角色请核实解除使用权限后删除')
         }
       })
     },

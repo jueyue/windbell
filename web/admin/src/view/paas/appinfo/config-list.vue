@@ -68,79 +68,79 @@
 
 <script>
 
-  export default {
-    name: 'appinfoconfig-info',
-    data () {
-      return {
-        form: {},
-        isShow: false,
-        type: 'add',
-        disable: false,
-        tenantList: [],
-        typeOptions: [],
-        ruleValidate: {
-          tenantId: [
-            {required: true, message: '租户ID不允许为空', trigger: 'blur'}
-          ],
-          type: [
-            {required: true, message: '类型不允许为空', trigger: 'blur'}
-          ],
-          appCode: [
-            {required: true, message: '内部appID不允许为空', trigger: 'blur'}
-          ],
-          appId: [
-            {required: true, message: '外部PAPID不允许为空', trigger: 'blur'}
-          ],
-          secret: [
-            {required: true, message: 'APP秘钥不允许为空', trigger: 'blur'}
-          ]
-        }
+export default {
+  name: 'appinfoconfig-info',
+  data () {
+    return {
+      form: {},
+      isShow: false,
+      type: 'add',
+      disable: false,
+      tenantList: [],
+      typeOptions: [],
+      ruleValidate: {
+        tenantId: [
+          {required: true, message: '租户ID不允许为空', trigger: 'blur'}
+        ],
+        type: [
+          {required: true, message: '类型不允许为空', trigger: 'blur'}
+        ],
+        appCode: [
+          {required: true, message: '内部appID不允许为空', trigger: 'blur'}
+        ],
+        appId: [
+          {required: true, message: '外部PAPID不允许为空', trigger: 'blur'}
+        ],
+        secret: [
+          {required: true, message: 'APP秘钥不允许为空', trigger: 'blur'}
+        ]
       }
+    }
+  },
+  methods: {
+    openModel (type, data) {
+      this.isShow = true
+      this.type = type
+      if (data) {
+        this.form = data
+      } else {
+        this.form = {}
+      }
+      this.disable = type === 'detail'
     },
-    methods: {
-      openModel (type, data) {
-        this.isShow = true
-        this.type = type
-        if (data) {
-          this.form = data
-        } else {
-          this.form = {}
-        }
-        this.disable = type === 'detail'
-      },
-      closeModel () {
-        this.isShow = false
-      },
-      submit () {
-        this.$refs.appInfoConfigFrom.validate((valid) => {
-          if (valid) {
-            switch (this.type) {
-              case 'create':
-                this.C('paas/appinfoconfig', this.form).then(data => {
-                  this.isShow = false
-                  this.$emit('handle-search')
-                })
-                break
-              case 'update':
-                this.U('paas/appinfoconfig', this.form).then(data => {
-                  this.isShow = false
-                  this.$emit('handle-search')
-                })
-                break
-            }
-          } else {
-            this.$Message.error('请检查填写的数据')
+    closeModel () {
+      this.isShow = false
+    },
+    submit () {
+      this.$refs.appInfoConfigFrom.validate((valid) => {
+        if (valid) {
+          switch (this.type) {
+            case 'create':
+              this.C('paas/appinfoconfig', this.form).then(data => {
+                this.isShow = false
+                this.$emit('handle-search')
+              })
+              break
+            case 'update':
+              this.U('paas/appinfoconfig', this.form).then(data => {
+                this.isShow = false
+                this.$emit('handle-search')
+              })
+              break
           }
-        })
-      }
-    },
-    mounted: function () {
-      this.L('admin/tenant', {pageSize: 1000}).then(data => {
-        this.tenantList = data.rows
-      })
-      this.dict('paas_type').then(data => {
-        this.typeOptions = data
+        } else {
+          this.$Message.error('请检查填写的数据')
+        }
       })
     }
+  },
+  mounted: function () {
+    this.L('admin/tenant', {pageSize: 1000}).then(data => {
+      this.tenantList = data.rows
+    })
+    this.dict('paas_type').then(data => {
+      this.typeOptions = data
+    })
   }
+}
 </script>

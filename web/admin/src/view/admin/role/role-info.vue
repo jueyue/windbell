@@ -47,7 +47,7 @@
 
 <script>
 
-  import { C, U, P } from '@/libs/api.request'
+import { C, U, P } from '@/libs/api.request'
 
 export default {
   name: 'role-info',
@@ -112,7 +112,6 @@ export default {
     P('admin/tenant/list', {pageSize: 1000}).then(data => {
       this.tenantOptions = data.rows
     })
-
   }
 }
 </script>

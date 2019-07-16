@@ -18,4 +18,11 @@
 ![avatar](https://s2.ax1x.com/2019/06/05/VUc7Lt.png)
 
 ## 安装教程
-文档[https://opensource.afterturn.cn/doc/windbell.html](https://opensource.afterturn.cn/doc/windbell.html)
+开发指南[https://opensource.afterturn.cn/doc/windbell.html](https://opensource.afterturn.cn/doc/windbell.html)
+
+相关文档[https://blog.csdn.net/jueyue/column/info/40760](https://blog.csdn.net/jueyue/column/info/40760)
+
+##测试环境
+
+管理平台[http://windbell.afterturn.cn](http://windbell.afterturn.cn)
+文档平台[http://opendoc.windbell.afterturn.cn/](http://opendoc.windbell.afterturn.cn/)

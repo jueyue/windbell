@@ -115,7 +115,6 @@ export default {
               this.C('admin/resource', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handle-search')
-
               })
               break
             case 'update':
@@ -130,8 +129,8 @@ export default {
         }
       })
     },
-    loadParentResource(){
-      this.L('admin/resource', {map: {parentIsNull: true},pageSize: this.PAGE_SIZE_MAX}).then(data => {
+    loadParentResource () {
+      this.L('admin/resource', {map: {parentIsNull: true}, pageSize: this.PAGE_SIZE_MAX}).then(data => {
         this.parentList = data.rows
       })
     }
@@ -143,8 +142,7 @@ export default {
     this.numDict('resource_type').then(data => {
       this.typeOptions = data
     })
-    this.loadParentResource();
-
+    this.loadParentResource()
   }
 }
 </script>

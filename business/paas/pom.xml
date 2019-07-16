@@ -7,6 +7,7 @@
         <groupId>cn.afterturn</groupId>
         <artifactId>bussinses-parent</artifactId>
         <version>0.0.2</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>cn.afterturn</groupId>
