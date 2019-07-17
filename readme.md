@@ -6,7 +6,7 @@
 
 	官网：  https://opensource.afterturn.cn/
 	邮箱：  qrb.jueyue@foxmail.com
-	QQ群:  364192721
+	QQ群:  410247043 种子用户群,钉钉企业微信探讨
 	优秀团队,承接私活,加微信:13165188222
 ##目标
 简单到没有代码
