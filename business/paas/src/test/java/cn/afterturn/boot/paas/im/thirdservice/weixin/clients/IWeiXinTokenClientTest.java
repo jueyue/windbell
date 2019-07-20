@@ -19,9 +19,10 @@ public class IWeiXinTokenClientTest {
 
     @Test
     public void gettoken() {
-        WeiXinTokenResultModel model = weiXinTokenClient.getToken("ww8e7baa4f54593e80", "-btdPbGr1V43NG61MAJWr9xw5LsSkMgyEWN1L5CA038");
+        WeiXinTokenResultModel model = weiXinTokenClient.getToken("ww45033b600504283b", "U_fE5u6YF5-JIm6BUZhtV3RqzA1S_ds4S-016b7DPqM");
         System.out.println(JSON.toJSONString(model));
         Assert.assertTrue(model.getErrcode() == 0);
     }
+
 
 }

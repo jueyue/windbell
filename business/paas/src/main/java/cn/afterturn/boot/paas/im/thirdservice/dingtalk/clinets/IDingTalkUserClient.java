@@ -69,7 +69,7 @@ public interface IDingTalkUserClient {
     /**
      * 获取部门用户
      *
-     * @param lang          通讯录语言(默认zh_CN另外支持en_US)
+     * @param lang          通讯录语言(默认zh_CN另外支持en_US)ZACa
      * @param department_id 获取的部门id
      * @param offset        支持分页查询，与size参数同时设置时才生效，此参数代表偏移量
      * @param size          支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大100

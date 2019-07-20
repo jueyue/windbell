@@ -1,9 +1,9 @@
-package cn.afterturn.boot.paas.im.thirdservice.weixin.model;
+package cn.afterturn.boot.paas.im.thirdservice.weixin.model.result;
 
 import lombok.Data;
 
 /**
- * @author by jueyue on 19-6-30.
+ * @author by dbinary on 19-6-30.
  */
 @Data
 public class WeXinBaseResultModel {
@@ -19,5 +19,8 @@ public class WeXinBaseResultModel {
 
     public boolean notSuccess() {
         return errcode != 0;
+    }
+    public boolean isSuccess() {
+        return errcode == 0;
     }
 }
