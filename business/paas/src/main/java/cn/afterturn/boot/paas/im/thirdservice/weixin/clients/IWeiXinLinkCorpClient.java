@@ -11,101 +11,83 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Map;
 
 /**
- * 发送应用消息
- * Created by dbinary on 2019/7/20
- *@FeignClient
+ * Created by dbinary on 2019/7/23
+ * <p>
+ * /互联企业发送消息
+ * /**
+ *
  */
-@FeignClient(name = "weiXinMessageClient",contextId = "weixin", url = "https://qyapi.weixin.qq.com/cgi-bin/message",configuration = WeiXinConfiguration.class)
-public interface WeiXinMessageClient {
-
+@FeignClient(name = "weiXinLinkCorpClient",contextId = "weixin", url = "https://qyapi.weixin.qq.com/cgi-bin/linkedcorp/message",configuration = WeiXinConfiguration.class)
+public interface IWeiXinLinkCorpClient {
     /**
      *发送文字
      * @param messageModel
      * @return
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendText(@RequestBody WeiXinMessageTextModel messageModel);
+    WeiXinMessageResultModel sendText(@RequestBody WeiXinMessageLinkedcorpTextCardModel messageModel);
     /**
      *发送图片
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendPicture(@RequestBody WeiXinMessagePictureModel messageModel);
+    WeiXinMessageResultModel sendPicture(@RequestBody WeiXinMessageLinkedcorpPictureModel messageModel);
     /**
      *发送声音
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendVoice(@RequestBody WeiXinMessageVoiceModel messageModel);
+    WeiXinMessageResultModel sendVoice(@RequestBody WeiXinMessageLinkedcorpVoiceModel messageModel);
     /**
      *发送文件
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendFile(@RequestBody WeiXinMessageFileModel messageModel);
+    WeiXinMessageResultModel sendFile(@RequestBody WeiXinMessageLinkedcorpFileModel messageModel);
     /**
      *发送视频
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendVeido(@RequestBody WeiXinMessageVedioModel messageModel);
+    WeiXinMessageResultModel sendVeido(@RequestBody WeiXinMessageLinkedcorpVideoModel messageModel);
     /**
      *发送文本卡片
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendTextcard(@RequestBody WeiXinMessageTextCardModel messageModel);
+    WeiXinMessageResultModel sendTextcard(@RequestBody WeiXinMessageLinkedcorpTextCardModel messageModel);
     /**
      *发送图文消息
      * @return WeiXinMessageResultModel
      * @return
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendNews(@RequestBody WeiXinMessageNewsModel messageModel);
+    WeiXinMessageResultModel sendNews(@RequestBody WeiXinMessageLinkedcorpNewsModel messageModel);
     /**
      *发送图文消息mpnews
      * @return WeiXinMessageResultModel
      * @return
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendMpNews(@RequestBody WeiXinMessageMpnewsModel messageModel);
+    WeiXinMessageResultModel sendMpNews(@RequestBody WeiXinMessageLinkedcorpMpNewsModel messageModel);
     /**
      *发送图文消息mpnews
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendMarkdown(@RequestBody WeiXinMessageMarkdownModel messageModel);
+    WeiXinMessageResultModel sendMarkdown(@RequestBody WeiXinMessageLinkedcorpMarkDownModel messageModel);
     /**
      *小程序通知消息
      * @param messageModel
      * @return WeiXinMessageResultModel
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendMniprogramNotice(@RequestBody WeiXinMessageMniprogramNoticeModel messageModel);
-    /**
-     *任务卡片消息
-     * @param messageModel
-     * @return WeiXinMessageResultModel
-     */
-    @RequestMapping(value = "/send", method = RequestMethod.POST)
-    WeiXinMessageResultModel sendTaskcard(@RequestBody WeiXinMessageTaskCardModel messageModel);
-    /**
-     *更新任务卡片消息状态
-     * @param sendJson
-     * @return WeiXinMessageResultModel
-     * {
-     *     "userids" : ["userid1","userid2"],
-     *     "agentid" : 1,
-     *     "task_id": "taskid122",
-     *     "clicked_key": "btn_key123"
-     * }
-     */
-    @RequestMapping(value = "/update_taskcard", method = RequestMethod.POST)
-    WeiXinMessageResultModel updateTaskcard(@RequestBody Map<String,Object> sendJson);
+    WeiXinMessageResultModel sendMniprogramNotice(@RequestBody WeiXinMessageLinkedcorpMiniprogramModel messageModel);
+
 }
