@@ -16,6 +16,7 @@
         <module>admin</module>
         <module>facade</module>
         <module>paas</module>
+        <module>trade</module>
     </modules>
 
     <build>

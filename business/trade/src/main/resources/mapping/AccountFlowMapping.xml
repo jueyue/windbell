@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.trade.dao.AccountFlowDao">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.trade.model.AccountFlowModel">
+        <result column="id" property="id"/>
+        <result column="account_no" property="accountNo"/>
+        <result column="trade_no" property="tradeNo"/>
+        <result column="trade_time" property="tradeTime"/>
+        <result column="subject" property="subject"/>
+        <result column="outer_trade_no" property="outerTradeNo"/>
+        <result column="memo" property="memo"/>
+        <result column="currency" property="currency"/>
+        <result column="money" property="money"/>
+        <result column="fee" property="fee"/>
+        <result column="type" property="type"/>
+        <result column="balance" property="balance"/>
+        <result column="status" property="status"/>
+        <result column="real_money" property="realMoney"/>
+        <result column="trade_info" property="tradeInfo"/>
+        <result column="complete_time" property="completeTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <update id="updateOuterTradeNo">
+        update ACCOUNT_FLOW set outer_trade_no = #{outerTradeNo} where trade_no in
+        <foreach collection="tradeNoArr" close=")" open="(" separator="," item="tradeNo">
+            #{tradeNo}
+        </foreach>
+    </update>
+    <update id="updateStatus">
+        update ACCOUNT_FLOW set status = #{status}, update_time = now()
+        where  trade_no in
+        <foreach collection="list" close=")" open="(" separator="," item="flow">
+            #{flow.tradeNo}
+        </foreach>
+    </update>
+
+
+    <select id="selectCount" resultMap="BaseResultMap">
+        select count(1) from ACCOUNT_FLOW t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from ACCOUNT_FLOW t
+        <where>
+            <include refid="select_content"/>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectPage" resultMap="BaseResultMap">
+        select t.id, account_no, trade_no, trade_time, s.subject_name subject, outer_trade_no, memo, currency, money, fee, real_money, trade_info, complete_time, update_time,t.type,t.balance, status
+        from ACCOUNT_FLOW t
+        LEFT JOIN account_subject s on s.subject_id = t.subject
+        <where>
+            <include refid="select_content"/>
+            ${ew.sqlSegment}
+        </where>
+        order by t.TRADE_TIME desc
+    </select>
+    <select id="getTradeListMoney" resultType="java.lang.Integer">
+        select IFNULL(sum(money),0) from ACCOUNT_FLOW where TRADE_NO like concat(#{tradeNo},'%') and SUBJECT = #{subject}
+    </select>
+
+    <sql id="select_content">
+        <if test="e.id != null and e.id != '' ">
+            AND t.ID = #{e.id}
+        </if>
+        <if test="e.tradeNo != null and e.tradeNo != '' ">
+            AND t.TRADE_NO like '%${e.tradeNo}%'
+        </if>
+        <if test="e.accountNo != null and e.accountNo != '' ">
+            AND t.ACCOUNT_NO = #{e.accountNo}
+        </if>
+        <if test="e.subject != null and e.subject != '' ">
+            AND t.SUBJECT = #{e.subject}
+        </if>
+        <if test="e.outerTradeNo != null and e.outerTradeNo != '' ">
+            AND t.OUTER_TRADE_NO = #{e.outerTradeNo}
+        </if>
+        <if test="e.memo != null and e.memo != '' ">
+            AND t.MEMO = #{e.memo}
+        </if>
+        <if test="e.type != null and e.type != '' ">
+            AND t.TYPE = #{e.type}
+        </if>
+        <if test="e.currency != null and e.currency != '' ">
+            AND t.CURRENCY = #{e.currency}
+        </if>
+        <if test="e.money != null and e.money != '' ">
+            AND t.MONEY = #{e.money}
+        </if>
+        <if test="e.fee != null and e.fee != '' ">
+            AND t.FEE = #{e.fee}
+        </if>
+        <if test="e.realMoney != null and e.realMoney != '' ">
+            AND t.REAL_MONEY = #{e.realMoney}
+        </if>
+        <if test="e.tradeInfo != null and e.tradeInfo != '' ">
+            AND t.TRADE_INFO = #{e.tradeInfo}
+        </if>
+    </sql>
+
+</mapper>

@@ -1,0 +1,69 @@
+package cn.afterturn.boot.trade.service.impl;
+
+import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
+import cn.afterturn.boot.trade.common.util.SerialNumberUtil;
+import cn.afterturn.boot.trade.dao.AccountAppDao;
+import cn.afterturn.boot.trade.model.AccountAppModel;
+import cn.afterturn.boot.trade.model.AccountInfoModel;
+import cn.afterturn.boot.trade.service.IAccountAppService;
+import cn.afterturn.boot.trade.service.IAccountInfoService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Service
+ * 应用
+ *
+ * @author
+ * @Date
+ */
+@Service
+public class AccountAppServiceImpl extends BaseServiceCacheImpl<AccountAppDao, AccountAppModel> implements IAccountAppService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountAppServiceImpl.class);
+
+    @Autowired
+    private AccountAppDao       AccountAppDao;
+    @Autowired
+    private IAccountInfoService accountInfoService;
+
+
+    @Override
+    public AccountAppModel selectOne(AccountAppModel model) {
+        return AccountAppDao.selectOne(new QueryWrapper<>(model));
+    }
+
+    @Override
+    public List<AccountAppModel> selectList(AccountAppModel model) {
+        return AccountAppDao.selectList(model, new QueryWrapper<>(model));
+    }
+
+    @Override
+    public List<AccountAppModel> selectList(AccountAppModel model, Wrapper<AccountAppModel> wrapper) {
+        return AccountAppDao.selectList(model, wrapper);
+    }
+
+    @Override
+    public List<AccountAppModel> selectPage(Page pagination, AccountAppModel model, Wrapper<AccountAppModel> wrapper) {
+        return AccountAppDao.selectPage(pagination, model, wrapper);
+    }
+
+    @Override
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void add(AccountAppModel model) {
+        model.setAppId(SerialNumberUtil.getAppIdSerialNo());
+        this.save(model);
+        AccountInfoModel account = accountInfoService.addAccount(null, model.getAppId(), null, null);
+        model.setAccountNo(account.getAccountNo());
+        this.updateById(model);
+    }
+
+}

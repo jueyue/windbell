@@ -547,6 +547,12 @@ public class ToolUtil {
         return MD5Util.encrypt(password + salt).substring(0, 24);
     }
 
+    public static String getBalCheck(Long balance, String accountNo) {
+        String balCheck = balance + accountNo + "LOVECHINA";
+        balCheck = MD5Util.encrypt(balCheck).toUpperCase();
+        return balCheck.substring(15, 32);
+    }
+
     public static void main(String[] args) {
         System.out.printf(getPassword("123456","j1iFseSR"));
     }

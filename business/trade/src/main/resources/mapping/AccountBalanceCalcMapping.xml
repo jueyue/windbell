@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.trade.dao.AccountBalanceCalcDao">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.trade.model.AccountBalanceCalcModel">
+        <result column="account_input" property="accountInput"/>
+        <result column="account_out" property="accountOut"/>
+        <result column="balance" property="balance"/>
+        <result column="account" property="account"/>
+        <result column="name" property="name"/>
+        <result column="calc_balance" property="calcBalance"/>
+        <result column="error_range" property="errorRange"/>
+    </resultMap>
+
+
+    <select id="selectCount" resultMap="BaseResultMap">
+        select count(1) from ACCOUNT_BALANCE_CALC t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from ACCOUNT_BALANCE_CALC t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectPage" resultMap="BaseResultMap">
+        SELECT *,a.`account_input` - a.`account_out` calc_balance,a.`account_input` - a.`account_out` - a.`balance` error_range FROM
+        (SELECT
+        SUM(CASE WHEN s.direction = 1 THEN f.money ELSE 0 END ) account_input,
+        SUM(CASE WHEN s.direction = 2 THEN f.money ELSE 0 END ) account_out,
+        a.balance, f.account_no account,a.`name` name FROM `account_flow` f
+        LEFT JOIN account_subject s on f.`subject` = s.subject_id
+        LEFT JOIN account_info  a on f.account_no = a.account_no
+        <where>
+            <if test="e.account != null and e.account != '' ">
+                AND f.account_no = #{e.account}
+            </if>
+        </where>
+        GROUP BY f.account_no) a
+    </select>
+
+    <sql id="select_content">
+        <if test="e.accountInput != null and e.accountInput != '' ">
+            AND t.ACCOUNT_INPUT = #{e.accountInput}
+        </if>
+        <if test="e.accountOut != null and e.accountOut != '' ">
+            AND t.ACCOUNT_OUT = #{e.accountOut}
+        </if>
+        <if test="e.balance != null and e.balance != '' ">
+            AND t.BALANCE = #{e.balance}
+        </if>
+        <if test="e.account != null and e.account != '' ">
+            AND t.ACCOUNT = #{e.account}
+        </if>
+        <if test="e.name != null and e.name != '' ">
+            AND t.NAME = #{e.name}
+        </if>
+        <if test="e.calcBalance != null and e.calcBalance != '' ">
+            AND t.CALC_BALANCE = #{e.calcBalance}
+        </if>
+        <if test="e.errorRange != null and e.errorRange != '' ">
+            AND t.ERROR_RANGE = #{e.errorRange}
+        </if>
+    </sql>
+
+</mapper>

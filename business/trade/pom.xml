@@ -11,11 +11,11 @@
     </parent>
 
     <groupId>cn.afterturn</groupId>
-    <artifactId>paas</artifactId>
+    <artifactId>trade</artifactId>
     <packaging>jar</packaging>
 
-    <name>paas</name>
-    <description>windbell 企业相关服务</description>
+    <name>trade</name>
+    <description>windbell 交易相关服务</description>
 
 
     <dependencies>
@@ -73,6 +73,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -98,7 +99,7 @@
     </dependencies>
 
     <build>
-        <finalName>paas</finalName>
+        <finalName>trade</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

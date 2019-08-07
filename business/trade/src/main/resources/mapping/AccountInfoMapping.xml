@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.trade.dao.AccountInfoDao">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.trade.model.AccountInfoModel">
+        <result column="id" property="id"/>
+        <result column="account_no" property="accountNo"/>
+        <result column="name" property="name"/>
+        <result column="appid" property="appid"/>
+        <result column="type" property="type"/>
+        <result column="balance" property="balance"/>
+        <result column="frozen_balance" property="frozenBalance"/>
+        <result column="currency" property="currency"/>
+        <result column="open_time" property="openTime"/>
+        <result column="is_recharge" property="isRecharge"/>
+        <result column="is_cash" property="isCash"/>
+        <result column="is_balance_negative" property="isBalanceNegative"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="crt_time" property="crtTime"/>
+        <result column="crt_user_id" property="crtUserId"/>
+        <result column="mdf_time" property="mdfTime"/>
+        <result column="mdf_user_id" property="mdfUserId"/>
+    </resultMap>
+
+
+    <update id="calBalanceCheck">
+        UPDATE ACCOUNT_INFO
+        SET bal_check = #{balCheck},
+            frozen_bal_check = #{balCheck}
+        WHERE account_No = #{accountNo} AND bal_check IS NULL
+    </update>
+
+    <update id="recharge">
+        UPDATE ACCOUNT_INFO
+        SET balance   = balance + #{money},
+            bal_check = SUBSTRING(UPPER(MD5(CONCAT(balance, account_no, 'LOVECHINA'))), 16)
+        WHERE account_No = #{accountNo} AND
+              bal_check = SUBSTRING(UPPER(MD5(CONCAT(balance, account_no, 'LOVECHINA'))), 16)
+    </update>
+
+    <update id="forward">
+        UPDATE ACCOUNT_INFO
+        SET balance   = balance - #{money},
+            bal_check = SUBSTRING(UPPER(MD5(CONCAT(balance, account_no, 'LOVECHINA'))), 16)
+        WHERE account_No = #{accountNo} AND
+              bal_check = SUBSTRING(UPPER(MD5(CONCAT(balance, account_no, 'LOVECHINA'))), 16)
+              AND  balance - #{money} >= 0
+    </update>
+    <update id="rechargeToFrozen">
+        UPDATE ACCOUNT_INFO
+        SET frozen_balance   = frozen_balance + #{money},
+            frozen_bal_check = SUBSTRING(UPPER(MD5(CONCAT(frozen_balance, account_no, 'LOVECHINA'))), 16)
+        WHERE account_No = #{accountNo} AND
+                frozen_bal_check = SUBSTRING(UPPER(MD5(CONCAT(frozen_balance, account_no, 'LOVECHINA'))), 16)
+    </update>
+    <update id="forwardFromFrozen">
+        UPDATE ACCOUNT_INFO
+        SET frozen_balance   = frozen_balance - #{money},
+            frozen_bal_check = SUBSTRING(UPPER(MD5(CONCAT(frozen_balance, account_no, 'LOVECHINA'))), 16)
+        WHERE account_No = #{accountNo} AND
+                frozen_bal_check = SUBSTRING(UPPER(MD5(CONCAT(frozen_balance, account_no, 'LOVECHINA'))), 16)
+                AND  frozen_balance - #{money} >= 0
+    </update>
+
+
+    <select id="selectCount" resultMap="BaseResultMap">
+        select count(1) from ACCOUNT_INFO t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from ACCOUNT_INFO t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectPage" resultMap="BaseResultMap">
+        select * from ACCOUNT_INFO t
+        <where>
+            <include refid="select_content"/>
+            ${w.sqlSegment}
+        </where>
+        order by t.crt_time desc
+    </select>
+    <select id="selectForUpdate" resultMap="BaseResultMap">
+        select * from ACCOUNT_INFO t
+        <where>
+            <include refid="select_content"/>
+        </where>
+        for update wait 5
+    </select>
+
+    <sql id="select_content">
+        <if test="e.id != null and e.id != '' ">
+            AND t.ID = #{e.id}
+        </if>
+        <if test="e.accountNo != null and e.accountNo != '' ">
+            AND t.ACCOUNT_NO = #{e.accountNo}
+        </if>
+        <if test="e.name != null and e.name != '' ">
+            AND t.NAME = #{e.name}
+        </if>
+        <if test="e.appid != null and e.appid != '' ">
+            AND t.APPID = #{e.appid}
+        </if>
+        <if test="e.type != null and e.type != '' ">
+            AND t.TYPE = #{e.type}
+        </if>
+        <if test="e.balance != null and e.balance != '' ">
+            AND t.BALANCE = #{e.balance}
+        </if>
+        <if test="e.currency != null and e.currency != '' ">
+            AND t.CURRENCY = #{e.currency}
+        </if>
+        <if test="e.openTime != null and e.openTime != '' ">
+            AND t.OPEN_TIME = #{e.openTime}
+        </if>
+        <if test="e.isRecharge != null and e.isRecharge != '' ">
+            AND t.IS_RECHARGE = #{e.isRecharge}
+        </if>
+        <if test="e.isCash != null and e.isCash != '' ">
+            AND t.IS_CASH = #{e.isCash}
+        </if>
+        <if test="e.isBalanceNegative != null and e.isBalanceNegative != '' ">
+            AND t.IS_BALANCE_NEGATIVE = #{e.isBalanceNegative}
+        </if>
+        <if test="e.userName != null and e.userName != '' ">
+            AND t.USER_NAME = #{e.userName}
+        </if>
+        <if test="e.userPhone != null and e.userPhone != '' ">
+            AND t.USER_PHONE = #{e.userPhone}
+        </if>
+    </sql>
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.trade.dao.AccountAppDao">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.trade.model.AccountAppModel">
+        <result column="id" property="id"/>
+        <result column="app_id" property="appId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="account_No" property="accountNo"/>
+        <result column="balance" property="balance"/>
+        <result column="real_pay" property="realPay"/>
+        <result column="app_name" property="appName"/>
+        <result column="crt_time" property="crtTime"/>
+        <result column="crt_user_id" property="crtUserId"/>
+        <result column="mdf_time" property="mdfTime"/>
+        <result column="mdf_user_id" property="mdfUserId"/>
+    </resultMap>
+
+
+    <select id="selectCount" resultMap="BaseResultMap">
+        select count(1) from ACCOUNT_APP t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select * from ACCOUNT_APP t
+        <where>
+            <include refid="select_content"/>
+        </where>
+    </select>
+
+    <select id="selectPage" resultMap="BaseResultMap">
+        select t.*,a.balance from ACCOUNT_APP t
+        LEFT OUTER JOIN account_info a on a.account_no = t.account_no
+        <where>
+            <include refid="select_content"/>
+            ${w.sqlSegment}
+        </where>
+    </select>
+
+    <sql id="select_content">
+        <if test="e.id != null and e.id != '' ">
+            AND t.ID = #{e.id}
+        </if>
+        <if test="e.appId != null and e.appId != '' ">
+            AND t.APP_ID = #{e.appId}
+        </if>
+        <if test="e.companyId != null and e.companyId != '' ">
+            AND t.COMPANY_ID = #{e.companyId}
+        </if>
+        <if test="e.accountNo != null and e.accountNo != '' ">
+            AND t.ACCOUNT_NO = #{e.accountNo}
+        </if>
+        <if test="e.appName != null and e.appName != '' ">
+            AND t.APP_NAME = #{e.appName}
+        </if>
+        <if test="e.crtTime != null and e.crtTime != '' ">
+            AND t.CRT_TIME = #{e.crtTime}
+        </if>
+        <if test="e.crtUserId != null and e.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{e.crtUserId}
+        </if>
+        <if test="e.mdfTime != null and e.mdfTime != '' ">
+            AND t.MDF_TIME = #{e.mdfTime}
+        </if>
+        <if test="e.mdfUserId != null and e.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{e.mdfUserId}
+        </if>
+    </sql>
+
+</mapper>
