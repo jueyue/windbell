@@ -17,6 +17,7 @@
         <module>facade</module>
         <module>paas</module>
         <module>trade</module>
+        <module>wupass</module>
     </modules>
 
     <build>
