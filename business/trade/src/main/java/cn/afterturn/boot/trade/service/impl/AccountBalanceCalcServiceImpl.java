@@ -2,7 +2,7 @@
 package cn.afterturn.boot.trade.service.impl;
 
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
-import cn.afterturn.boot.trade.dao.AccountBalanceCalcDao;
+import cn.afterturn.boot.trade.repository.AccountBalanceCalcRepository;
 import cn.afterturn.boot.trade.model.AccountBalanceCalcModel;
 import cn.afterturn.boot.trade.service.IAccountBalanceCalcService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -23,32 +23,32 @@ import java.util.List;
  * @Date 2018-09-12 19:47:54
  */
 @Service
-public class AccountBalanceCalcServiceImpl extends BaseServiceCacheImpl<AccountBalanceCalcDao, AccountBalanceCalcModel> implements IAccountBalanceCalcService {
+public class AccountBalanceCalcServiceImpl extends BaseServiceCacheImpl<AccountBalanceCalcRepository, AccountBalanceCalcModel> implements IAccountBalanceCalcService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountBalanceCalcServiceImpl.class);
 
     @Autowired
-    private AccountBalanceCalcDao accountBalanceCalcDao;
+    private AccountBalanceCalcRepository accountBalanceCalcRepository;
 
 
     @Override
     public AccountBalanceCalcModel selectOne(AccountBalanceCalcModel entity) {
-        return accountBalanceCalcDao.selectOne(new QueryWrapper<>(entity));
+        return accountBalanceCalcRepository.selectOne(new QueryWrapper<>(entity));
     }
 
     @Override
     public List<AccountBalanceCalcModel> selectList(AccountBalanceCalcModel model) {
-        return accountBalanceCalcDao.selectList(model, new QueryWrapper<>());
+        return accountBalanceCalcRepository.selectList(model, new QueryWrapper<>());
     }
 
     @Override
     public List<AccountBalanceCalcModel> selectList(AccountBalanceCalcModel model, Wrapper<AccountBalanceCalcModel> wrapper) {
-        return accountBalanceCalcDao.selectList(model, wrapper);
+        return accountBalanceCalcRepository.selectList(model, wrapper);
     }
 
     @Override
     public List<AccountBalanceCalcModel> selectPage(Page pagination, AccountBalanceCalcModel model, Wrapper<AccountBalanceCalcModel> wrapper) {
-        return accountBalanceCalcDao.selectPage(pagination, model, wrapper);
+        return accountBalanceCalcRepository.selectPage(pagination, model, wrapper);
     }
 
 }

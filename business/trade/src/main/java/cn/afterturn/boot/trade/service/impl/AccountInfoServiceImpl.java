@@ -5,7 +5,7 @@ import cn.afterturn.boot.core.util.DateUtil;
 import cn.afterturn.boot.core.util.ToolUtil;
 import cn.afterturn.boot.trade.common.exception.BizException;
 import cn.afterturn.boot.trade.common.util.SerialNumberUtil;
-import cn.afterturn.boot.trade.dao.AccountInfoDao;
+import cn.afterturn.boot.trade.repository.AccountInfoRepository;
 import cn.afterturn.boot.trade.model.AccountFlowModel;
 import cn.afterturn.boot.trade.model.AccountInfoModel;
 import cn.afterturn.boot.trade.model.PaymentModel;
@@ -36,33 +36,33 @@ import java.util.Map;
  * @Date
  */
 @Service
-public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao, AccountInfoModel> implements IAccountInfoService {
+public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoRepository, AccountInfoModel> implements IAccountInfoService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountInfoServiceImpl.class);
 
     @Autowired
-    private AccountInfoDao      accountInfoDao;
+    private AccountInfoRepository accountInfoRepository;
     @Autowired
-    private IAccountFlowService accountFlowService;
+    private IAccountFlowService   accountFlowService;
 
     @Override
     public AccountInfoModel selectOne(AccountInfoModel model) {
-        return accountInfoDao.selectOne(new QueryWrapper<>(model));
+        return accountInfoRepository.selectOne(new QueryWrapper<>(model));
     }
 
     @Override
     public List<AccountInfoModel> selectList(AccountInfoModel model) {
-        return accountInfoDao.selectList(model, new QueryWrapper<>());
+        return accountInfoRepository.selectList(model, new QueryWrapper<>());
     }
 
     @Override
     public List<AccountInfoModel> selectList(AccountInfoModel model, Wrapper<AccountInfoModel> wrapper) {
-        return accountInfoDao.selectList(model, wrapper);
+        return accountInfoRepository.selectList(model, wrapper);
     }
 
     @Override
     public List<AccountInfoModel> selectPage(Page pagination, AccountInfoModel model, Wrapper<AccountInfoModel> wrapper) {
-        return accountInfoDao.selectPage(pagination, model, wrapper);
+        return accountInfoRepository.selectPage(pagination, model, wrapper);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
         model.setIsRecharge(1);
         model.setOpenTime(new Date());
         String balCheck = ToolUtil.getBalCheck(model.getBalance(), model.getAccountNo());
-        if (this.save(model) && accountInfoDao.calBalanceCheck(model.getAccountNo(), balCheck) == 1) {
+        if (this.save(model) && accountInfoRepository.calBalanceCheck(model.getAccountNo(), balCheck) == 1) {
             return model;
         }
         throw new RuntimeException("插入数据失败");
@@ -94,30 +94,30 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public Long recharge(String tradeNo, String accountNo, int money) {
-        int result = this.accountInfoDao.recharge(accountNo, money);
+        int result = this.accountInfoRepository.recharge(accountNo, money);
         if (result != 1) {
             throw new RuntimeException("充值异常,账户:" + accountNo + " 金额:" + money);
         }
         // 插入流水
         accountFlowService.insertFlow(accountNo, tradeNo, 1001, money, 0, money, accountNo + "充值," + money / 100 + "分");
-        return this.accountInfoDao.selectOne(new QueryWrapper<AccountInfoModel>().eq("account_no", accountNo)).getBalance();
+        return this.accountInfoRepository.selectOne(new QueryWrapper<AccountInfoModel>().eq("account_no", accountNo)).getBalance();
     }
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public Long transferToFrozen(String tradeNo, String fromAccount, String toAccountNo, int money, int fromSubject, int toSubject, String type, String tradeTime) {
-        if (this.accountInfoDao.selectOne(new QueryWrapper<AccountInfoModel>().eq("account_no", fromAccount)).getBalance() < money) {
+        if (this.accountInfoRepository.selectOne(new QueryWrapper<AccountInfoModel>().eq("account_no", fromAccount)).getBalance() < money) {
             throw new BizException(-2, "余额不足");
         }
         // 从出账户扣钱
-        int result = this.accountInfoDao.forward(fromAccount, money);
+        int result = this.accountInfoRepository.forward(fromAccount, money);
         if (result != 1) {
             throw new RuntimeException("转账异常,账户:" + fromAccount + " 金额:" + money);
         }
         // 插入转出流水
         accountFlowService.insertFlow(fromAccount, tradeNo, fromSubject, money, 0, money, fromAccount + "转出," + money + "分", DateUtil.parse(tradeTime, "yyyyMMddHHmmss"), type, 6);
         // 转入充值账户
-        result = this.accountInfoDao.rechargeToFrozen(toAccountNo, money);
+        result = this.accountInfoRepository.rechargeToFrozen(toAccountNo, money);
         if (result != 1) {
             throw new RuntimeException("转账异常,账户:" + toAccountNo + " 金额:" + money);
         }
@@ -135,14 +135,14 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
             throw new BizException(-2, "余额不足");
         }
         // 从出账户扣钱
-        int result = this.accountInfoDao.forward(fromAccount, money);
+        int result = this.accountInfoRepository.forward(fromAccount, money);
         if (result != 1) {
             throw new RuntimeException("转账异常,账户:" + fromAccount + " 金额:" + money);
         }
         // 插入转出流水
         accountFlowService.insertFlow(fromAccount, tradeNo, fromSubject, money, 0, money, fromAccount + "转出," + money + "分", null, type);
         // 转入充值账户
-        result = this.accountInfoDao.recharge(toAccountNo, money);
+        result = this.accountInfoRepository.recharge(toAccountNo, money);
         if (result != 1) {
             throw new RuntimeException("转账异常,账户:" + toAccountNo + " 金额:" + money);
         }
@@ -159,7 +159,7 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
             throw new BizException(-2, "余额不足");
         }
         // 从出账户扣钱
-        int result = this.accountInfoDao.forward(accountNo, money);
+        int result = this.accountInfoRepository.forward(accountNo, money);
         if (result != 1) {
             throw new RuntimeException("提现异常,账户:" + accountNo + " 金额:" + money);
         }
@@ -169,7 +169,7 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
         // 插入转出流水
         accountFlowService.insertFlow(accountNo, tradeNo, 3002, money, 0, money, accountNo + "转出," + money + "分", JSON.toJSONString(settlement), null);
         //转入到内部户
-        this.accountInfoDao.recharge(InternalAccountEnum.FORWARD, money);
+        this.accountInfoRepository.recharge(InternalAccountEnum.FORWARD, money);
         // 插入转出流水
         accountFlowService.insertFlow(InternalAccountEnum.FORWARD, tradeNo, 6001, money, 0, money, accountNo + "提现转入," + money + "分", JSON.toJSONString(settlement), null);
         return this.selectOne(new AccountInfoModel(accountNo)).getBalance();
@@ -195,7 +195,7 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
             //先转出手续费
             if (!feed) {
                 // 从出账户扣钱
-                int result = this.accountInfoDao.forward(accountNo, fee);
+                int result = this.accountInfoRepository.forward(accountNo, fee);
                 if (result != 1) {
                     throw new RuntimeException("提现异常,余额不足,账户:" + accountNo + " 金额:" + money);
                 }
@@ -205,7 +205,7 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
                 // 插入转出流水
                 accountFlowService.insertFlow(accountNo, tradeNo + "_" + accountNo + "_FEE", 3002, fee, 0, fee, accountNo + "转出手续费," + fee + "分");
                 //转入到手续费内部户
-                accountInfoDao.recharge(InternalAccountEnum.FORWARD_FEE, fee);
+                accountInfoRepository.recharge(InternalAccountEnum.FORWARD_FEE, fee);
                 // 插入转出流水
                 accountFlowService.insertFlow(InternalAccountEnum.FORWARD_FEE, tradeNo + "_" + accountNo + "_FEE", 6001, fee, 0, fee, accountNo + "提现手续费转入," + fee + "分");
                 feed = true;
@@ -219,14 +219,14 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
                 forwardMoney = money - forwardedMoney;
             }
             // 从出账户扣钱
-            int result = this.accountInfoDao.forward(accountNo, forwardMoney);
+            int result = this.accountInfoRepository.forward(accountNo, forwardMoney);
             if (result != 1) {
                 throw new BizException(-2, "余额不足");
             }
             // 插入转出流水
             accountFlowService.insertFlow(accountNo, tradeNo + "_" + accountNo, 3002, forwardMoney, 0, forwardMoney, accountNo + "转出," + forwardMoney + "分");
             //转入到内部户
-            this.accountInfoDao.recharge(InternalAccountEnum.FORWARD, forwardMoney);
+            this.accountInfoRepository.recharge(InternalAccountEnum.FORWARD, forwardMoney);
             // 插入转出流水
             accountFlowService.insertFlow(InternalAccountEnum.FORWARD, tradeNo + "_" + accountNo, 6001, forwardMoney, 0, forwardMoney, accountNo + "提现转入," + money + "分");
             forwardedMoney += forwardMoney;
@@ -318,14 +318,14 @@ public class AccountInfoServiceImpl extends BaseServiceCacheImpl<AccountInfoDao,
         accountFlowService.updateStatus(list, 7);
 
         //冻结账户提现
-        int result = this.accountInfoDao.forwardFromFrozen(accountNo, money);
+        int result = this.accountInfoRepository.forwardFromFrozen(accountNo, money);
         if (result != 1) {
             throw new BizException(-2, "余额不足");
         }
         // 插入转出流水
         accountFlowService.insertFlow(accountNo, tradeNo, 3004, money, 0, money, accountNo + "冻结入账转出," + money + "分");
         //转入到内部户
-        this.accountInfoDao.recharge(accountNo, money);
+        this.accountInfoRepository.recharge(accountNo, money);
         // 插入转出流水
         accountFlowService.insertFlow(accountNo, tradeNo, 3001, money, 0, money, accountNo + "冻结金额入账 ----转入," + money + "分");
         return money;

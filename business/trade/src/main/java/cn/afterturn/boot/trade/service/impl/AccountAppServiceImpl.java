@@ -2,7 +2,7 @@ package cn.afterturn.boot.trade.service.impl;
 
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.trade.common.util.SerialNumberUtil;
-import cn.afterturn.boot.trade.dao.AccountAppDao;
+import cn.afterturn.boot.trade.repository.AccountAppRepository;
 import cn.afterturn.boot.trade.model.AccountAppModel;
 import cn.afterturn.boot.trade.model.AccountInfoModel;
 import cn.afterturn.boot.trade.service.IAccountAppService;
@@ -26,34 +26,34 @@ import java.util.List;
  * @Date
  */
 @Service
-public class AccountAppServiceImpl extends BaseServiceCacheImpl<AccountAppDao, AccountAppModel> implements IAccountAppService {
+public class AccountAppServiceImpl extends BaseServiceCacheImpl<AccountAppRepository, AccountAppModel> implements IAccountAppService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountAppServiceImpl.class);
 
     @Autowired
-    private AccountAppDao       AccountAppDao;
+    private AccountAppRepository accountAppRepository;
     @Autowired
-    private IAccountInfoService accountInfoService;
+    private IAccountInfoService  accountInfoService;
 
 
     @Override
     public AccountAppModel selectOne(AccountAppModel model) {
-        return AccountAppDao.selectOne(new QueryWrapper<>(model));
+        return accountAppRepository.selectOne(new QueryWrapper<>(model));
     }
 
     @Override
     public List<AccountAppModel> selectList(AccountAppModel model) {
-        return AccountAppDao.selectList(model, new QueryWrapper<>(model));
+        return accountAppRepository.selectList(model, new QueryWrapper<>(model));
     }
 
     @Override
     public List<AccountAppModel> selectList(AccountAppModel model, Wrapper<AccountAppModel> wrapper) {
-        return AccountAppDao.selectList(model, wrapper);
+        return accountAppRepository.selectList(model, wrapper);
     }
 
     @Override
     public List<AccountAppModel> selectPage(Page pagination, AccountAppModel model, Wrapper<AccountAppModel> wrapper) {
-        return AccountAppDao.selectPage(pagination, model, wrapper);
+        return accountAppRepository.selectPage(pagination, model, wrapper);
     }
 
     @Override

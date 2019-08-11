@@ -1,4 +1,4 @@
-package cn.afterturn.boot.trade.dao;
+package cn.afterturn.boot.trade.repository;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -17,7 +17,7 @@ import java.util.List;
  * @Date
  */
 @Repository
-public interface AccountInfoDao extends BaseMapper<AccountInfoModel> {
+public interface AccountInfoRepository extends BaseMapper<AccountInfoModel> {
 
     /**
      * 查询列表

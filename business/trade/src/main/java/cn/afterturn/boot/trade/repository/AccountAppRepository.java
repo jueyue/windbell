@@ -1,24 +1,24 @@
-package cn.afterturn.boot.trade.dao;
+package cn.afterturn.boot.trade.repository;
+
+import cn.afterturn.boot.trade.model.AccountAppModel;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import cn.afterturn.boot.trade.model.AccountSubjectModel;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * AccountSubjectDao
- * 账户科目表
+ * AccountAppDao
+ * 应用
  *
  * @author
  * @Date
  */
 @Repository
-public interface AccountSubjectDao extends BaseMapper<AccountSubjectModel> {
+public interface AccountAppRepository extends BaseMapper<AccountAppModel> {
 
     /**
      * 查询列表
@@ -26,7 +26,7 @@ public interface AccountSubjectDao extends BaseMapper<AccountSubjectModel> {
      * @param model
      * @return
      */
-    List<AccountSubjectModel> selectList(@Param("e") AccountSubjectModel model, @Param("w") Wrapper<AccountSubjectModel> wrapper);
+    List<AccountAppModel> selectList(@Param("e") AccountAppModel model, @Param("w") Wrapper<AccountAppModel> wrapper);
 
     /**
      * 分页查询信息
@@ -36,6 +36,6 @@ public interface AccountSubjectDao extends BaseMapper<AccountSubjectModel> {
      * @param wrapper
      * @return
      */
-    List<AccountSubjectModel> selectPage(@Param("p") Page pagination, @Param("e") AccountSubjectModel model, @Param("w") Wrapper<AccountSubjectModel> wrapper);
+    List<AccountAppModel> selectPage(@Param("p") Page pagination, @Param("e") AccountAppModel model, @Param("w") Wrapper<AccountAppModel> wrapper);
 
 }

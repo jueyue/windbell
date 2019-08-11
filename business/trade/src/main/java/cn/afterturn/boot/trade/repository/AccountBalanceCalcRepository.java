@@ -1,5 +1,5 @@
 
-package cn.afterturn.boot.trade.dao;
+package cn.afterturn.boot.trade.repository;
 
 import cn.afterturn.boot.trade.model.AccountBalanceCalcModel;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -18,7 +18,7 @@ import java.util.List;
  * @Date 2018-09-12 19:47:54
  */
 @Repository
-public interface AccountBalanceCalcDao extends BaseMapper<AccountBalanceCalcModel> {
+public interface AccountBalanceCalcRepository extends BaseMapper<AccountBalanceCalcModel> {
 
     /**
      * 查询列表

@@ -1,7 +1,7 @@
 package cn.afterturn.boot.trade.service.impl;
 
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
-import cn.afterturn.boot.trade.dao.AccountFlowDao;
+import cn.afterturn.boot.trade.repository.AccountFlowRepository;
 import cn.afterturn.boot.trade.model.AccountFlowModel;
 import cn.afterturn.boot.trade.model.AccountInfoModel;
 import cn.afterturn.boot.trade.service.IAccountFlowService;
@@ -26,34 +26,34 @@ import java.util.List;
  * @Date
  */
 @Service
-public class AccountFlowServiceImpl extends BaseServiceCacheImpl<AccountFlowDao, AccountFlowModel> implements IAccountFlowService, IExcelExportServer {
+public class AccountFlowServiceImpl extends BaseServiceCacheImpl<AccountFlowRepository, AccountFlowModel> implements IAccountFlowService, IExcelExportServer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountFlowServiceImpl.class);
 
     @Autowired
-    private AccountFlowDao      accountFlowDao;
+    private AccountFlowRepository accountFlowRepository;
     @Autowired
-    private IAccountInfoService accountInfoService;
+    private IAccountInfoService   accountInfoService;
 
 
     @Override
     public AccountFlowModel selectOne(AccountFlowModel entity) {
-        return accountFlowDao.selectOne(new QueryWrapper<>(entity));
+        return accountFlowRepository.selectOne(new QueryWrapper<>(entity));
     }
 
     @Override
     public List<AccountFlowModel> selectList(AccountFlowModel model) {
-        return accountFlowDao.selectList(model, new QueryWrapper<>());
+        return accountFlowRepository.selectList(model, new QueryWrapper<>());
     }
 
     @Override
     public List<AccountFlowModel> selectList(AccountFlowModel model, Wrapper<AccountFlowModel> wrapper) {
-        return accountFlowDao.selectList(model, wrapper);
+        return accountFlowRepository.selectList(model, wrapper);
     }
 
     @Override
     public List<AccountFlowModel> selectPage(Page pagination, AccountFlowModel model, Wrapper<AccountFlowModel> wrapper) {
-        return accountFlowDao.selectPage(pagination, model, wrapper);
+        return accountFlowRepository.selectPage(pagination, model, wrapper);
     }
 
     @Override
@@ -95,17 +95,17 @@ public class AccountFlowServiceImpl extends BaseServiceCacheImpl<AccountFlowDao,
 
     @Override
     public int getTradeListMoney(String tradeNo, int subject) {
-        return accountFlowDao.getTradeListMoney(tradeNo, subject);
+        return accountFlowRepository.getTradeListMoney(tradeNo, subject);
     }
 
     @Override
     public void updateOuterTradeNo(String sourceId, String[] tradeNoArr) {
-        accountFlowDao.updateOuterTradeNo(sourceId, tradeNoArr);
+        accountFlowRepository.updateOuterTradeNo(sourceId, tradeNoArr);
     }
 
     @Override
     public void updateStatus(List<AccountFlowModel> list, int status) {
-        accountFlowDao.updateStatus(list, status);
+        accountFlowRepository.updateStatus(list, status);
     }
 
     @Override
