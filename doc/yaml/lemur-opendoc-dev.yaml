@@ -7,7 +7,7 @@ jwt:
 
 spring:
   redis:
-    host: dev.cloud.afterturn.cn
+    host: localhost
     port: 16379
     password: 94456456421321&&&Gdsfs
     database: 4

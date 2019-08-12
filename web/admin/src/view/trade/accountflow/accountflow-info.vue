@@ -190,18 +190,6 @@ export default {
         ],
         beforeBalance: [
           {required: true, message: 'BeforeBalance不允许为空', trigger: 'blur'}
-        ],
-        unique: [
-          {required: true, message: '订单唯一值不允许为空', trigger: 'blur'}
-        ],
-        key: [
-          {required: true, message: 'Key不允许为空', trigger: 'blur'}
-        ],
-        key: [
-          {required: true, message: 'Key不允许为空', trigger: 'blur'}
-        ],
-        key: [
-          {required: true, message: 'Key不允许为空', trigger: 'blur'}
         ]
       }
     }
@@ -225,13 +213,13 @@ export default {
         if (valid) {
           switch (this.type) {
             case 'create':
-              this.C('accountflow', this.form).then(data => {
+              this.C('trade/accountflow', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handle-search')
               })
               break
             case 'update':
-              this.U('accountflow', this.form).then(data => {
+              this.U('trade/accountflow', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handle-search')
               })

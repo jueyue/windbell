@@ -51,7 +51,7 @@
         </where>
     </select>
 
-    <select id="selectPage" resultMap="BaseResultMap">
+    <!--<select id="selectPage" resultMap="BaseResultMap">
         select t.id, account_no, trade_no, trade_time, s.subject_name subject, outer_trade_no, memo, currency, money, fee, real_money, trade_info, complete_time, update_time,t.type,t.balance, status
         from ACCOUNT_FLOW t
         LEFT JOIN account_subject s on s.subject_id = t.subject
@@ -60,7 +60,7 @@
             ${ew.sqlSegment}
         </where>
         order by t.TRADE_TIME desc
-    </select>
+    </select>-->
     <select id="getTradeListMoney" resultType="java.lang.Integer">
         select IFNULL(sum(money),0) from ACCOUNT_FLOW where TRADE_NO like concat(#{tradeNo},'%') and SUBJECT = #{subject}
     </select>

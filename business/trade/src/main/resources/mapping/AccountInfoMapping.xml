@@ -78,14 +78,14 @@
         </where>
     </select>
 
-    <select id="selectPage" resultMap="BaseResultMap">
+    <!--<select id="selectPage" resultMap="BaseResultMap">
         select * from ACCOUNT_INFO t
         <where>
             <include refid="select_content"/>
             ${w.sqlSegment}
         </where>
         order by t.crt_time desc
-    </select>
+    </select>-->
     <select id="selectForUpdate" resultMap="BaseResultMap">
         select * from ACCOUNT_INFO t
         <where>

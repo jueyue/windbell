@@ -9,9 +9,6 @@
                     <FormItem label="订单号">
                         <Input v-model="form.tradeNo"></Input>
                     </FormItem>
-                    <FormItem label="三方交易时间">
-                        <Input v-model="form.thirdTradeTime"></Input>
-                    </FormItem>
                     <FormItem label="交易时间">
                         <Input v-model="form.tradeTime"></Input>
                     </FormItem>
@@ -21,58 +18,11 @@
                     <FormItem label="关联订单号">
                         <Input v-model="form.outerTradeNo"></Input>
                     </FormItem>
-                    <FormItem label="备注">
-                        <Input v-model="form.memo"></Input>
-                    </FormItem>
-                    <FormItem label="币种">
-                        <Input v-model="form.currency"></Input>
-                    </FormItem>
-                    <FormItem label="金额">
-                        <Input v-model="form.money"></Input>
-                    </FormItem>
-                    <FormItem label="手续费">
-                        <Input v-model="form.fee"></Input>
-                    </FormItem>
-                    <FormItem label="到账金额">
-                        <Input v-model="form.realMoney"></Input>
-                    </FormItem>
-                    <FormItem label="交易信息">
-                        <Input v-model="form.tradeInfo"></Input>
-                    </FormItem>
-                    <FormItem label="完成时间">
-                        <Input v-model="form.completeTime"></Input>
-                    </FormItem>
-                    <FormItem label="更新时间">
-                        <Input v-model="form.updateTime"></Input>
-                    </FormItem>
                     <FormItem label="状态">
                         <Input v-model="form.status"></Input>
                     </FormItem>
-                    <FormItem label="当前余额">
-                        <Input v-model="form.balance"></Input>
-                    </FormItem>
-                    <FormItem label="自定义类型">
-                        <Input v-model="form.type"></Input>
-                    </FormItem>
-                    <FormItem label="BeforeBalance">
-                        <Input v-model="form.beforeBalance"></Input>
-                    </FormItem>
-                    <FormItem label="订单唯一值">
-                        <Input v-model="form.unique"></Input>
-                    </FormItem>
-                    <FormItem label="Key">
-                        <Input v-model="form.key"></Input>
-                    </FormItem>
-                    <FormItem label="Key">
-                        <Input v-model="form.key"></Input>
-                    </FormItem>
-                    <FormItem label="Key">
-                        <Input v-model="form.key"></Input>
-                    </FormItem>
                 </Form>
                 <div  class="toolbar">
-                    <Button type="primary" icon="md-add" @click="handleCreate">新增</Button>
-                    <Button type="primary" icon="md-trash" @click="handleDelete">删除</Button>
                    <Button @click="handleSearch" icon="md-search" class="search-btn" type="primary">搜索 </Button>
                 </div>
             </div>
@@ -102,7 +52,7 @@ export default {
         {title: '三方交易时间', key: 'thirdTradeTime'},
         {title: '交易时间', key: 'tradeTime'},
         {title: '科目', key: 'subject'},
-        {title: '关联订单号', key: 'outerTradeNo'},
+        {title: '三方订单号', key: 'outerTradeNo'},
         {title: '备注', key: 'memo'},
         {title: '币种', key: 'currency'},
         {title: '金额', key: 'money'},
@@ -113,18 +63,7 @@ export default {
         {title: '更新时间', key: 'updateTime'},
         {title: '状态', key: 'status'},
         {title: '当前余额', key: 'balance'},
-        {title: '自定义类型', key: 'type'},
-        {title: 'BeforeBalance', key: 'beforeBalance'},
-        {title: '订单唯一值', key: 'unique'},
-        {title: 'Key', key: 'key'},
-        {title: 'Key', key: 'key'},
-        {title: 'Key', key: 'key'},
-        {
-          title: '操作',
-          key: 'handle',
-          minWidth: 200,
-          options: ['update', 'detail']
-        }
+        {title: '原余额', key: 'beforeBalance'}
       ],
       tableData: {
         rows: [],
@@ -148,7 +87,7 @@ export default {
       this.$refs.accountflowInfoRef.openModel('create')
     },
     handleDelete () {
-      this.D('accountflow', getIds(this.selectedData)).then(data => {
+      this.D('trade/accountflow', getIds(this.selectedData)).then(data => {
         this.$Message.success(data)
         this.handleSearch()
       })
@@ -166,7 +105,7 @@ export default {
         model: this.form,
         map: this.form.map
       }
-      this.L('accountflow', param).then(data => {
+      this.L('trade/accountflow', param).then(data => {
         this.tableData = data
       })
     }

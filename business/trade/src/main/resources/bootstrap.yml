@@ -8,7 +8,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 9003 #项目端口
+  port: 9004 #项目端口
 
 management:
   endpoints:
@@ -34,6 +34,7 @@ spring:
       discovery:
         server-addr: dev.cloud.afterturn.cn:8848
         namespace: 40f3d8ad-65d0-4935-967e-e838b97c1db0
+        ip: 127.0.0.1
 ---
 #开发环境
 spring:

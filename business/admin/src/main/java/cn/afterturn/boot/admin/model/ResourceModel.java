@@ -79,4 +79,7 @@ public class ResourceModel extends IdBaseModel<ResourceModel> {
     @ApiModelProperty("状态")
     private Integer status;
 
+    @TableField(exist = false)
+    private Integer base;
+
 }

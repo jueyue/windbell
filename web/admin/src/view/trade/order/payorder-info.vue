@@ -129,8 +129,6 @@
 
 <script>
 
-import {C, U, P} from '@/libs/api.request'
-
 export default {
   name: 'payorder-info',
   data () {
@@ -207,13 +205,13 @@ export default {
         if (valid) {
           switch (this.type) {
             case 'create':
-              C('payorder', this.form).then(data => {
+              this.C('trade/payorder', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handleSearch')
               })
               break
             case 'update':
-              U('payorder', this.form).then(data => {
+              this.U('trade/payorder', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handleSearch')
               })
@@ -229,26 +227,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .info-header {
-    height: 40px;
-    color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-  }
-
-  .ivu-modal-header-inner {
-    margin: 10px 15px 0px 0px;
-    padding-left: 15px;
-    height: 40px;
-  }
-
-  .ivu-modal-close {
-    margin: 10px 15px 0px 0px;
-  }
-
-  .ivu-form-item {
-    width: 260px;
-  }
-</style>

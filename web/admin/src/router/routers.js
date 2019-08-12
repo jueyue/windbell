@@ -169,6 +169,47 @@ export default [
     ]
   },
   {
+    path: '/trade-manager',
+    name: '交易管理',
+    component: Main,
+    meta: {
+      icon: 'ios-book',
+      title: '交易管理'
+    },
+    children: [
+      {
+        path: 'order',
+        name: '交易订单',
+        meta: {
+          title: '交易订单',
+          notCache: true,
+          icon: 'ios-book'
+        },
+        component: () => import('@/view/trade/order/payorder-list.vue')
+      },
+      {
+        path: 'account-info',
+        name: '账户信息',
+        meta: {
+          title: '账户信息',
+          notCache: true,
+          icon: 'ios-book'
+        },
+        component: () => import('@/view/trade/accountinfo/accountinfo-list.vue')
+      },
+      {
+        path: 'account-flow',
+        name: '账户流水',
+        meta: {
+          title: '账户流水',
+          notCache: true,
+          icon: 'ios-book'
+        },
+        component: () => import('@/view/trade/accountflow/accountflow-list.vue')
+      }
+    ]
+  },
+  {
     path: '/components',
     name: 'components',
     meta: {

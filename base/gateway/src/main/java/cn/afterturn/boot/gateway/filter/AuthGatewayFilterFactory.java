@@ -10,6 +10,8 @@ import com.google.common.cache.CacheBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.annotation.Order;
@@ -31,6 +33,8 @@ import java.util.concurrent.TimeUnit;
 @Order(1)
 public class AuthGatewayFilterFactory implements GlobalFilter {
 
+    private final static Logger logger = LoggerFactory.getLogger(AuthGatewayFilterFactory.class);
+
     private static Cache<String, String> cache = CacheBuilder.newBuilder()
             .maximumSize(1000)
             .expireAfterWrite(1, TimeUnit.DAYS)
@@ -43,7 +47,7 @@ public class AuthGatewayFilterFactory implements GlobalFilter {
         if (WhiteListUtil.isWhiteList(exchange.getRequest().getPath().pathWithinApplication().value())) {
             return chain.filter(exchange);
         }
-        if(WhiteListUtil.isLogout(exchange.getRequest().getPath().pathWithinApplication().value())){
+        if (WhiteListUtil.isLogout(exchange.getRequest().getPath().pathWithinApplication().value())) {
             Subject subject = SecurityUtils.getSubject();
             subject.logout();
             return chain.filter(exchange);
@@ -54,6 +58,7 @@ public class AuthGatewayFilterFactory implements GlobalFilter {
         try {
             subject.checkPermission(permission);
         } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             ServerHttpResponse response    = exchange.getResponse();
             HttpHeaders        httpHeaders = response.getHeaders();
             httpHeaders.add("Content-Type", "application/json; charset=UTF-8");
@@ -67,7 +72,7 @@ public class AuthGatewayFilterFactory implements GlobalFilter {
     }
 
     private String getUrls(ServerWebExchange exchange) {
-        String url = exchange.getRequest().getPath().pathWithinApplication().value();
+        String url        = exchange.getRequest().getPath().pathWithinApplication().value();
         String permission = cache.getIfPresent(url);
         if (StringUtils.isEmpty(permission)) {
             permission = url.replaceAll("/", ":");

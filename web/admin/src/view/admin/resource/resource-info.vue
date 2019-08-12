@@ -54,6 +54,13 @@
               </Select>
             </FormItem>
           </Col>
+          <Col span="8">
+            <FormItem label="基础资源" prop="status">
+              <Select v-model="form.base">
+                <Option :value='item.key' v-for='(item, index) in yesNoOptions' :key='index'>{{item.name}}</Option>
+              </Select>
+            </FormItem>
+          </Col>
         </Row>
       </Form>
     </div>
@@ -76,6 +83,7 @@ export default {
       disable: false,
       statusOptions: [],
       typeOptions: [],
+      yesNoOptions: [],
       parentList: [],
       ruleValidate: {
         name: [
@@ -99,8 +107,11 @@ export default {
       this.type = type
       if (data) {
         this.form = data
+        this.form.base = 2
       } else {
-        this.form = {}
+        this.form = {
+          base: 2
+        }
       }
       this.disable = type === 'detail'
     },
@@ -141,6 +152,9 @@ export default {
     })
     this.numDict('resource_type').then(data => {
       this.typeOptions = data
+    })
+    this.numDict('yes_no').then(data => {
+      this.yesNoOptions = data
     })
     this.loadParentResource()
   }

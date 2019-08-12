@@ -38,11 +38,6 @@ public class PayOrderModel extends IdTenantBaseModel<PayOrderModel> {
     private static final long serialVersionUID = 1L;
 
 
-    @Excel(name = "ID")
-    @TableId(value = "id",type = IdType.AUTO)
-    @ApiModelProperty("ID")
-    private String id;
-
     @Excel(name = "订单号")
     @TableField(value="orderid" , strategy = FieldStrategy.NOT_EMPTY )
     @ApiModelProperty("订单号")
@@ -98,9 +93,9 @@ public class PayOrderModel extends IdTenantBaseModel<PayOrderModel> {
     @ApiModelProperty("产品价格")
     private String price;
 
-    @Excel(name = "状态1")
+    @Excel(name = "状态")
     @TableField(value="status"  )
-    @ApiModelProperty("状态1")
+    @ApiModelProperty("状态")
     private Integer status;
 
     @Excel(name = "Memo")
@@ -118,33 +113,4 @@ public class PayOrderModel extends IdTenantBaseModel<PayOrderModel> {
     @ApiModelProperty("支付时间")
     private Date payTime;
 
-    @Excel(name = "租户ID")
-    @TableField(value="TENANT_ID" , strategy = FieldStrategy.NOT_EMPTY )
-    @ApiModelProperty("租户ID")
-    private String tenantId;
-
-    @Excel(name = "创建用户Id")
-    @TableField(value="CRT_USER_ID"  )
-    @ApiModelProperty("创建用户Id")
-    private Integer crtUserId;
-
-    @Excel(name = "创建时间")
-    @TableField(value="CRT_TIME"  )
-    @ApiModelProperty("创建时间")
-    private Date crtTime;
-
-    @Excel(name = "修改人")
-    @TableField(value="MDF_USER_ID" , strategy = FieldStrategy.NOT_EMPTY )
-    @ApiModelProperty("修改人")
-    private String mdfUserId;
-
-    @Excel(name = "修改时间")
-    @TableField(value="MDF_TIME"  )
-    @ApiModelProperty("修改时间")
-    private Date mdfTime;
-
-    @Excel(name = "Unique")
-    @TableField(value="UNIQUE"  )
-    @ApiModelProperty("Unique")
-    private Object unique;
 }

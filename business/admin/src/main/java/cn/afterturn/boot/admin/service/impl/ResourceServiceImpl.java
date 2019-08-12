@@ -26,6 +26,7 @@ import cn.afterturn.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,39 @@ public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository
     private ResourceRepository       resourceRepository;
     @Autowired
     private ILinkMenuResourceService linkMenuResourceService;
+
+    @Override
+    protected boolean handlerSave(ResourceModel model) {
+        // 作为基础资源生成,一次把几个资源都生成完
+        if (model.getBase() != null && model.getBase() == 1) {
+            copyInsertModel("新增", "add", model, model.getNum() + 1);
+            copyInsertModel("修改", "update", model, model.getNum() + 2);
+            copyInsertModel("删除", "delete", model, model.getNum() + 3);
+            copyInsertModel("批量删除", "deleteBatchIds", model, model.getNum() + 4);
+            copyInsertModel("详情", "detail", model, model.getNum() + 5);
+            return true;
+        } else {
+            return super.handlerSave(model);
+        }
+    }
+
+    /**
+     * 生成 新增,修改,删除
+     *
+     * @param name
+     * @param url
+     * @param model
+     */
+    private void copyInsertModel(String name, String url, ResourceModel model, int num) {
+        ResourceModel newModel = new ResourceModel();
+        BeanUtils.copyProperties(model, newModel);
+        newModel.setPid(model.getId());
+        newModel.setId(null);
+        newModel.setNum(num);
+        newModel.setName(model.getName().replace("管理", name));
+        newModel.setUrl(model.getUrl().replace("list", url));
+        resourceRepository.insert(newModel);
+    }
 
     @Override
     public List<String> getAllByUserId(String userId, String productCode) {

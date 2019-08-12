@@ -79,7 +79,6 @@
 
 <script>
 import Tables from '_c/tables'
-import {L, D} from '@/libs/api.request'
 import payorderInfo from './payorder-info'
 import {getIds} from '@/libs/util'
 
@@ -110,7 +109,6 @@ export default {
         {title: '创建时间', key: 'crtTime'},
         {title: '修改人', key: 'mdfUserId'},
         {title: '修改时间', key: 'mdfTime'},
-        {title: 'Unique', key: 'unique'},
         {
           title: '操作',
           key: 'handle',
@@ -140,7 +138,7 @@ export default {
       this.$refs.payorderInfoRef.openModel('create')
     },
     handleDelete () {
-      D('payorder', getIds(this.selectedData)).then(data => {
+      this.D('trade/payorder', getIds(this.selectedData)).then(data => {
         this.$Message.success(data)
         this.handleSearch()
       })
@@ -158,7 +156,7 @@ export default {
         model: this.form,
         map: this.form.map
       }
-      L('payorder', param).then(data => {
+      this.L('trade/payorder', param).then(data => {
         this.tableData = data
       })
     }

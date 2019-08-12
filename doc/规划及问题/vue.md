@@ -11,6 +11,17 @@ https://github.com/MisterTaki/vue-table-with-tree-grid
 ```
 解决办法: 尽量使用一致的类型,不行就在界面强制转换
 
+###问题2: async-validator无法验证数字的解决办法
+```json
+rules: {
+   pwd: [{ required: true, message: '请填写密码', trigger: 'blur' }],
+   group:[{ required: true, type: 'number', message: '请选择分组', trigger: 'change' }]
+}
+```
+type:number 解决数字类型不修改提示问题
 
 ###全局样式
 在main.js引入的样式就是全局样式
+
+
+

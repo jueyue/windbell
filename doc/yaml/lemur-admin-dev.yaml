@@ -17,12 +17,12 @@ spring:
   aop:
     proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
   datasource:
-    url: jdbc:mysql://db.afterturn.cn:3308/windbell?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3308/windbell?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: windbell
     password: windbell
     filters: wall,mergeStat
   redis:
-    host: dev.cloud.afterturn.cn
+    host: localhost
     port: 16379
     password: 94456456421321&&&Gdsfs
     database: 2

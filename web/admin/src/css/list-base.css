@@ -1,3 +1,7 @@
+.toolbar{
+  height: 32px;
+}
+
 .toolbar button{
   margin-left: 20px;
 }
