@@ -88,7 +88,8 @@ export default {
           { required: true, message: '电话不允许为空', trigger: 'blur' }
         ]
       },
-      merTypeOptions: []
+      merTypeOptions: [],
+      passOptions: []
     }
   },
   created: function () {

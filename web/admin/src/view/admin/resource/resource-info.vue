@@ -96,7 +96,7 @@ export default {
           {required: true, message: '子系统不允许为空', trigger: 'blur'}
         ],
         num: [
-          {required: true, message: '排序号只允许数字并且不允许为空', trigger: 'blur'}
+          {required: true, message: '排序号只允许数字并且不允许为空', trigger: 'blur', type: 'number'}
         ]
       }
     }

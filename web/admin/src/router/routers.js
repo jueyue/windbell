@@ -138,16 +138,16 @@ export default [
     ]
   },
   {
-    path: '/config-manager',
-    name: '配置管理',
+    path: '/config',
+    name: 'PAAS管理',
     component: Main,
     meta: {
       icon: 'ios-book',
-      title: '配置管理'
+      title: 'PAAS管理'
     },
     children: [
       {
-        path: 'appinfo',
+        path: 'app/info',
         name: '应用配置',
         meta: {
           title: '应用配置',
@@ -157,19 +157,41 @@ export default [
         component: () => import('@/view/paas/appinfo/config-list.vue')
       },
       {
-        path: 'appinfo2',
-        name: '应用配置2',
+        path: 'notice',
+        name: '消息管理',
         meta: {
-          title: '应用配置2',
+          title: '消息管理',
           notCache: true,
           icon: 'ios-book'
         },
-        component: () => import('@/view/paas/appinfo/config-list.vue')
+        component: parentView,
+        children: [
+          {
+            path: 'template',
+            name: '消息模板',
+            meta: {
+              title: '消息模板',
+              notCache: true,
+              icon: 'ios-book'
+            },
+            component: () => import('@/view/paas/notice/template/template-list.vue')
+          },
+          {
+            path: 'notice-manager',
+            name: '消息记录',
+            meta: {
+              title: '消息管理',
+              notCache: true,
+              icon: 'ios-book'
+            },
+            component: () => import('@/view/paas/notice/template/template-list.vue')
+          }
+        ]
       }
     ]
   },
   {
-    path: '/trade-manager',
+    path: '/trade',
     name: '交易管理',
     component: Main,
     meta: {
@@ -188,7 +210,7 @@ export default [
         component: () => import('@/view/trade/order/payorder-list.vue')
       },
       {
-        path: 'account-info',
+        path: 'account/info',
         name: '账户信息',
         meta: {
           title: '账户信息',
@@ -198,7 +220,7 @@ export default [
         component: () => import('@/view/trade/accountinfo/accountinfo-list.vue')
       },
       {
-        path: 'account-flow',
+        path: 'account/flow',
         name: '账户流水',
         meta: {
           title: '账户流水',

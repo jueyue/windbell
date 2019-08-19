@@ -8,7 +8,7 @@
       <Form ref="menuForm" :model="form" :label-width="80" :rules="ruleValidate">
         <Row>
           <Col span="8">
-            <FormItem label="显示类型" prop="webType">
+              <FormItem label="前端" prop="webType">
               <Select v-model="form.webType" :disabled="disable">
                 <Option :value="item.key" v-for="(item, index) in webTypeOptions" :key="index">{{item.name}}</Option>
               </Select>

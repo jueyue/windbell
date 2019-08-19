@@ -24,12 +24,12 @@ import reactor.core.publisher.Mono;
  */
 @Component
 @Order(0)
-public class JwtCheckGatewayFilterFactory implements GlobalFilter {
+public class JwtCheckGatewayFilter implements GlobalFilter {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    public JwtCheckGatewayFilterFactory() {
+    public JwtCheckGatewayFilter() {
     }
 
     @Override

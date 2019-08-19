@@ -3,7 +3,7 @@
     <Card>
       <div class="search-con search-con-top">
         <Form :model="form" :label-width="80" inline>
-          <FormItem label="显示类型">
+          <FormItem label="前端">
             <Select v-model="form.webType">
               <Option :value="Item.key" v-for="Item in webTypeOptions" :key="Item.key">{{Item.name}}</Option>
             </Select>

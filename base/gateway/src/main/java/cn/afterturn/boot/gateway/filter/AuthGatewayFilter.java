@@ -31,9 +31,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Order(1)
-public class AuthGatewayFilterFactory implements GlobalFilter {
+public class AuthGatewayFilter implements GlobalFilter {
 
-    private final static Logger logger = LoggerFactory.getLogger(AuthGatewayFilterFactory.class);
+    private final static Logger logger = LoggerFactory.getLogger(AuthGatewayFilter.class);
 
     private static Cache<String, String> cache = CacheBuilder.newBuilder()
             .maximumSize(1000)

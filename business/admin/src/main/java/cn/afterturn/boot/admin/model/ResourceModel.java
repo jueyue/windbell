@@ -78,7 +78,10 @@ public class ResourceModel extends IdBaseModel<ResourceModel> {
     @TableField(value = "STATUS")
     @ApiModelProperty("状态")
     private Integer status;
-
+    /**
+     * 是不是直接生成基础资源:新增,修改,查询,删除,批量删除
+     * 1 生成 其他不生成
+     */
     @TableField(exist = false)
     private Integer base;
 

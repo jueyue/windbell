@@ -24,6 +24,7 @@ import cn.afterturn.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,38 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
 
     @Autowired
     private MenuRepository menuRepository;
+
+    @Override
+    protected boolean handlerSave(MenuModel model) {
+        // 作为基础资源生成,一次把几个资源都生成完
+        if (model.getBase() != null && model.getBase() == 1) {
+            copyInsertModel("新增", "_add", model, model.getNum() + 1);
+            copyInsertModel("修改", "_update", model, model.getNum() + 2);
+            copyInsertModel("删除", "_delete", model, model.getNum() + 3);
+            return true;
+        } else {
+            return super.handlerSave(model);
+        }
+    }
+
+    /**
+     * 生成 新增,修改,删除
+     *
+     * @param name
+     * @param code
+     * @param model
+     */
+    private void copyInsertModel(String name, String code, MenuModel model, int num) {
+        MenuModel newModel = new MenuModel();
+        BeanUtils.copyProperties(model, newModel);
+        newModel.setPid(model.getId());
+        newModel.setId(null);
+        newModel.setNum(num);
+        newModel.setName(name);
+        newModel.setIsmenu("2");
+        newModel.setCode(model.getCode() + code);
+        menuRepository.insert(newModel);
+    }
 
     @Override
     public List<MenuModel> tree(QueryWrapper wrapper) {
@@ -73,8 +106,8 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
     }
 
     @Override
-    public List<String> getAllByUserId(String userId,String productCode) {
-        return menuRepository.getAllByUserId(userId,productCode);
+    public List<String> getAllByUserId(String userId, String productCode) {
+        return menuRepository.getAllByUserId(userId, productCode);
     }
 
     private void loadAllSubTree(List<IViewTree> list, String roleId) {

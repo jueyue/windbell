@@ -57,7 +57,7 @@ export default {
         { title: '类型',
           key: 'merType',
           render: (h, params) => {
-            return h('span', getDictVal('tenant_type', params.row.merType))
+            return h('span', this.getDictVal('tenant_type', params.row.merType))
           } },
 
         { title: '营业执照', key: 'creditCode' },

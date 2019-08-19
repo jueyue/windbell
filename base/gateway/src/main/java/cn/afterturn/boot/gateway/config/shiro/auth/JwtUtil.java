@@ -108,7 +108,7 @@ public class JwtUtil {
         if (jwt.getExpiresAt().getTime() > System.currentTimeMillis() + REFRESH_TIME) {
             return token;
         }
-        return sign(jwt.getClaim(HeaderEnum.USER.getName()).asString(), jwt.getClaim(HeaderEnum.USER_NAME.getName()).asString(), jwt.getClaim(HeaderEnum.PRODUCT.getName()).asString(), secret);
+        return sign(jwt.getClaim(HeaderEnum.USER.getName()).asString(), jwt.getClaim(HeaderEnum.PRODUCT.getName()).asString(), jwt.getClaim(HeaderEnum.USER_NAME.getName()).asString(), secret);
 
     }
 
