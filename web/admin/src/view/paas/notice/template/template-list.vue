@@ -10,16 +10,22 @@
                         <Input v-model="form.code"></Input>
                     </FormItem>
                     <FormItem label="信息类型">
-                        <Input v-model="form.msgType"></Input>
+                      <Select v-model="form.msgType" clearable="true">
+                        <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
+                      </Select>
                     </FormItem>
                     <FormItem label="营销短信">
-                        <Input v-model="form.isMarketingMsg"></Input>
+                        <Select v-model="form.marketingMsg" clearable="true">
+                        <Option :value='item.key' v-for='(item, index) in yesNoOptions' :key='index'>{{item.name}}</Option>
+                      </Select>
                     </FormItem>
                     <FormItem label="指定渠道">
                         <Input v-model="form.channelCode"></Input>
                     </FormItem>
                     <FormItem label="状态">
-                        <Input v-model="form.status"></Input>
+                      <Select v-model="form.status"  clearable="true">
+                        <Option :value="item.key" v-for="(item, index) in statusOptions" :key="index">{{item.name}}</Option>
+                      </Select>
                     </FormItem>
                 </Form>
                 <div  class="toolbar">
@@ -51,13 +57,25 @@ export default {
       columns: [
         {title: '模板名称', key: 'name'},
         {title: '模板编码', key: 'code'},
-        {title: '信息类型', key: 'msgType'},
-        {title: '营销短信', key: 'isMarketingMsg'},
+        {title: '信息类型',
+          key: 'msg_type',
+          render: (h, params) => {
+            return h('span', this.getDictVal('msg_type', params.row.msgType))
+          }},
+        {title: '营销短信',
+          key: 'marketingMsg',
+          render: (h, params) => {
+            return h('span', this.getDictVal('yes_no', params.row.marketingMsg))
+          }},
         {title: '模板内容', key: 'content'},
         {title: '链接', key: 'link'},
         {title: '指定渠道', key: 'channelCode'},
         {title: '业务子通道', key: 'extSubCode'},
-        {title: '状态', key: 'status'},
+        {title: '状态',
+          key: 'status',
+          render: (h, params) => {
+            return h('span', this.getDictVal('status', params.row.status))
+          }},
         {title: '三方模板', key: 'thirdTemplateCode'},
         {title: '创建时间', key: 'crtTime'},
         {title: '修改时间', key: 'mdfTime'},
@@ -76,7 +94,10 @@ export default {
         map: {}
       },
       selectedData: [],
-      infoIsShow: false
+      infoIsShow: false,
+      typeOptions: [],
+      yesNoOptions: [],
+      statusOptions: []
     }
   },
   methods: {
@@ -115,6 +136,15 @@ export default {
   },
   mounted () {
     this.handleSearch()
+    this.dict('msg_type').then(data => {
+      this.typeOptions = data
+    })
+    this.numDict('yes_no').then(data => {
+      this.yesNoOptions = data
+    })
+    this.dict('status').then(data => {
+      this.statusOptions = data
+    })
   }
 }
 </script>

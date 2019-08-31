@@ -184,7 +184,7 @@ export default [
               notCache: true,
               icon: 'ios-book'
             },
-            component: () => import('@/view/paas/notice/template/template-list.vue')
+            component: () => import('@/view/paas/notice/notice/notice-list.vue')
           }
         ]
       }

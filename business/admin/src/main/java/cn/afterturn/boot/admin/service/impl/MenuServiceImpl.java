@@ -48,7 +48,7 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
     protected boolean handlerSave(MenuModel model) {
         // 作为基础资源生成,一次把几个资源都生成完
         if (model.getBase() != null && model.getBase() == 1) {
-            copyInsertModel("新增", "_add", model, model.getNum() + 1);
+            copyInsertModel("新增", "_create", model, model.getNum() + 1);
             copyInsertModel("修改", "_update", model, model.getNum() + 2);
             copyInsertModel("删除", "_delete", model, model.getNum() + 3);
             return true;

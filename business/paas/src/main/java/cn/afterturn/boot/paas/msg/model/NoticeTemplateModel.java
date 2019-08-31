@@ -18,6 +18,7 @@ package cn.afterturn.boot.paas.msg.model;
 import cn.afterturn.boot.bussiness.model.IdBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -38,12 +39,12 @@ public class NoticeTemplateModel extends IdBaseModel<NoticeTemplateModel> {
     private static final long serialVersionUID = 1L;
 
     @Excel(name = "模板名称")
-    @TableField(value = "name", strategy = FieldStrategy.NOT_EMPTY)
+    @TableField(value = "name", strategy = FieldStrategy.NOT_EMPTY, condition = SqlCondition.LIKE)
     @ApiModelProperty("模板名称")
     private String name;
 
     @Excel(name = "模板编码")
-    @TableField(value = "code", strategy = FieldStrategy.NOT_EMPTY)
+    @TableField(value = "code", strategy = FieldStrategy.NOT_EMPTY, condition = SqlCondition.LIKE)
     @ApiModelProperty("模板编码")
     private String code;
 
@@ -53,9 +54,9 @@ public class NoticeTemplateModel extends IdBaseModel<NoticeTemplateModel> {
     private String msgType;
 
     @Excel(name = "是否营销短信")
-    @TableField(value = "is_marketing_msg")
+    @TableField(value = "marketing_msg")
     @ApiModelProperty("是否营销短信")
-    private Boolean isMarketingMsg;
+    private Integer marketingMsg;
 
     @Excel(name = "模板内容")
     @TableField(value = "content", strategy = FieldStrategy.NOT_EMPTY)

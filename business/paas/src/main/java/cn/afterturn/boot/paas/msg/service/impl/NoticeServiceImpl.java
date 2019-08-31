@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2019 JueYue (qrb.jueyue@foxmail.com)
+ * Copyright 2017-2018 JueYue (qrb.jueyue@foxmail.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,32 +16,26 @@
 package cn.afterturn.boot.paas.msg.service.impl;
 
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
-import cn.afterturn.boot.paas.msg.model.NoticeTemplateModel;
-import cn.afterturn.boot.paas.msg.repository.NoticeTemplateRepository;
-import cn.afterturn.boot.paas.msg.service.INoticeTemplateService;
+import cn.afterturn.boot.paas.msg.model.NoticeModel;
+import cn.afterturn.boot.paas.msg.repository.NoticeRepository;
+import cn.afterturn.boot.paas.msg.service.INoticeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
- * 通知模板服务实现
+ * 通知表服务实现
  *
  * @author JueYue
- * @Date 2019-08-16 17:09:52
+ * @Date 2019-08-29 10:40:45
  */
-@Service("noticeTemplateService")
-public class NoticeTemplateServiceImpl extends BaseServiceCacheImpl<NoticeTemplateRepository, NoticeTemplateModel> implements INoticeTemplateService {
+@Service("noticeService")
+public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, NoticeModel> implements INoticeService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NoticeTemplateServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NoticeServiceImpl.class);
 
     @Autowired
-    private NoticeTemplateRepository noticeTemplateRepository;
+    private NoticeRepository noticeRepository;
 
-    @Override
-    public List<NoticeTemplateModel> allTemplate() {
-        return noticeTemplateRepository.allTemplate();
-    }
 }

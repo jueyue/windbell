@@ -54,7 +54,7 @@ public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository
     protected boolean handlerSave(ResourceModel model) {
         // 作为基础资源生成,一次把几个资源都生成完
         if (model.getBase() != null && model.getBase() == 1) {
-            copyInsertModel("新增", "add", model, model.getNum() + 1);
+            copyInsertModel("新增", "create", model, model.getNum() + 1);
             copyInsertModel("修改", "update", model, model.getNum() + 2);
             copyInsertModel("删除", "delete", model, model.getNum() + 3);
             copyInsertModel("批量删除", "deleteBatchIds", model, model.getNum() + 4);

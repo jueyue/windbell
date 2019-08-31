@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.afterturn.boot.paas.msg.repository.NoticeRepository">
+
+    <resultMap id="BaseResultMap" type="cn.afterturn.boot.paas.msg.model.NoticeModel">
+        <result column="ID" property="id"/>
+        <result column="TITLE" property="title"/>
+        <result column="TYPE" property="type"/>
+        <result column="CONTENT" property="content"/>
+        <result column="START_TIME" property="startTime"/>
+        <result column="END_TIME" property="endTime"/>
+        <result column="SEND_TIME" property="sendTime"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="ROLES_IDS" property="rolesIds"/>
+        <result column="USER_IDS" property="userIds"/>
+        <result column="DEPT_IDS" property="deptIds"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CHANNEL" property="channel"/>
+        <result column="CRT_USER_ID" property="crtUserId"/>
+        <result column="CRT_TIME" property="crtTime"/>
+        <result column="MDF_USER_ID" property="mdfUserId"/>
+        <result column="MDF_TIME" property="mdfTime"/>
+    </resultMap>
+
+
+    <sql id="select_content">
+        <if test="ew.entity.id != null and ew.entity.id != '' ">
+            AND t.ID = #{ew.entity.id}
+        </if>
+        <if test="ew.entity.title != null and ew.entity.title != '' ">
+            AND t.TITLE = #{ew.entity.title}
+        </if>
+        <if test="ew.entity.type != null and ew.entity.type != '' ">
+            AND t.TYPE = #{ew.entity.type}
+        </if>
+        <if test="ew.entity.content != null and ew.entity.content != '' ">
+            AND t.CONTENT = #{ew.entity.content}
+        </if>
+        <if test="ew.entity.startTime != null and ew.entity.startTime != '' ">
+            AND t.START_TIME = #{ew.entity.startTime}
+        </if>
+        <if test="ew.entity.endTime != null and ew.entity.endTime != '' ">
+            AND t.END_TIME = #{ew.entity.endTime}
+        </if>
+        <if test="ew.entity.sendTime != null and ew.entity.sendTime != '' ">
+            AND t.SEND_TIME = #{ew.entity.sendTime}
+        </if>
+        <if test="ew.entity.tenantId != null and ew.entity.tenantId != '' ">
+            AND t.TENANT_ID = #{ew.entity.tenantId}
+        </if>
+        <if test="ew.entity.rolesIds != null and ew.entity.rolesIds != '' ">
+            AND t.ROLES_IDS = #{ew.entity.rolesIds}
+        </if>
+        <if test="ew.entity.userIds != null and ew.entity.userIds != '' ">
+            AND t.USER_IDS = #{ew.entity.userIds}
+        </if>
+        <if test="ew.entity.deptIds != null and ew.entity.deptIds != '' ">
+            AND t.DEPT_IDS = #{ew.entity.deptIds}
+        </if>
+        <if test="ew.entity.address != null and ew.entity.address != '' ">
+            AND t.ADDRESS = #{ew.entity.address}
+        </if>
+        <if test="ew.entity.channel != null and ew.entity.channel != '' ">
+            AND t.CHANNEL = #{ew.entity.channel}
+        </if>
+        <if test="ew.entity.crtUserId != null and ew.entity.crtUserId != '' ">
+            AND t.CRT_USER_ID = #{ew.entity.crtUserId}
+        </if>
+        <if test="ew.entity.crtTime != null and ew.entity.crtTime != '' ">
+            AND t.CRT_TIME = #{ew.entity.crtTime}
+        </if>
+        <if test="ew.entity.mdfUserId != null and ew.entity.mdfUserId != '' ">
+            AND t.MDF_USER_ID = #{ew.entity.mdfUserId}
+        </if>
+        <if test="ew.entity.mdfTime != null and ew.entity.mdfTime != '' ">
+            AND t.MDF_TIME = #{ew.entity.mdfTime}
+        </if>
+    </sql>
+
+</mapper>

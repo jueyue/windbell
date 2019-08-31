@@ -16,6 +16,7 @@ import '@/assets/icons/iconfont.css'
 // 通用请求JS
 import {C, U, R, D, L, G, P} from '@/libs/api.request'
 import { dict, getDictVal, numDict } from '@/libs/common.request'
+import { getTenantId } from '@/api/user'
 // 通用CSS
 import '@/css/info-base.css'
 import '@/css/list-base.css'
@@ -56,6 +57,7 @@ Vue.prototype.P = P
 Vue.prototype.dict = dict
 Vue.prototype.numDict = numDict
 Vue.prototype.getDictVal = getDictVal
+Vue.prototype.getTenantId = getTenantId
 Vue.prototype.PAGE_SIZE_MAX = 100
 
 

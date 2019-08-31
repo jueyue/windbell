@@ -18,18 +18,17 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="信息类型" prop="msgType">
-              <Input v-model="form.msgType" :disabled="disable"></Input>
+            <FormItem label="类型" prop="msgType">
+              <Select v-model="form.msgType" :disabled="disable">
+                <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="营销短信" prop="isMarketingMsg">
-              <Input v-model="form.isMarketingMsg" :disabled="disable"></Input>
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem label="模板内容" prop="content">
-              <Input v-model="form.content" :disabled="disable"></Input>
+            <FormItem label="营销短信" prop="marketingMsg">
+              <Select v-model="form.marketingMsg" :disabled="disable">
+                <Option :value='item.key' v-for='(item, index) in yesNoOptions' :key='index'>{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
           <Col span="8">
@@ -49,12 +48,19 @@
           </Col>
           <Col span="8">
             <FormItem label="状态" prop="status">
-              <Input v-model="form.status" :disabled="disable"></Input>
+              <Select v-model="form.status" :disabled="disable">
+                <Option :value="item.key" v-for="(item, index) in statusOptions" :key="index">{{item.name}}</Option>
+              </Select>
             </FormItem>
           </Col>
           <Col span="8">
             <FormItem label="三方模板" prop="thirdTemplateCode">
               <Input v-model="form.thirdTemplateCode" :disabled="disable"></Input>
+            </FormItem>
+          </Col>
+          <Col span="24">
+            <FormItem label="模板内容" prop="content" style="width: 90%">
+              <Input v-model="form.content" type="textarea"   :autosize="{minRows: 4,maxRows: 10}"  :disabled="disable"></Input>
             </FormItem>
           </Col>
         </Row>
@@ -79,15 +85,18 @@ export default {
       disable: false,
       ruleValidate: {
         name: [
-          {required: true, message: '名称不允许为空', trigger: 'blur'}
+          { required: true, message: '名称不允许为空' }
         ],
         code: [
-          {required: true, message: 'Code不允许为空', trigger: 'blur'}
+          { required: true, message: 'Code不允许为空' }
         ],
         content: [
-          {required: true, message: '内容不允许为空', trigger: 'blur'}
+          { required: true, message: '内容不允许为空' }
         ]
-      }
+      },
+      typeOptions: [],
+      yesNoOptions: [],
+      statusOptions: []
     }
   },
   methods: {
@@ -97,7 +106,10 @@ export default {
       if (data) {
         this.form = data
       } else {
-        this.form = {}
+        this.form = {
+          status: 1,
+          isMarketingMsg: 2
+        }
       }
       this.disable = type === 'detail'
     },
@@ -128,6 +140,15 @@ export default {
     }
   },
   mounted: function () {
+    this.dict('msg_type').then(data => {
+      this.typeOptions = data
+    })
+    this.numDict('yes_no').then(data => {
+      this.yesNoOptions = data
+    })
+    this.dict('status').then(data => {
+      this.statusOptions = data
+    })
   }
 }
 </script>

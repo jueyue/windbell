@@ -18,6 +18,8 @@ package cn.afterturn.boot.paas.msg.service;
 import cn.afterturn.boot.bussiness.base.service.IBaseService;
 import cn.afterturn.boot.paas.msg.model.NoticeTemplateModel;
 
+import java.util.List;
+
 
 /**
  * 通知模板服务
@@ -27,4 +29,9 @@ import cn.afterturn.boot.paas.msg.model.NoticeTemplateModel;
  */
 public interface INoticeTemplateService extends IBaseService<NoticeTemplateModel> {
 
+    /**
+     * 查询所有正常状态的模板
+     * @return
+     */
+    List<NoticeTemplateModel> allTemplate();
 }

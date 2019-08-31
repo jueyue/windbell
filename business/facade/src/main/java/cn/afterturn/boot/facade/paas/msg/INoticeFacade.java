@@ -15,7 +15,13 @@
  */
 package cn.afterturn.boot.facade.paas.msg;
 
+import cn.afterturn.boot.bussiness.response.Response;
+import cn.afterturn.boot.facade.paas.msg.model.NoticeEntity;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 通知模板接口
@@ -23,7 +29,17 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author JueYue
  * @Date 2019-08-16 17:09:52
  */
-@FeignClient(value = "noticeFacade")
+@FeignClient(value = "noticeFacade", contextId = "lemur-paas", path = "/notice")
 public interface INoticeFacade {
+
+    /**
+     * 发送消息
+     *
+     * @param data
+     * @return
+     */
+    @ApiOperation(value = "发送消息")
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public Response send(@RequestBody NoticeEntity data);
 
 }

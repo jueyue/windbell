@@ -80,19 +80,19 @@ export default {
       typeOptions: [],
       ruleValidate: {
         tenantId: [
-          {required: true, message: '租户ID不允许为空', trigger: 'blur'}
+          { required: true, message: '租户ID不允许为空' }
         ],
         type: [
-          {required: true, message: '类型不允许为空', trigger: 'blur'}
+          { required: true, message: '类型不允许为空' }
         ],
         appCode: [
-          {required: true, message: '内部appID不允许为空', trigger: 'blur'}
+          { required: true, message: '内部appID不允许为空' }
         ],
         appId: [
-          {required: true, message: '外部PAPID不允许为空', trigger: 'blur'}
+          { required: true, message: '外部PAPID不允许为空' }
         ],
         secret: [
-          {required: true, message: 'APP秘钥不允许为空', trigger: 'blur'}
+          { required: true, message: 'APP秘钥不允许为空' }
         ]
       }
     }

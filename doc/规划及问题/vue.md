@@ -24,4 +24,8 @@ type:number 解决数字类型不修改提示问题
 在main.js引入的样式就是全局样式
 
 
+iview 校验的坑
+https://www.jianshu.com/p/ffbd55a2c866
+
+
 

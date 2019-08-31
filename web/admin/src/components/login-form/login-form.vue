@@ -27,7 +27,7 @@ export default {
       type: Array,
       default: () => {
         return [
-          { required: true, message: '账号不能为空', trigger: 'blur' }
+          { required: true, message: '账号不能为空'  }
         ]
       }
     },
@@ -35,7 +35,7 @@ export default {
       type: Array,
       default: () => {
         return [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
+          { required: true, message: '密码不能为空'  }
         ]
       }
     }

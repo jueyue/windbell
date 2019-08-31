@@ -7,7 +7,7 @@
         <result column="NAME" property="name"/>
         <result column="CODE" property="code"/>
         <result column="MSG_TYPE" property="msgType"/>
-        <result column="IS_MARKETING_MSG" property="isMarketingMsg"/>
+        <result column="MARKETING_MSG" property="marketingMsg"/>
         <result column="CONTENT" property="content"/>
         <result column="LINK" property="link"/>
         <result column="CHANNEL_CODE" property="channelCode"/>
@@ -34,8 +34,8 @@
         <if test="ew.entity.msgType != null and ew.entity.msgType != '' ">
             AND t.MSG_TYPE = #{ew.entity.msgType}
         </if>
-        <if test="ew.entity.isMarketingMsg != null and ew.entity.isMarketingMsg != '' ">
-            AND t.IS_MARKETING_MSG = #{ew.entity.isMarketingMsg}
+        <if test="ew.entity.marketingMsg != null and ew.entity.marketingMsg != '' ">
+            AND t.MARKETING_MSG = #{ew.entity.marketingMsg}
         </if>
         <if test="ew.entity.content != null and ew.entity.content != '' ">
             AND t.CONTENT = #{ew.entity.content}
@@ -68,5 +68,8 @@
             AND t.MDF_TIME = #{ew.entity.mdfTime}
         </if>
     </sql>
+    <select id="allTemplate" resultType="cn.afterturn.boot.paas.msg.model.NoticeTemplateModel">
+        select id ,name from p_notice_template where STATUS = 1
+    </select>
 
 </mapper>

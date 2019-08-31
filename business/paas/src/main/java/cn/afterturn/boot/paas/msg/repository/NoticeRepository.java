@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2019 JueYue (qrb.jueyue@foxmail.com)
+ * Copyright 2017-2018 JueYue (qrb.jueyue@foxmail.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,17 @@
  */
 package cn.afterturn.boot.paas.msg.repository;
 
-import cn.afterturn.boot.paas.msg.model.NoticeTemplateModel;
+import cn.afterturn.boot.paas.msg.model.NoticeModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
- * NoticeTemplate持久化
+ * Notice持久化
  *
  * @author JueYue
- * @Date 2019-08-16 17:09:52
+ * @Date 2019-08-29 10:40:45
  */
 @Repository
-public interface NoticeTemplateRepository extends BaseMapper<NoticeTemplateModel> {
+public interface NoticeRepository extends BaseMapper<NoticeModel> {
 
-    List<NoticeTemplateModel> allTemplate();
 }
