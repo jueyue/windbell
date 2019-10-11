@@ -32,7 +32,7 @@ export const syGet = (url) => {
       if (data.code === 200) {
         result = data.data
       } else {
-        if (data.msg) Message.error(data.msg)
+        if (data.notice) Message.error(data.notice)
       }
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -1,7 +1,7 @@
 package cn.afterturn.boot.paas.im.thirdservice.weixin.clients;
 
 import cn.afterturn.boot.paas.PaasApplication;
-import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinDeptModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.result.WeXinBaseResultModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.result.dept.WeiXinDeptResultModel;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PaasApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IWeiXinDeptClientTest {

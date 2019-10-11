@@ -1,10 +1,9 @@
 package cn.afterturn.boot.paas.im.thirdservice.dingtalk.interceptor;
 
 import cn.afterturn.boot.paas.im.service.ITokenService;
-import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 

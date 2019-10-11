@@ -16,7 +16,7 @@
 package cn.afterturn.boot.facade.paas.msg;
 
 import cn.afterturn.boot.bussiness.response.Response;
-import cn.afterturn.boot.facade.paas.msg.model.NoticeEntity;
+import cn.afterturn.boot.facade.paas.msg.model.NoticeRequestModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +40,6 @@ public interface INoticeFacade {
      */
     @ApiOperation(value = "发送消息")
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public Response send(@RequestBody NoticeEntity data);
+    public Response send(@RequestBody NoticeRequestModel data);
 
 }

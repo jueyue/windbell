@@ -66,9 +66,9 @@ class HttpRequest {
             window.location.href = '/#/login'
             Message.error('未登录，或登录失效，请登录')
           } else {
-            if (data.msg) {
+            if (data.notice) {
               Message.error({
-                content: data.msg,
+                content: data.notice,
                 duration: 10,
                 closable: true
               })

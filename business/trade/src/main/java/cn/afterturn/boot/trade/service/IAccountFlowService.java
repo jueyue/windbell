@@ -30,7 +30,7 @@ public interface IAccountFlowService extends IBaseService<AccountFlowModel> {
 
     /**
      * <p>
-     * 根据 entity 条件，查询全部记录
+     * 根据 model 条件，查询全部记录
      * </p>
      *
      * @param model 实体对象封装操作类（可以为 null）
@@ -40,7 +40,7 @@ public interface IAccountFlowService extends IBaseService<AccountFlowModel> {
 
     /**
      * <p>
-     * 根据 entity 条件，查询全部记录
+     * 根据 model 条件，查询全部记录
      * </p>
      *
      * @param model   实体对象封装操作类（可以为 null）
@@ -52,7 +52,7 @@ public interface IAccountFlowService extends IBaseService<AccountFlowModel> {
 
     /**
      * <p>
-     * 根据 entity 条件，查询全部记录（并翻页）
+     * 根据 model 条件，查询全部记录（并翻页）
      * </p>
      *
      * @param pagination 分页查询条件

@@ -1,7 +1,7 @@
 package cn.afterturn.boot.paas.im.thirdservice.weixin.clients;
 
 import cn.afterturn.boot.paas.PaasApplication;
-import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinUserInviteModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinUserListModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinUserModel;
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

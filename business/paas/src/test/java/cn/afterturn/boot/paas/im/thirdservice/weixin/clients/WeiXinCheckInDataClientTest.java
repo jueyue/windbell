@@ -1,7 +1,7 @@
 package cn.afterturn.boot.paas.im.thirdservice.weixin.clients;
 
 import cn.afterturn.boot.paas.PaasApplication;
-import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinCheckInDataModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.WeiXinCheckInOptionModel;
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.result.oa.WeiXinCheckInDataResultModel;

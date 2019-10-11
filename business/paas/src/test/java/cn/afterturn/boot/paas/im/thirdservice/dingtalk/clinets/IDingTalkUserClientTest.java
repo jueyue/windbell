@@ -1,7 +1,7 @@
 package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets;
 
 import cn.afterturn.boot.paas.PaasApplication;
-import cn.afterturn.boot.paas.im.thirdservice.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.DingTalkUserModel;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.user.DingTalkUserResultModel;
 import org.junit.Assert;
