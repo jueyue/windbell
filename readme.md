@@ -25,4 +25,5 @@
 ##测试环境
 
 管理平台[http://windbell.afterturn.cn](http://windbell.afterturn.cn)
+测试账户 13112345678/123456
 文档平台[http://opendoc.windbell.afterturn.cn/](http://opendoc.windbell.afterturn.cn/)
