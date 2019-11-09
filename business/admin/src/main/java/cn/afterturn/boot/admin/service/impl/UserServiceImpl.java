@@ -16,9 +16,11 @@
 package cn.afterturn.boot.admin.service.impl;
 
 import cn.afterturn.boot.admin.model.LinkUserRoleModel;
+import cn.afterturn.boot.admin.model.UserAuthModel;
 import cn.afterturn.boot.admin.model.UserModel;
 import cn.afterturn.boot.admin.repository.UserRepository;
 import cn.afterturn.boot.admin.service.ILinkUserRoleService;
+import cn.afterturn.boot.admin.service.IUserAuthService;
 import cn.afterturn.boot.admin.service.IUserService;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
@@ -53,6 +55,8 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
     private ILinkUserRoleService linkUserRoleService;
     @Autowired
     private IPaasUserFacade      paasUserFacade;
+    @Autowired
+    private IUserAuthService     userAuthService;
 
     @Override
     protected boolean handlerSave(UserModel model) {
@@ -60,11 +64,25 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
         if (!insertUserRole(model.getAccess(), model.getId())) {
             return false;
         }
+        // 同步auth数据
+        userAuthService.save(getUserAuth(model));
         //同步三方数据
         if (!paasUserFacade.create(getPaasUserRequestModel(model)).isSuccess()) {
             return false;
         }
         return true;
+    }
+
+    private UserAuthModel getUserAuth(UserModel model) {
+        UserAuthModel authModel = new UserAuthModel();
+        authModel.setAccount(model.getAccount());
+        authModel.setAvatar(model.getAvatar());
+        authModel.setName(model.getName());
+        authModel.setUserId(model.getId());
+        authModel.setType(1);
+        authModel.setPassword(model.getPassword());
+        authModel.setTenantId(model.getTenantId());
+        return authModel;
     }
 
     private PaasUserRequestModel getPaasUserRequestModel(UserModel model) {

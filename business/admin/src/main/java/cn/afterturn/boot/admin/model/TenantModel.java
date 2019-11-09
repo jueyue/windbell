@@ -24,6 +24,9 @@ public class TenantModel extends IdTenantBaseModel<TenantModel> {
 
     private static final long serialVersionUID = 1L;
 
+    public TenantModel(){}
+    public TenantModel(String tenantId){this.setTenantId(tenantId);}
+
 
     @Excel(name = "管理员")
     @TableField(value = "USER_ID")

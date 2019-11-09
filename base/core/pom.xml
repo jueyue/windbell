@@ -78,6 +78,12 @@
             <groupId>net.oschina.j2cache</groupId>
             <artifactId>j2cache-core</artifactId>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-simple</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

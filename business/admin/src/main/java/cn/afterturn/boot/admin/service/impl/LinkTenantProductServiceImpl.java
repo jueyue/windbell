@@ -38,4 +38,8 @@ public class LinkTenantProductServiceImpl extends BaseServiceCacheImpl<LinkTenan
     @Autowired
     private LinkTenantProductRepository linkTenantProductRepository;
 
+    @Override
+    public void addOrUpdateProduct(String tenantId, String product, String endDate) {
+        // TODO
+    }
 }

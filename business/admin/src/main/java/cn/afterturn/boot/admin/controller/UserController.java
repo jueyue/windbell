@@ -58,11 +58,6 @@ public class UserController extends BaseController<IUserService, UserModel> impl
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-    @Value("${jwt.expiration}")
-    private int    expiration;
-
     @Autowired
     private IUserService userService;
     @Autowired
@@ -70,54 +65,8 @@ public class UserController extends BaseController<IUserService, UserModel> impl
 
     @Override
     protected Response handlerCreate(UserModel model) {
-        model.setSalt(RandomStringUtils.randomAlphanumeric(8));
-        if (StringUtils.isEmpty(model.getPassword())) {
-            model.setPassword(model.getAccount());
-        }
-        model.setPassword(ToolUtil.getPassword(model.getPassword(), model.getSalt()));
         model.setStatus(1);
         return super.handlerCreate(model);
-    }
-
-    @ApiOperation("登录")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response login(@RequestBody @ApiParam(value = "{\"account\":登录用户,\"password\":密码(md5小写)},\"product\":产品编码}") Map<String, String> map) {
-        String    account  = map.get("account");
-        String    password = map.get("password");
-        String    product  = map.get("product");
-        Wrapper   wrapper  = new QueryWrapper<UserModel>().eq("account", account);
-        UserModel user     = userService.getOne(wrapper);
-        if (user == null) {
-            return new ErrorResponse(401, "账号或密码不对");
-        }
-        if (!user.getPassword().equalsIgnoreCase(ToolUtil.getPassword(password, user.getSalt()))) {
-            return new ErrorResponse(401, "账号或密码不对");
-        }
-        map.put("userId", user.getId());
-        map.put("token", sign(user.getId(), product, user.getName(), jwtSecret));
-        return new SuccessResponse(map);
-    }
-
-    private String sign(String userId, String product, String userName, String secret) {
-        try {
-            Date      date      = new Date(System.currentTimeMillis() + expiration);
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            // 附带username信息
-            return JWT.create()
-                    .withClaim("userId", userId)
-                    .withClaim("userName", userName)
-                    .withClaim("product", product)
-                    .withExpiresAt(date)
-                    .sign(algorithm);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    @ApiOperation("登出")
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public Response logout() {
-        return new SuccessResponse();
     }
 
     @RequestMapping(value = "/userInfo/{userId}", method = RequestMethod.GET)

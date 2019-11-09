@@ -27,4 +27,11 @@ import cn.afterturn.boot.bussiness.base.service.IBaseService;
  */
 public interface ILinkTenantProductService extends IBaseService<LinkTenantProductModel> {
 
+    /**
+     *
+     * @param tenantId
+     * @param product
+     * @param endDate
+     */
+    void addOrUpdateProduct(String tenantId, String product, String endDate);
 }

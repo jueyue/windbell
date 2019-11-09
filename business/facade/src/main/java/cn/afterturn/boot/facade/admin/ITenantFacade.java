@@ -1,5 +1,6 @@
 package cn.afterturn.boot.facade.admin;
 
+import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.facade.admin.entity.TenantEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -12,5 +13,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 @FeignClient(value = "tenantFacade")
 public interface ITenantFacade {
 
-    TenantEntity getTenantByTenantId(String tenantId);
+    /**
+     *
+     * @param tenantId
+     * @return
+     */
+    Response<TenantEntity> getTenantByTenantId(String tenantId);
 }
