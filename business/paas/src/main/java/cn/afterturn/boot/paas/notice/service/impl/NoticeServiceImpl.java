@@ -48,9 +48,8 @@ public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, No
     @Override
     public Boolean send(NoticeModel model, Map<String, String> data) {
         // 添加签名
-        TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId());
+        TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId()).getData();
         this.save(model);
-
         return true;
     }
 }

@@ -24,9 +24,6 @@ import java.util.List;
 @RequestMapping("/im/user")
 public class UserController implements IPaasUserFacade {
 
-    @Autowired
-    private WeiXinServiceImpl weiXinService;
-
     @Override
     public Response<Page<PaasUserRequestModel>> list(RequestParams<PaasUserRequestModel> params) {
         return null;
@@ -34,7 +31,7 @@ public class UserController implements IPaasUserFacade {
 
     @Override
     public Response create(@Valid PaasUserRequestModel model) {
-        //weiXinService.getToken(model.getTenantId(),model.getAppCode());
+        //weiXinService.getToken(entity.getTenantId(),entity.getAppCode());
         return new SuccessResponse();
     }
 

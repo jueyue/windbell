@@ -5,7 +5,7 @@ import cn.afterturn.boot.paas.common.exception.BizExceptionEnum;
 import cn.afterturn.boot.paas.im.model.AppInfoConfigModel;
 import cn.afterturn.boot.paas.im.service.IAppInfoConfigService;
 import cn.afterturn.boot.paas.im.service.ITokenService;
-import cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets.IDingTalkTokenClient;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.clients.IDingTalkTokenClient;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.result.DingTalkTokenResultModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package cn.afterturn.boot.facade.paas.msg.model;
+package cn.afterturn.boot.facade.paas.msg.entity;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.Map;
  * @author by jueyue on 19-8-29.
  */
 @Data
-public class NoticeRequestModel {
+public class NoticeRequestEntity {
 
     private Integer type;
 

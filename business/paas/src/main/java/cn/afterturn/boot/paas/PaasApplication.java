@@ -14,9 +14,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @since 1.0 2018年7月23日
  */
 @EnableCaching
-@EnableFeignClients
 @EnableDiscoveryClient
 @EnableConfigurationProperties
+@EnableFeignClients(basePackages = {"cn.afterturn.boot.facade.admin", "cn.afterturn.boot.paas.**.clients"})
 @SpringBootApplication(scanBasePackages = "cn.afterturn.boot")
 public class PaasApplication {
 

@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * auth user model
+ * auth user entity
  *
  * @author jueyue on 19-11-9.
  */

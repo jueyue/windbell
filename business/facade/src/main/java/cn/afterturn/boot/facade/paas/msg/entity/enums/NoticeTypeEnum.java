@@ -1,4 +1,4 @@
-package cn.afterturn.boot.facade.paas.msg.model.enums;
+package cn.afterturn.boot.facade.paas.msg.entity.enums;
 
 /**
  * @author by jueyue on 19-9-11.

@@ -15,10 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -35,7 +32,7 @@ public class TenantController extends BaseController<ITenantService, TenantModel
     private static final Logger LOGGER = LoggerFactory.getLogger(TenantController.class);
 
     @Autowired
-    private ITenantService tenantService;
+    private ITenantService            tenantService;
     @Autowired
     private ILinkTenantProductService linkTenantProductService;
 
@@ -44,9 +41,10 @@ public class TenantController extends BaseController<ITenantService, TenantModel
         return SUCCESS_RESPONSE;
     }
 
-
     @Override
-    public Response<TenantEntity> getTenantByTenantId(String tenantId) {
+    @ApiOperation(value = "查询用户产品")
+    @GetMapping(value = "/getTenantByTenantId/{tenantId}")
+    public Response<TenantEntity> getTenantByTenantId(@PathVariable String tenantId) {
         TenantModel  model  = tenantService.getOne(new TenantModel(tenantId));
         TenantEntity result = new TenantEntity();
         BeanUtils.copyProperties(model, result);

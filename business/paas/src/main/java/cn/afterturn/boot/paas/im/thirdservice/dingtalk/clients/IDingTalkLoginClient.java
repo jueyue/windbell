@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clients;
 
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.config.DingTalkConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;

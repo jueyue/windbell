@@ -1,4 +1,4 @@
-package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clinets;
+package cn.afterturn.boot.paas.im.thirdservice.dingtalk.clients;
 
 import cn.afterturn.boot.paas.PaasApplication;
 import cn.afterturn.boot.paas.common.context.ThirdServiceContext;

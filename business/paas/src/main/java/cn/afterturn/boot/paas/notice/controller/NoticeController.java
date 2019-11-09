@@ -18,9 +18,12 @@ package cn.afterturn.boot.paas.notice.controller;
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
+import cn.afterturn.boot.core.cache.CacheKey;
+import cn.afterturn.boot.core.cache.RedisKit;
 import cn.afterturn.boot.facade.common.enmus.StatusEnum;
 import cn.afterturn.boot.facade.paas.msg.INoticeFacade;
-import cn.afterturn.boot.facade.paas.msg.model.NoticeRequestModel;
+import cn.afterturn.boot.facade.paas.msg.entity.NoticeRequestEntity;
+import cn.afterturn.boot.facade.paas.msg.entity.enums.NoticeTypeEnum;
 import cn.afterturn.boot.paas.common.exception.BizException;
 import cn.afterturn.boot.paas.common.exception.BizExceptionEnum;
 import cn.afterturn.boot.paas.notice.model.NoticeModel;
@@ -28,13 +31,18 @@ import cn.afterturn.boot.paas.notice.model.NoticeTemplateModel;
 import cn.afterturn.boot.paas.notice.service.INoticeService;
 import cn.afterturn.boot.paas.notice.service.INoticeTemplateService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -57,7 +65,9 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
     private INoticeTemplateService noticeTemplateService;
 
     @Override
-    public Response send(NoticeRequestModel data) {
+    @ApiOperation(value = "发送消息")
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public Response send(NoticeRequestEntity data) {
         NoticeModel model = new NoticeModel();
         BeanUtils.copyProperties(data, model);
         NoticeTemplateModel templateModel = noticeTemplateService.getOne(new NoticeTemplateModel(data.getTemplateCode()));
@@ -65,12 +75,26 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
             LOGGER.error("短信模板不存在: TemplateId : %s  ", templateModel.getCode());
             throw new BizException(BizExceptionEnum.REQUEST_NULL);
         }
-        if (StatusEnum.NORMAL.getCode().equals(templateModel.getStatus())) {
+        if (!StatusEnum.NORMAL.getCode().equals(templateModel.getStatus())) {
             LOGGER.error("短信模板已经停用: TemplateId : %s  , TemplateName", templateModel.getCode(), templateModel.getName());
             throw new BizException(BizExceptionEnum.REQUEST_NULL);
         }
         model.setContent(getContent(templateModel.getContent(), data.getData()));
         return new SuccessResponse(noticeService.send(model, data.getData()));
+    }
+
+    @ApiOperation(value = "发送验证码")
+    @RequestMapping(value = "/sendVerificationCode/{templateCode}/{mobile}", method = RequestMethod.GET)
+    public Response sendVerificationCode(@PathVariable String templateCode, @PathVariable String mobile) {
+        NoticeRequestEntity data = new NoticeRequestEntity();
+        data.setTemplateCode(templateCode);
+        data.setAddress(mobile);
+        data.setType(NoticeTypeEnum.MSG.getCode());
+        Map map = new HashMap();
+        map.put("code", RandomStringUtils.randomNumeric(6));
+        RedisKit.put(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString(), map.get("code"), 5 * 60);
+        data.setData(map);
+        return send(data);
     }
 
     private String getContent(String content, Map<String, String> data) {
@@ -82,6 +106,8 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
                 throw new BizException(BizExceptionEnum.REQUEST_NULL);
             }
             content = content.replaceAll(sourceCode, data.get(code));
+            content = content.replaceFirst("\\{\\{", "");
+            content = content.replaceFirst("}}", "");
         }
         return content;
     }
