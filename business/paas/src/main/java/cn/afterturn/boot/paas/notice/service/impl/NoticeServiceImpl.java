@@ -19,8 +19,11 @@ import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.facade.admin.ITenantFacade;
 import cn.afterturn.boot.facade.admin.entity.TenantEntity;
 import cn.afterturn.boot.paas.notice.model.NoticeModel;
+import cn.afterturn.boot.paas.notice.model.NoticeTemplateModel;
 import cn.afterturn.boot.paas.notice.repository.NoticeRepository;
 import cn.afterturn.boot.paas.notice.service.INoticeService;
+import cn.afterturn.boot.paas.notice.thirdservice.ISmsSendClient;
+import cn.afterturn.boot.paas.notice.thirdservice.SmsSendClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +46,17 @@ public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, No
     private NoticeRepository noticeRepository;
 
     @Autowired
-    private ITenantFacade tenantFacade;
+    private ITenantFacade        tenantFacade;
+    @Autowired
+    private SmsSendClientFactory smsSendClientFactory;
 
     @Override
-    public Boolean send(NoticeModel model, Map<String, String> data) {
+    public Boolean send(NoticeTemplateModel templateModel, NoticeModel model, Map<String, Object> data) {
         // 添加签名
         TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId()).getData();
         this.save(model);
+        ISmsSendClient client = smsSendClientFactory.get(templateModel.getChannelCode());
+        client.send(model.getAddress(), templateModel.getThirdTemplateCode(), tenant.getSmsSign(), data, model.getContent());
         return true;
     }
 }

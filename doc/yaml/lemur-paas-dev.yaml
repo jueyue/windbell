@@ -46,7 +46,10 @@ mybatis-plus:
 j2cache:
   open-spring-cache: true
   config-location: j2cache-dev.properties
-
+im:
+  aliyun:
+    accessKeyId:
+    accessSecret:
 info:
   owner: Lemur
   version: 1.0

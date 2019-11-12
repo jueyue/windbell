@@ -27,6 +27,6 @@ public class NoticeRequestEntity {
 
     private String address;
 
-    private Map<String, String> data;
+    private Map<String, Object> data;
 
 }

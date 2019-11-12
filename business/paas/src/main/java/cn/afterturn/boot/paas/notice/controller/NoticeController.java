@@ -80,7 +80,7 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
             throw new BizException(BizExceptionEnum.REQUEST_NULL);
         }
         model.setContent(getContent(templateModel.getContent(), data.getData()));
-        return new SuccessResponse(noticeService.send(model, data.getData()));
+        return new SuccessResponse(noticeService.send(templateModel, model, data.getData()));
     }
 
     @ApiOperation(value = "发送验证码")
@@ -97,7 +97,7 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
         return send(data);
     }
 
-    private String getContent(String content, Map<String, String> data) {
+    private String getContent(String content, Map<String, Object> data) {
         while (content.contains("{{")) {
             String sourceCode = content.substring(content.indexOf("{{") + 2, content.indexOf("}}"));
             String code       = sourceCode.trim();
@@ -105,7 +105,7 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
                 LOGGER.error("发送短信参数缺失: code : %s ", code);
                 throw new BizException(BizExceptionEnum.REQUEST_NULL);
             }
-            content = content.replaceAll(sourceCode, data.get(code));
+            content = content.replaceAll(sourceCode, data.get(code) + "");
             content = content.replaceFirst("\\{\\{", "");
             content = content.replaceFirst("}}", "");
         }

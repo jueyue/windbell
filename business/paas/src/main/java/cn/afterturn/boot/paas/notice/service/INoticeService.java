@@ -17,6 +17,7 @@ package cn.afterturn.boot.paas.notice.service;
 
 import cn.afterturn.boot.bussiness.base.service.IBaseService;
 import cn.afterturn.boot.paas.notice.model.NoticeModel;
+import cn.afterturn.boot.paas.notice.model.NoticeTemplateModel;
 
 import java.util.Map;
 
@@ -31,9 +32,11 @@ public interface INoticeService extends IBaseService<NoticeModel> {
 
     /**
      * 发送的消息
+     *
+     * @param templateModel
      * @param model
      * @param data
      * @return
      */
-    Boolean send(NoticeModel model, Map<String, String> data);
+    Boolean send(NoticeTemplateModel templateModel, NoticeModel model, Map<String, Object> data);
 }
