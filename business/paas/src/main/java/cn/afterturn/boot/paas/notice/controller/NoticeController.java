@@ -84,11 +84,12 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
     }
 
     @ApiOperation(value = "发送验证码")
-    @RequestMapping(value = "/sendVerificationCode/{templateCode}/{mobile}", method = RequestMethod.GET)
-    public Response sendVerificationCode(@PathVariable String templateCode, @PathVariable String mobile) {
+    @RequestMapping(value = "/sendVerificationCode/{tenantId}/{templateCode}/{mobile}", method = RequestMethod.GET)
+    public Response sendVerificationCode(@PathVariable String tenantId, @PathVariable String templateCode, @PathVariable String mobile) {
         NoticeRequestEntity data = new NoticeRequestEntity();
         data.setTemplateCode(templateCode);
         data.setAddress(mobile);
+        data.setTenantId(tenantId);
         data.setType(NoticeTypeEnum.MSG.getCode());
         Map map = new HashMap();
         map.put("code", RandomStringUtils.randomNumeric(6));

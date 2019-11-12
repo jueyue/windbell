@@ -28,7 +28,7 @@ public class SmsSendClientOfAliYun implements ISmsSendClient {
 
     @Override
     public boolean send(String phone, String templateId, String sign, Map<String, Object> data, String content) {
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessSecret);
         IAcsClient     client  = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
