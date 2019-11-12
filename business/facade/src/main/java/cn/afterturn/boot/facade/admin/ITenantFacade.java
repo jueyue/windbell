@@ -24,5 +24,5 @@ public interface ITenantFacade {
      */
     @ApiOperation(value = "查询用户产品")
     @GetMapping(value = "/getTenantByTenantId/{tenantId}")
-    Response<TenantEntity> getTenantByTenantId(@PathVariable String tenantId);
+    Response<TenantEntity> getTenantByTenantId(@PathVariable("tenantId") String tenantId);
 }

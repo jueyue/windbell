@@ -44,9 +44,10 @@ public class SmsSendClientOfAliYun implements ISmsSendClient {
         try {
             CommonResponse response = client.getCommonResponse(request);
             log.debug(response.getData());
+            return response.getData().contains("\"Code\":\"OK\"");
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        return true;
+        return false;
     }
 }

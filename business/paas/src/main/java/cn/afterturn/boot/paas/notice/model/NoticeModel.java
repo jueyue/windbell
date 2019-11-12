@@ -95,9 +95,14 @@ public class NoticeModel extends IdTenantBaseModel<NoticeModel> {
     @ApiModelProperty("地址列表（泛化，邮件，电话）")
     private String address;
 
-    @Excel(name = "渠道(APP)")
+    @Excel(name = "渠道")
     @TableField(value = "CHANNEL", strategy = FieldStrategy.NOT_EMPTY)
-    @ApiModelProperty("渠道(APP)")
+    @ApiModelProperty("渠道")
     private String channel;
+
+    @Excel(name = "状态")
+    @TableField(value = "status", strategy = FieldStrategy.NOT_EMPTY)
+    @ApiModelProperty("状态")
+    private String status;
 
 }

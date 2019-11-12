@@ -37,11 +37,11 @@ public class ThirdServiceContext {
      * @return
      */
     public static String getToken(ITokenService tokenService) {
-        Map<String, String> map      = mapThreadLocal.get();
-        String              tenantId = map.get(TENANT_ID);
-        String              appCode  = map.get(APP_CODE);
-        String              appType  = map.get(APP_TYPE);
-        String              token    = RedisKit.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString());
+        Map<String, Object> map      = mapThreadLocal.get();
+        String              tenantId = map.get(TENANT_ID).toString();
+        String              appCode  = map.get(APP_CODE).toString();
+        String              appType  = map.get(APP_TYPE).toString();
+        String              token    = RedisKit.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString()).toString();
         if (token == null) {
             token = tokenService.getToken(tenantId, appType, appCode);
             RedisKit.put(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString(), token, 7000);

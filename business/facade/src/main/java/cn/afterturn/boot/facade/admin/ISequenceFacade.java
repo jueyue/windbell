@@ -38,6 +38,6 @@ public interface ISequenceFacade {
      * @return
      */
     @RequestMapping(value = "/getNext/{name}", method = RequestMethod.GET)
-    public Response<String> getNext(@PathVariable String name);
+    public Response<String> getNext(@PathVariable("name") String name);
 
 }

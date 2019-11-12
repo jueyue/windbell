@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -52,11 +53,15 @@ public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, No
 
     @Override
     public Boolean send(NoticeTemplateModel templateModel, NoticeModel model, Map<String, Object> data) {
-        // 添加签名
         TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId()).getData();
-        this.save(model);
+        model.setTemplateId(templateModel.getId());
+        model.setStartTime(new Date());
+        model.setChannel(templateModel.getChannelCode());
         ISmsSendClient client = smsSendClientFactory.get(templateModel.getChannelCode());
-        client.send(model.getAddress(), templateModel.getThirdTemplateCode(), tenant.getSmsSign(), data, model.getContent());
+        boolean        send   = client.send(model.getAddress(), templateModel.getThirdTemplateCode(), tenant.getSmsSign(), data, model.getContent());
+        model.setEndTime(new Date());
+        model.setStatus(send ? "2" : "3");
+        this.save(model);
         return true;
     }
 }

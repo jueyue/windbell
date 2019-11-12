@@ -2,7 +2,6 @@ package cn.afterturn.boot.paas.im.thirdservice.weixin.clients;
 
 import cn.afterturn.boot.paas.im.thirdservice.weixin.model.result.WeiXinTokenResultModel;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,11 +14,12 @@ public interface IWeiXinTokenClient {
 
     /**
      * 获取应用的token
+     *
      * @param corpid
      * @param corpsecret
      * @return
      */
     @RequestMapping(value = "/gettoken", method = RequestMethod.GET)
-    WeiXinTokenResultModel getToken(@RequestParam("corpid") String corpid, @RequestParam String corpsecret);
+    WeiXinTokenResultModel getToken(@RequestParam("corpid") String corpid, @RequestParam("corpsecret") String corpsecret);
 
 }
