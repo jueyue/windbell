@@ -35,5 +35,5 @@ public class AuthUserEntity {
     private Integer type;
 
     @ApiModelProperty("状态")
-    private Integer 状态;
+    private Integer status;
 }

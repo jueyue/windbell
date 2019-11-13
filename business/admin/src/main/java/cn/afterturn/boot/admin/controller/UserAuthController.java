@@ -80,6 +80,9 @@ public class UserAuthController extends BaseController<IUserAuthService, UserAut
         if (!user.getPassword().equalsIgnoreCase(ToolUtil.getPassword(password, user.getSalt()))) {
             return new ErrorResponse(401, "账号或密码不对");
         }
+        if (user.getStatus() != 1) {
+            return new ErrorResponse(401, "账号已停用");
+        }
         map.put("userId", user.getId());
         map.put("token", sign(user.getUserId(), product, user.getName(), jwtSecret));
         return new SuccessResponse(map);
