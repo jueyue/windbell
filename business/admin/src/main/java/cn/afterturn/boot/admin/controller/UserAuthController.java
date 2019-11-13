@@ -75,13 +75,13 @@ public class UserAuthController extends BaseController<IUserAuthService, UserAut
         Wrapper       wrapper  = new QueryWrapper<IUserAuthService>().eq("account", account).eq("type", type);
         UserAuthModel user     = userAuthService.getOne(wrapper);
         if (user == null) {
-            return new ErrorResponse(401, "账号或密码不对");
+            return new ErrorResponse(301, "账号或密码不对");
         }
         if (!user.getPassword().equalsIgnoreCase(ToolUtil.getPassword(password, user.getSalt()))) {
-            return new ErrorResponse(401, "账号或密码不对");
+            return new ErrorResponse(301, "账号或密码不对");
         }
         if (user.getStatus() != 1) {
-            return new ErrorResponse(401, "账号已停用");
+            return new ErrorResponse(301, "账号已停用");
         }
         map.put("userId", user.getId());
         map.put("token", sign(user.getUserId(), product, user.getName(), jwtSecret));
