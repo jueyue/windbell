@@ -33,4 +33,7 @@ public class AuthUserEntity {
 
     @ApiModelProperty("类型")
     private Integer type;
+
+    @ApiModelProperty("状态")
+    private Integer 状态;
 }

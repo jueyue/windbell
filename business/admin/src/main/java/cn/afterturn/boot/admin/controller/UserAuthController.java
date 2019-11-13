@@ -115,4 +115,16 @@ public class UserAuthController extends BaseController<IUserAuthService, UserAut
         userAuthService.save(userAuthModel);
         return SUCCESS_RESPONSE;
     }
+
+
+    @Override
+    @RequestMapping(value = "/updateAuthUser", method = RequestMethod.POST)
+    public Response updateAuthUser(@RequestBody AuthUserEntity user) {
+        UserAuthModel userAuthModel = new UserAuthModel();
+        BeanUtils.copyProperties(user, userAuthModel);
+        if (userAuthService.updateByUserId(userAuthModel)) {
+            return SUCCESS_RESPONSE;
+        }
+        return new ErrorResponse(301, "未找到数据");
+    }
 }

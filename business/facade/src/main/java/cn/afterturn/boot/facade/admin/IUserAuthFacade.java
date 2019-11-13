@@ -41,4 +41,14 @@ public interface IUserAuthFacade {
     @PostMapping(value = "/addAuthUser")
     public Response addAuthUser(@RequestBody AuthUserEntity user);
 
+    /**
+     * 修改用户
+     *
+     * @param user
+     * @return Response
+     */
+    @ApiOperation(value = "修改认证用户")
+    @PostMapping(value = "/updateAuthUser")
+    public Response updateAuthUser(@RequestBody AuthUserEntity user);
+
 }

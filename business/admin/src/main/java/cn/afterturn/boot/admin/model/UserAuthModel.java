@@ -40,7 +40,7 @@ public class UserAuthModel extends IdTenantBaseModel<UserAuthModel> {
 
     @Excel(name = "用户ID")
     @TableField(value = "USER_ID", strategy = FieldStrategy.NOT_EMPTY)
-    @ApiModelProperty("用户ID")
+    @ApiModelProperty(value = "用户ID", required = true)
     private String userId;
 
     @Excel(name = "头像")
@@ -70,6 +70,11 @@ public class UserAuthModel extends IdTenantBaseModel<UserAuthModel> {
 
     @Excel(name = "类型")
     @TableField(value = "TYPE")
-    @ApiModelProperty("类型")
+    @ApiModelProperty(value = "类型", required = true)
     private Integer type;
+
+    @Excel(name = "状态")
+    @TableField(value = "STATUS")
+    @ApiModelProperty("状态")
+    private Integer status;
 }

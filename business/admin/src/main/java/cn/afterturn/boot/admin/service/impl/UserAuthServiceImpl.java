@@ -20,6 +20,7 @@ import cn.afterturn.boot.admin.repository.UserAuthRepository;
 import cn.afterturn.boot.admin.service.IUserAuthService;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.core.util.ToolUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -49,5 +50,12 @@ public class UserAuthServiceImpl extends BaseServiceCacheImpl<UserAuthRepository
         }
         model.setPassword(ToolUtil.getPassword(model.getPassword(), model.getSalt()));
         return super.save(model);
+    }
+
+    @Override
+    public boolean updateByUserId(UserAuthModel userAuthModel) {
+        QueryWrapper wrapper = new QueryWrapper<UserAuthModel>().eq("USER_ID", userAuthModel.getUserId())
+                .eq("TYPE", userAuthModel.getType());
+        return this.update(userAuthModel, wrapper);
     }
 }
