@@ -59,6 +59,12 @@ file:
     secretkey:
     bucket:
 
+risk:
+  idcard:
+    channelId: juhe
+  juhe:
+    idcard:
+      appKey:
 
 
 info:

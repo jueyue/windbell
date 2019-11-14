@@ -1,17 +1,19 @@
-package cn.afterturn.boot.paas.notice.model;
+package cn.afterturn.boot.paas.common.enums;
 
 /**
  * 消息渠道枚举
  *
  * @author jueyue on 19-11-12.
  */
-public enum ImChannelEnum {
+public enum ChannelEnum {
 
-    ALIYUN("aliyun");
+    JU_HE("juhe"),
+    ALIYUN("aliyun"),
+    QI_NIU("qiniu");
 
     private String name;
 
-    ImChannelEnum(String name) {
+    ChannelEnum(String name) {
         this.name = name;
     }
 
@@ -19,8 +21,8 @@ public enum ImChannelEnum {
         return name;
     }
 
-    public static ImChannelEnum to(String name) {
-        ImChannelEnum[] channels = values();
+    public static ChannelEnum to(String name) {
+        ChannelEnum[] channels = values();
         for (int i = 0; i < channels.length; i++) {
             if (channels[i].getName().equalsIgnoreCase(name)) {
                 return channels[i];

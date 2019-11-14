@@ -56,7 +56,7 @@ public class FileInfoServiceImpl extends BaseServiceCacheImpl<FileInfoRepository
 
     private FileInfoModel getFile(String tenantId) {
         FileInfoModel model = new FileInfoModel();
-        model.setChannelId(fileClientFactory.getChannelId());
+        model.setChannelId(fileClientFactory.get().getChannelId());
         model.setStatus(1);
         model.setTenantId(tenantId);
         save(model);

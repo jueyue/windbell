@@ -1,5 +1,6 @@
 package cn.afterturn.boot.paas.file.thirdservice;
 
+import cn.afterturn.boot.paas.common.enums.ChannelEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -25,20 +26,13 @@ public class FileClientFactory {
      * @return
      */
     public IFileClient get() {
-        switch (channelId) {
-            case "qiuniu":
+        ChannelEnum channelEnum = ChannelEnum.to(channelId);
+        switch (channelEnum) {
+            case QI_NIU:
                 return fileClientOfQiNiu;
         }
         return fileClientOfQiNiu;
     }
 
 
-    /**
-     * 获取当前使用的三方
-     *
-     * @return
-     */
-    public String getChannelId() {
-        return channelId;
-    }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2019 JueYue (qrb.jueyue@foxmail.com)
+ * Copyright 2017-2018 JueYue (qrb.jueyue@foxmail.com)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.afterturn.boot.facade.paas.file;
+package cn.afterturn.boot.facade.paas.risk;
 
 import cn.afterturn.boot.bussiness.response.Response;
 import io.swagger.annotations.ApiOperation;
@@ -23,26 +23,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 文件信息接口
+ * 身份认证接口
  *
  * @author JueYue
- * @Date 2019-11-14 11:14:44
+ * @Date 2019-11-14 21:09:38
  */
-@FeignClient(value = "fileInfoFacade", contextId = "lemur-paas", path = "/file")
-public interface IFileInfoFacade {
+@FeignClient(value = "riskIdcardFacade", contextId = "lemur-paas", path = "/idcard")
+public interface IRiskIdcardFacade {
 
     /**
-     * base64 格式
+     * 身份证三要数认证
      *
-     * @param file     base64 文件格式
-     * @param fileName 文件名称
-     * @param tenantId 客户
+     * @param cardNo
+     * @param name
+     * @param idcard
+     * @param tenantId
      * @return
      */
-    @ApiOperation("文件上传")
-    @PostMapping("/base64/upload")
-    public Response upload(@ApiParam(name = "file,base64 文件格式") @RequestParam(name = "file") String file,
-                           @RequestParam(name = "fileName", required = false) String fileName,
-                           @RequestParam(name = "tenantId") String tenantId);
-
+    @ApiOperation("三要数认证")
+    @PostMapping("/idcardAuth")
+    public Response idcardAuth(@ApiParam("身份证") @RequestParam(name = "cardNo") String cardNo,
+                               @ApiParam("姓名") @RequestParam(name = "name") String name,
+                               @ApiParam("银行卡") @RequestParam(name = "idcard") String idcard,
+                               @ApiParam("客户") @RequestParam(name = "tenantId") String tenantId);
 }

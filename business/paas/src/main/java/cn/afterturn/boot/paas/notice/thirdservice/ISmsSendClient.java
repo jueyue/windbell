@@ -1,5 +1,7 @@
 package cn.afterturn.boot.paas.notice.thirdservice;
 
+import cn.afterturn.boot.paas.common.client.IClient;
+
 import java.util.Map;
 
 /**
@@ -7,7 +9,7 @@ import java.util.Map;
  *
  * @author jueyue on 19-11-11.
  */
-public interface ISmsSendClient {
+public interface ISmsSendClient extends IClient {
 
     /**
      * 发送短信

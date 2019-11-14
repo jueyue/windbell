@@ -1,6 +1,6 @@
 package cn.afterturn.boot.paas.notice.thirdservice;
 
-import cn.afterturn.boot.paas.notice.model.ImChannelEnum;
+import cn.afterturn.boot.paas.common.enums.ChannelEnum;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ public class SmsSendClientFactory {
     private ISmsSendClient smsSendClientOfAliYun;
 
     public ISmsSendClient get(String channel) {
-        ImChannelEnum channelEnum = ImChannelEnum.to(channel);
+        ChannelEnum channelEnum = ChannelEnum.to(channel);
         switch (channelEnum) {
             case ALIYUN:
                 return smsSendClientOfAliYun;

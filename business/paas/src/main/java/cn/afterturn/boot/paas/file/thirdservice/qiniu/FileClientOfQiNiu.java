@@ -1,7 +1,9 @@
 package cn.afterturn.boot.paas.file.thirdservice.qiniu;
 
+import cn.afterturn.boot.paas.common.enums.ChannelEnum;
+import cn.afterturn.boot.paas.common.exception.BizException;
+import cn.afterturn.boot.paas.common.exception.BizExceptionEnum;
 import cn.afterturn.boot.paas.file.thirdservice.IFileClient;
-import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
@@ -19,7 +21,7 @@ import java.io.InputStream;
  */
 @Slf4j
 @Component("fileClientOfQiNiu")
-public class QiNiuFileClient implements IFileClient {
+public class FileClientOfQiNiu implements IFileClient {
 
     private Configuration cfg = new Configuration(Region.region2());
 
@@ -52,11 +54,10 @@ public class QiNiuFileClient implements IFileClient {
             if (response.isOK()) {
                 return response.reqId;
             }
-        } catch (QiniuException e) {
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
-
         }
-        return null;
+        throw new BizException(BizExceptionEnum.UPLOAD_ERROR);
     }
 
     @Override
@@ -67,10 +68,14 @@ public class QiNiuFileClient implements IFileClient {
             if (response.isOK()) {
                 return response.reqId;
             }
-        } catch (QiniuException e) {
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
-
         }
-        return null;
+        throw new BizException(BizExceptionEnum.UPLOAD_ERROR);
+    }
+
+    @Override
+    public String getChannelId() {
+        return ChannelEnum.QI_NIU.getName();
     }
 }

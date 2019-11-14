@@ -48,10 +48,10 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Lemur Boot Admin")
-                .description("Lemur Boot Admin Api文档")
-                .termsOfServiceUrl("http://www.afterturn.cn")
-                .contact(new Contact("JueYue", "http://www.afterturn.cn", "qrb.jueyue@foxmail.com"))
+                .title("Lemur Boot Paas")
+                .description("Lemur Boot Paas Api文档")
+                .termsOfServiceUrl("https://opensource.afterturn.cn/")
+                .contact(new Contact("JueYue", "https://opensource.afterturn.cn/", "qrb.jueyue@foxmail.com"))
                 .version("1.0")
                 .build();
     }

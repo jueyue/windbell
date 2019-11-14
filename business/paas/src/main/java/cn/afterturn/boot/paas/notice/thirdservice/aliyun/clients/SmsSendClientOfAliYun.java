@@ -1,5 +1,6 @@
 package cn.afterturn.boot.paas.notice.thirdservice.aliyun.clients;
 
+import cn.afterturn.boot.paas.common.enums.ChannelEnum;
 import cn.afterturn.boot.paas.notice.thirdservice.ISmsSendClient;
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.CommonRequest;
@@ -49,5 +50,10 @@ public class SmsSendClientOfAliYun implements ISmsSendClient {
             log.error(e.getMessage(), e);
         }
         return false;
+    }
+
+    @Override
+    public String getChannelId() {
+        return ChannelEnum.ALIYUN.getName();
     }
 }

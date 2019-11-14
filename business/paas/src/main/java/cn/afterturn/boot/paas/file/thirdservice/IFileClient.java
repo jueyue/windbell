@@ -1,11 +1,13 @@
 package cn.afterturn.boot.paas.file.thirdservice;
 
+import cn.afterturn.boot.paas.common.client.IClient;
+
 import java.io.InputStream;
 
 /**
  * @author jueyue on 19-11-14.
  */
-public interface IFileClient {
+public interface IFileClient extends IClient {
 
     /**
      * 上传
