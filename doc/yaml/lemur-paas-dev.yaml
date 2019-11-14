@@ -50,6 +50,17 @@ im:
   aliyun:
     accessKeyId:
     accessSecret:
+
+
+file:
+  channelId: qiniu
+  qiniu:
+    accesskey:
+    secretkey:
+    bucket:
+
+
+
 info:
   owner: Lemur
   version: 1.0

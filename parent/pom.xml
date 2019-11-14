@@ -31,7 +31,7 @@
         <zxing.version>3.2.1</zxing.version>
         <druid.version>1.1.16</druid.version>
         <swagger.version>2.9.2</swagger.version>
-        <swagger.bootstrap.ui.version>1.8.2</swagger.bootstrap.ui.version>
+        <swagger.bootstrap.ui.version>1.9.6</swagger.bootstrap.ui.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
