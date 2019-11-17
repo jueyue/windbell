@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author JueYue
  * @Date 2019-11-14 21:09:38
  */
-@FeignClient(value = "riskIdcardFacade", contextId = "lemur-paas", path = "/idcard")
+@FeignClient(value = "riskIdcardFacade", contextId = "lemur-paas", path = "/risk")
 public interface IRiskIdcardFacade {
 
     /**

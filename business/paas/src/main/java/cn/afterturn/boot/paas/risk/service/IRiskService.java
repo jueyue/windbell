@@ -18,6 +18,8 @@ package cn.afterturn.boot.paas.risk.service;
 import cn.afterturn.boot.bussiness.base.service.IBaseService;
 import cn.afterturn.boot.paas.risk.model.RiskIdcardModel;
 
+import java.util.Map;
+
 
 /**
  * 身份认证服务
@@ -25,10 +27,11 @@ import cn.afterturn.boot.paas.risk.model.RiskIdcardModel;
  * @author JueYue
  * @Date 2019-11-14 21:09:38
  */
-public interface IRiskIdcardService extends IBaseService<RiskIdcardModel> {
+public interface IRiskService extends IBaseService<RiskIdcardModel> {
 
     /**
      * 三要数认证
+     *
      * @param cardNo
      * @param name
      * @param idcard
@@ -36,4 +39,15 @@ public interface IRiskIdcardService extends IBaseService<RiskIdcardModel> {
      * @return
      */
     boolean idcardAuth(String cardNo, String name, String idcard, String tenantId);
+
+    /**
+     * 反欺诈
+     *
+     * @param phone
+     * @param name
+     * @param idcard
+     * @param tenantId
+     * @return {found: 是否找到 1找到 -1 没找到 99异常,score : 分数, info: 判断依据}
+     */
+    Map<String, String> antiFraud(String phone, String name, String idcard, String tenantId);
 }

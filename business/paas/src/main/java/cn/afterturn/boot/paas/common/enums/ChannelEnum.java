@@ -8,6 +8,7 @@ package cn.afterturn.boot.paas.common.enums;
 public enum ChannelEnum {
 
     JU_HE("juhe"),
+    TENCENT("tencent"),
     ALIYUN("aliyun"),
     QI_NIU("qiniu");
 

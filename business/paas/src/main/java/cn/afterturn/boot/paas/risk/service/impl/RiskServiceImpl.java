@@ -18,12 +18,16 @@ package cn.afterturn.boot.paas.risk.service.impl;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
 import cn.afterturn.boot.paas.risk.model.RiskIdcardModel;
 import cn.afterturn.boot.paas.risk.repository.RiskIdcardRepository;
-import cn.afterturn.boot.paas.risk.service.IRiskIdcardService;
+import cn.afterturn.boot.paas.risk.service.IRiskService;
+import cn.afterturn.boot.paas.risk.thirdservice.AntiFraudClientFactory;
 import cn.afterturn.boot.paas.risk.thirdservice.IdCardAuthClientFactory;
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * 身份认证服务实现
@@ -32,27 +36,39 @@ import org.springframework.stereotype.Service;
  * @Date 2019-11-14 21:09:38
  */
 @Service("riskIdcardService")
-public class RiskIdcardServiceImpl extends BaseServiceCacheImpl<RiskIdcardRepository, RiskIdcardModel> implements IRiskIdcardService {
+public class RiskServiceImpl extends BaseServiceCacheImpl<RiskIdcardRepository, RiskIdcardModel> implements IRiskService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RiskIdcardServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RiskServiceImpl.class);
 
     @Autowired
     private RiskIdcardRepository    riskIdcardRepository;
     @Autowired
     private IdCardAuthClientFactory idCardAuthClientFactory;
+    @Autowired
+    private AntiFraudClientFactory  antiFraudClientFactory;
 
     @Override
     public boolean idcardAuth(String cardNo, String name, String idcard, String tenantId) {
         String          result = idCardAuthClientFactory.get().idcardAuth(cardNo, name, idcard);
-        RiskIdcardModel model  = getModel(cardNo, name, idcard, tenantId, 2, idCardAuthClientFactory.get().getChannelId());
+        RiskIdcardModel model  = getModel(cardNo, name, idcard, tenantId, 2, idCardAuthClientFactory.get().getChannelId(), null);
         model.setResultInfo(result);
         save(model);
         return "success".equalsIgnoreCase(result);
     }
 
-    private RiskIdcardModel getModel(String cardNo, String name, String idcard, String tenantId, int type, String channelId) {
+    @Override
+    public Map<String, String> antiFraud(String phone, String name, String idcard, String tenantId) {
+        Map<String, String> result = antiFraudClientFactory.get().antiFraud(phone, name, idcard);
+        RiskIdcardModel     model  = getModel(null, name, idcard, tenantId, 2, idCardAuthClientFactory.get().getChannelId(), phone);
+        model.setResultInfo(JSON.toJSONString(result));
+        save(model);
+        return result;
+    }
+
+    private RiskIdcardModel getModel(String cardNo, String name, String idcard, String tenantId, int type, String channelId, String phone) {
         RiskIdcardModel idcardModel = new RiskIdcardModel();
         idcardModel.setCardNo(cardNo);
+        idcardModel.setMobile(phone);
         idcardModel.setName(name);
         idcardModel.setIdCard(idcard);
         idcardModel.setTenantId(tenantId);
