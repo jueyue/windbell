@@ -67,7 +67,7 @@ public class UserAuthController extends BaseController<IUserAuthService, UserAut
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response login(@RequestBody @ApiParam(value = "{\"account\":登录用户,\"password\":密码(md5小写),\"product\":产品编码},\"type\":用户类型}") Map<String, String> map) {
+    public Response login(@RequestBody @ApiParam(value = "{\"account\":登录用户,\"password\":密码(md5小写),\"product\":产品编码,\"type\":用户类型}") Map<String, String> map) {
         String        account  = map.get("account");
         String        password = map.get("password");
         String        product  = map.get("product");

@@ -42,8 +42,8 @@ public interface IRiskIdcardFacade {
      */
     @ApiOperation("三要数认证")
     @PostMapping("/idcardAuth")
-    public Response idcardAuth(@ApiParam("身份证") @RequestParam(name = "cardNo") String cardNo,
+    public Response idcardAuth(@ApiParam("银行卡") @RequestParam(name = "cardNo") String cardNo,
                                @ApiParam("姓名") @RequestParam(name = "name") String name,
-                               @ApiParam("银行卡") @RequestParam(name = "idcard") String idcard,
+                               @ApiParam("身份证") @RequestParam(name = "idcard") String idcard,
                                @ApiParam("客户") @RequestParam(name = "tenantId") String tenantId);
 }
