@@ -3,9 +3,6 @@
         <Card>
             <div class="search-con search-con-top">
                 <Form :model="form" :label-width="80" inline>
-                    <FormItem label="标题">
-                        <Input v-model="form.title"></Input>
-                    </FormItem>
                     <FormItem label="类型">
                       <Select v-model="form.type">
                         <Option :value="item.key" v-for="(item, index) in typeOptions" :key="index">{{item.name}}</Option>
@@ -15,13 +12,10 @@
                         <Input v-model="form.content"></Input>
                     </FormItem>
                     <FormItem label="发送时间">
-                        <Input v-model="form.sendTime"></Input>
+                        <DatePicker v-model="form.sendTimeTmp"  @on-change="timeChange" format="yyyy-MM-dd" type="daterange" placeholder="发送日期"></DatePicker>
                     </FormItem>
                     <FormItem label="地址列表">
                         <Input v-model="form.address"></Input>
-                    </FormItem>
-                    <FormItem label="渠道(APP)">
-                        <Input v-model="form.channel"></Input>
                     </FormItem>
                 </Form>
                 <div  class="toolbar">
@@ -40,6 +34,7 @@
 import Tables from '_c/tables'
 import noticeInfo from './notice-info'
 import {getIds} from '@/libs/util'
+import { formatDate } from '@/libs/dateutil'
 
 export default {
   name: 'notice-list',
@@ -51,14 +46,15 @@ export default {
     return {
       columns: [
         {title: '标题', key: 'title'},
-        {title: '类型', key: 'type'},
-        {title: '内容', key: 'content'},
-        {title: '发送时间', key: 'sendTime'},
-        {title: '角色列表', key: 'rolesIds'},
-        {title: '用户列表', key: 'userIds'},
-        {title: '部门列表', key: 'deptIds'},
+        {title: '类型',
+          key: 'type',
+          render: (h, params) => {
+            return h('span', this.getDictVal('msg_type', params.row.type))
+          }},
         {title: '地址列表', key: 'address'},
-        {title: '渠道(APP', key: 'channel'},
+        {title: '发送时间', key: 'sendTime'},
+        {title: '渠道', key: 'channel'},
+        {title: '内容', key: 'content'},
         {title: '创建时间', key: 'crtTime'},
         {title: '修改时间', key: 'mdfTime'}
       ],
@@ -89,6 +85,10 @@ export default {
         this.$Message.success(data)
         this.handleSearch()
       })
+    },
+    timeChange () {
+      this.form.map.sendTime_st = formatDate(this.form.sendTimeTmp[0],'yyyy-MM-dd')
+      this.form.map.sendTime_ed = formatDate(this.form.sendTimeTmp[1],'yyyy-MM-dd')
     },
     selectionChange (selection) {
       this.selectedData = selection

@@ -86,6 +86,11 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
     @ApiOperation(value = "发送验证码")
     @RequestMapping(value = "/sendVerificationCode/{tenantId}/{templateCode}/{mobile}", method = RequestMethod.GET)
     public Response sendVerificationCode(@PathVariable String tenantId, @PathVariable String templateCode, @PathVariable String mobile) {
+        // 一分钟内不再发送验证码,默认返回成功
+        if (RedisKit.exists(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString())
+                || RedisKit.getExpire(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString()) > 230) {
+            return SUCCESS_RESPONSE;
+        }
         NoticeRequestEntity data = new NoticeRequestEntity();
         data.setTemplateCode(templateCode);
         data.setAddress(mobile);

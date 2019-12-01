@@ -4,10 +4,11 @@ export const login = ({account, password}) => {
   const data = {
     account: account,
     password: password,
-    product: 1001
+    product: 1001,
+    type: 1
   }
   return axios.request({
-    url: '/admin/user/login',
+    url: '/admin/userAuth/login',
     data,
     method: 'post'
   })

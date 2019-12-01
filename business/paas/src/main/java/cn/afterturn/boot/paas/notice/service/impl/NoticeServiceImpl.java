@@ -61,6 +61,7 @@ public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, No
         boolean        send   = client.send(model.getAddress(), templateModel.getThirdTemplateCode(), tenant.getSmsSign(), data, model.getContent());
         model.setEndTime(new Date());
         model.setStatus(send ? "2" : "3");
+        model.setTitle(templateModel.getName());
         this.save(model);
         return true;
     }

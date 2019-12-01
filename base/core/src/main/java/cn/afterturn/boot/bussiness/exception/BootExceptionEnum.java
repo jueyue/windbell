@@ -14,10 +14,10 @@ public enum BootExceptionEnum {
     FILE_NOT_FOUND(400, "FILE_NOT_FOUND!"),
 
     /**
-     * 参数异常  100-199
+     * 参数异常  600-699
      */
-    REQUEST_NULL(101, "参数为空"),
-    REQUEST_ERROR(100, "参数错误"),
+    REQUEST_NULL(601, "参数为空"),
+    REQUEST_ERROR(600, "参数错误"),
 
     /**
      * 数据相关异常 700-799

@@ -10,6 +10,12 @@ public class WhiteListUtil {
         if (path.startsWith("/userAuth/login")) {
             return true;
         }
+        if (path.startsWith("/notice/sendVerificationCode")) {
+            return true;
+        }
+        if (path.startsWith("/oauthUser/register")) {
+            return true;
+        }
         return false;
     }
 
