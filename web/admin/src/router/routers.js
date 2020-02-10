@@ -147,7 +147,7 @@ export default [
     },
     children: [
       {
-        path: 'app/info',
+        path: 'app-info',
         name: '应用配置',
         meta: {
           title: '应用配置',

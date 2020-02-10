@@ -4,7 +4,7 @@
       <div class="search-con search-con-top">
         <Form :model="form" :label-width="80" inline>
           <FormItem label="名称">
-            <Input v-model="form.name" placeholder="众一"></Input>
+            <Input v-model="form.name" placeholder="悟耘"></Input>
           </FormItem>
           <Button @click="handleSearch" class="search-btn" type="primary">
             <Icon type="search"/>

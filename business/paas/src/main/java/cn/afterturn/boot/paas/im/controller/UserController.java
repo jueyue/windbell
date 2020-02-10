@@ -5,14 +5,16 @@ import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
 import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
-import cn.afterturn.boot.paas.im.thirdservice.weixin.WeiXinServiceImpl;
+import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
+import cn.afterturn.boot.paas.common.enums.PaasEnum;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.clients.IDingTalkUserClient;
+import cn.afterturn.boot.paas.im.thirdservice.dingtalk.service.DingTalkBeanConvert;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,6 +26,9 @@ import java.util.List;
 @RequestMapping("/im/user")
 public class UserController implements IPaasUserFacade {
 
+    @Autowired
+    private IDingTalkUserClient dingTalkUserClient;
+
     @Override
     public Response<Page<PaasUserRequestModel>> list(RequestParams<PaasUserRequestModel> params) {
         return null;
@@ -31,7 +36,11 @@ public class UserController implements IPaasUserFacade {
 
     @Override
     public Response create(@Valid PaasUserRequestModel model) {
-        //weiXinService.getToken(entity.getTenantId(),entity.getAppCode());
+        PaasEnum paas = ThirdServiceContext.getAppEnum(model.getTenantId());
+        switch (paas) {
+            case DING_TALK:
+                dingTalkUserClient.create(DingTalkBeanConvert.toUser(model));
+        }
         return new SuccessResponse();
     }
 

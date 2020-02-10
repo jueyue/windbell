@@ -14,6 +14,9 @@ public class PaasUserRequestModel extends PaasBaseRequestModel {
     @ApiModelProperty("头像")
     private String avatar;
 
+    @ApiModelProperty("Id")
+    private String id;
+
     @ApiModelProperty("账号")
     private String account;
 

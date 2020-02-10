@@ -48,6 +48,7 @@ public class UserAuthServiceImpl extends BaseServiceCacheImpl<UserAuthRepository
         if (StringUtils.isEmpty(model.getPassword())) {
             model.setPassword(model.getAccount());
         }
+        model.setStatus(1);
         model.setPassword(ToolUtil.getPassword(model.getPassword(), model.getSalt()));
         return super.save(model);
     }

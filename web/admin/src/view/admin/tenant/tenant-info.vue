@@ -9,7 +9,7 @@
         <Row>
           <Col span="8">
             <FormItem label="名称" prop="name">
-              <Input v-model="form.name" placeholder="众一"></Input>
+              <Input v-model="form.name" placeholder="悟耘"></Input>
             </FormItem>
           </Col>
           <Col span="8">

@@ -52,14 +52,19 @@ public class AppInfoConfigModel extends IdTenantBaseModel<AppInfoConfigModel> {
     @ApiModelProperty("类型")
     private String type;
 
-    @Excel(name = "内部appID")
+    @Excel(name = "AppCode")
     @TableField(value = "APP_CODE", strategy = FieldStrategy.NOT_EMPTY)
-    @ApiModelProperty("内部appID")
+    @ApiModelProperty("AppCode")
     private String appCode;
 
-    @Excel(name = "外部PAPID")
+    @Excel(name = "功能")
+    @TableField(value = "APP_NAME", strategy = FieldStrategy.NOT_EMPTY)
+    @ApiModelProperty("功能")
+    private String appName;
+
+    @Excel(name = "外部AppID")
     @TableField(value = "APP_ID", strategy = FieldStrategy.NOT_EMPTY)
-    @ApiModelProperty("外部PAPID")
+    @ApiModelProperty("外部AppID")
     private String appId;
 
     @Excel(name = "APP秘钥")

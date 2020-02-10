@@ -83,7 +83,7 @@ public class UserAuthController extends BaseController<IUserAuthService, UserAut
         if (user.getStatus() != 1) {
             return new ErrorResponse(301, "账号已停用");
         }
-        map.put("userId", user.getId());
+        map.put("userId", user.getUserId());
         map.put("token", sign(user.getUserId(), product, user.getName(), jwtSecret));
         return new SuccessResponse(map);
     }

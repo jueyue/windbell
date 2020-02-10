@@ -19,7 +19,7 @@ public abstract class BaseModel<T> extends Model {
 
     @TableField(value = "CRT_USER_ID")
     @ApiModelProperty(value = "创建人Id(基础字段,新增修改勿填)")
-    private Long crtUserId;
+    private String crtUserId;
 
     @TableField(exist = false)
     @ApiModelProperty("创建人名字(基础字段,新增修改勿填)")
@@ -31,7 +31,7 @@ public abstract class BaseModel<T> extends Model {
 
     @TableField(value = "MDF_USER_ID")
     @ApiModelProperty("修改人Id(基础字段,新增修改勿填)")
-    private Long mdfUserId;
+    private String mdfUserId;
 
     @TableField(exist = false)
     @ApiModelProperty("修改人名字(基础字段,新增修改勿填)")

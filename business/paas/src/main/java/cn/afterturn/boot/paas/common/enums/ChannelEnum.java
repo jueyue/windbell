@@ -1,7 +1,7 @@
 package cn.afterturn.boot.paas.common.enums;
 
 /**
- * 消息渠道枚举
+ * 渠道枚举
  *
  * @author jueyue on 19-11-12.
  */
@@ -31,4 +31,6 @@ public enum ChannelEnum {
         }
         return null;
     }
+
+
 }

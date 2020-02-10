@@ -73,7 +73,6 @@ export default {
             commit('setUserName', data.name)
             commit('setAccess', JSON.parse(data.access))
             commit('setHasGetInfo', true)
-            sessionStorage.clear()
             resolve(data)
           }).catch(err => {
             reject(err)

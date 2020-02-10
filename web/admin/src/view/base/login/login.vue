@@ -32,9 +32,9 @@ export default {
     handleSubmit ({ account, password }) {
       password = md5(password)
       this.handleLogin({ account, password }).then(res => {
+        // 清理下session 防止数据存储的错误
+        sessionStorage.clear()
         this.getUserInfo().then(res => {
-          // 清理下session 防止数据存储的错误
-          sessionStorage.clear()
           this.$router.push({
             name: this.$config.homeName
           })

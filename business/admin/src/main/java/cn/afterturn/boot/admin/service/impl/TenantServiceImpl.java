@@ -7,14 +7,19 @@ import cn.afterturn.boot.admin.model.UserModel;
 import cn.afterturn.boot.admin.repository.TenantRepository;
 import cn.afterturn.boot.admin.service.*;
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
+import cn.afterturn.boot.core.cache.CacheKey;
+import cn.afterturn.boot.core.cache.RedisKit;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 服务实现
@@ -22,19 +27,20 @@ import java.util.Date;
  * @author
  * @Date 2018-09-03 23:21:00
  */
+@DependsOn("springContextHolder")
 @Service("tenantService")
 public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, TenantModel> implements ITenantService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TenantServiceImpl.class);
 
     @Autowired
-    private TenantRepository tenantRepository;
+    private TenantRepository          tenantRepository;
     @Autowired
-    private ISequenceService sequenceService;
+    private ISequenceService          sequenceService;
     @Autowired
-    private IUserService userService;
+    private IUserService              userService;
     @Autowired
-    private IDeptService deptService;
+    private IDeptService              deptService;
     @Autowired
     private ILinkTenantProductService linkTenantProductService;
 
@@ -62,6 +68,9 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
         link.setEndTime(DateUtils.addYears(new Date(), 1));
         link.setTenantId(tenantId);
         linkTenantProductService.save(link);
+
+        // 同步redis数据
+        RedisKit.put(CacheKey.get("admin").append("tenant").append(entity.getTenantId()).append("appType").toString(), entity.getPaas());
         return true;
     }
 
@@ -87,6 +96,13 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
         return user;
     }
 
+    @PostConstruct
+    public void init() {
+        List<TenantModel> list = list();
+        list.forEach(tenantModel ->
+                RedisKit.put(CacheKey.get("admin").append("tenant").append(tenantModel.getTenantId()).append("appType").toString(), tenantModel.getPaas())
+        );
+    }
 
 
 }

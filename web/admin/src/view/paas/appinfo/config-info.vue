@@ -22,12 +22,17 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="内部AppID" prop="appCode">
+            <FormItem label="AppCode" prop="appCode">
               <Input v-model="form.appCode" :disabled="disable"></Input>
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="外部AppId" prop="appId">
+            <FormItem label="功能" prop="appCode">
+              <Input v-model="form.appName" :disabled="disable"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="AppId" prop="appId">
               <Input v-model="form.appId" :disabled="disable"></Input>
             </FormItem>
           </Col>
@@ -49,11 +54,6 @@
           <Col span="8">
             <FormItem label="子秘钥" prop="subAppSecret">
               <Input v-model="form.subAppSecret" :disabled="disable"></Input>
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem label="创建用户Id" prop="crtUserId">
-              <Input v-model="form.crtUserId" :disabled="disable"></Input>
             </FormItem>
           </Col>
         </Row>
@@ -86,10 +86,10 @@ export default {
           { required: true, message: '类型不允许为空' }
         ],
         appCode: [
-          { required: true, message: '内部appID不允许为空' }
+          { required: true, message: 'AppCode不允许为空' }
         ],
         appId: [
-          { required: true, message: '外部PAPID不允许为空' }
+          { required: true, message: 'AppId不允许为空' }
         ],
         secret: [
           { required: true, message: 'APP秘钥不允许为空' }

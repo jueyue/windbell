@@ -7,6 +7,7 @@
         <result column="TENANT_ID" property="tenantId"/>
         <result column="TYPE" property="type"/>
         <result column="APP_CODE" property="appCode"/>
+        <result column="APP_Name" property="appName"/>
         <result column="APP_ID" property="appId"/>
         <result column="SECRET" property="secret"/>
         <result column="SUB_APP_ID" property="subAppId"/>

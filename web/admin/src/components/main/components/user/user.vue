@@ -4,6 +4,7 @@
       <Avatar :src="userAvatar"/>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
+        <DropdownItem name="clear">清理缓存 </DropdownItem>
         <DropdownItem name="logout">退出登录</DropdownItem>
       </DropdownMenu>
     </Dropdown>
@@ -33,6 +34,9 @@ export default {
               name: 'login'
             })
           })
+          break
+        case 'clear':
+          sessionStorage.clear()
           break
       }
     }
