@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.afterturn</groupId>
         <artifactId>bussinses-parent</artifactId>
-        <version>0.0.2</version>
+        <version>1.0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -78,10 +78,6 @@
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>windbell-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>facade</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

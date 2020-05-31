@@ -16,7 +16,6 @@
 package cn.afterturn.boot.trade.controller;
 
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
-import cn.afterturn.boot.facade.trade.IPayOrderFacade;
 import cn.afterturn.boot.trade.model.PayOrderModel;
 import cn.afterturn.boot.trade.service.IPayOrderService;
 import io.swagger.annotations.Api;
@@ -36,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("支付订单")
 @RestController
 @RequestMapping("/order")
-public class PayOrderController extends BaseController<IPayOrderService, PayOrderModel> implements IPayOrderFacade {
+public class PayOrderController extends BaseController<IPayOrderService, PayOrderModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PayOrderController.class);
 

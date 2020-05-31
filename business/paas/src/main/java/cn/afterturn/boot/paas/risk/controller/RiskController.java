@@ -18,9 +18,7 @@ package cn.afterturn.boot.paas.risk.controller;
 import cn.afterturn.boot.bussiness.response.ErrorResponse;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
-import cn.afterturn.boot.facade.paas.risk.IAntiFraudFacade;
-import cn.afterturn.boot.facade.paas.risk.IRiskIdcardFacade;
-import cn.afterturn.boot.facade.paas.risk.entity.AntiFraudEntity;
+import cn.afterturn.boot.paas.risk.model.AntiFraudEntity;
 import cn.afterturn.boot.paas.risk.service.IRiskService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -41,14 +39,13 @@ import java.util.Map;
 @Api("风险信息")
 @RestController
 @RequestMapping("/risk")
-public class RiskController implements IRiskIdcardFacade, IAntiFraudFacade {
+public class RiskController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RiskController.class);
 
     @Autowired
     private IRiskService riskIdcardService;
 
-    @Override
     public Response idcardAuth(String cardNo, String name, String idcard, String tenantId) {
         boolean isOK = riskIdcardService.idcardAuth(cardNo, name, idcard, tenantId);
         if (isOK) {
@@ -57,7 +54,6 @@ public class RiskController implements IRiskIdcardFacade, IAntiFraudFacade {
         return new ErrorResponse();
     }
 
-    @Override
     public Response<AntiFraudEntity> antiFraud(String phone, String name, String idcard, String tenantId) {
         Map<String, String> info = riskIdcardService.antiFraud(phone, name, idcard, tenantId);
         if (info != null) {

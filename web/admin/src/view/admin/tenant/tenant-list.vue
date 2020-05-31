@@ -28,6 +28,7 @@
         <div class="toolbar">
           <Button type="primary" icon="md-add" @click="handleCreate">新增</Button>
           <Button type="primary" icon="md-trash" @click="handleDelete">删除</Button>
+          <Button type="primary" icon="md-trash" @click="handleInit">初始化</Button>
           <Button @click="handleSearch" icon="md-search" class="search-btn" type="primary">搜索</Button>
         </div>
       </div>
@@ -35,6 +36,12 @@
               @on-update="handleUpdate" @on-detail="handleDetail" @on-selection-change="selectionChange"/>
     </Card>
     <tenantInfo ref="tenantInfoRef" @handle-search="handleSearch"></tenantInfo>
+    <Modal
+      v-model="sureInitModel"
+      title="是否初始化"
+      @on-ok="handleInitSure">
+      <p>同步当前所有部门,角色,用户到对应平台</p>
+    </Modal>
   </div>
 </template>
 
@@ -95,7 +102,8 @@ export default {
       },
       selectedData: [],
       merTypeOptions: [],
-      statusOptions: []
+      statusOptions: [],
+      sureInitModel: false
     }
   },
   methods: {
@@ -107,6 +115,20 @@ export default {
     },
     handleCreate () {
       this.$refs.tenantInfoRef.openModel('create')
+    },
+    handleInit () {
+      this.sureInitModel = true
+    },
+    handleInitSure () {
+      let ids = getIds(this.selectedData);
+      if(ids.length != 1){
+        this.$Message.error("只允许选一个客户")
+        return
+      }
+      this.P('admin/tenant/paasInit/' + ids[0], ).then(data => {
+        this.$Message.success(data)
+        this.handleSearch()
+      })
     },
     handleDelete () {
       this.D('admin/tenant', getIds(this.selectedData)).then(data => {

@@ -70,8 +70,6 @@
 
 <script>
 
-import { C, U, P } from '@/libs/api.request'
-
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -131,13 +129,13 @@ export default {
           this.form.access = JSON.stringify(this.roles)
           switch (this.type) {
             case 'create':
-              C('admin/user', this.form).then(data => {
+              this.C('admin/user', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handle-search')
               })
               break
             case 'update':
-              U('admin/user', this.form).then(data => {
+              this.U('admin/user', this.form).then(data => {
                 this.isShow = false
                 this.$emit('handle-search')
               })
@@ -150,10 +148,10 @@ export default {
     }
   },
   beforeCreate: function () {
-    P('admin/dept/tree').then(data => {
+    this.P('admin/dept/tree').then(data => {
       this.deptOptions = data
     })
-    P('admin/role/list').then(data => {
+    this.P('admin/role/list').then(data => {
       this.roleList = data.rows
     })
   }

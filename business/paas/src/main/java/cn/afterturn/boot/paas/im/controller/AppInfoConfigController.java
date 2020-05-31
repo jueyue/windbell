@@ -16,7 +16,6 @@
 package cn.afterturn.boot.paas.im.controller;
 
 import cn.afterturn.boot.bussiness.base.controller.BaseController;
-import cn.afterturn.boot.facade.paas.im.IAppInfoConfigFacade;
 import cn.afterturn.boot.paas.im.model.AppInfoConfigModel;
 import cn.afterturn.boot.paas.im.service.IAppInfoConfigService;
 
@@ -37,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @Api("三方平台APP信息")
 @RestController
 @RequestMapping("/appinfoconfig")
-public class AppInfoConfigController extends BaseController<IAppInfoConfigService, AppInfoConfigModel> implements IAppInfoConfigFacade {
+public class AppInfoConfigController extends BaseController<IAppInfoConfigService, AppInfoConfigModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppInfoConfigController.class);
 

@@ -6,8 +6,7 @@
     <parent>
         <groupId>cn.afterturn</groupId>
         <artifactId>bussinses-parent</artifactId>
-        <version>0.0.2</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.0.1</version>
     </parent>
 
     <groupId>cn.afterturn</groupId>
@@ -31,14 +30,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -77,10 +68,6 @@
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>windbell-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>facade</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,0 +1,74 @@
+/**
+ * Copyright 2017-2018 JueYue (qrb.jueyue@foxmail.com)
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package cn.afterturn.boot.admin.controller;
+
+import cn.afterturn.boot.admin.model.UserModel;
+import cn.afterturn.boot.admin.service.IDeptService;
+import cn.afterturn.boot.admin.service.IMenuService;
+import cn.afterturn.boot.admin.service.IUserService;
+import cn.afterturn.boot.bussiness.base.controller.BaseController;
+import cn.afterturn.boot.bussiness.response.Response;
+import cn.afterturn.boot.bussiness.response.SuccessResponse;
+import com.alibaba.fastjson.JSON;
+import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+
+/**
+ * 用户管理控制器
+ *
+ * @author JueYue
+ * @Date 2018-09-06 20:36:08
+ */
+@Api("用户管理")
+@RestController
+@RequestMapping("/user")
+public class UserController extends BaseController<IUserService, UserModel> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private IUserService userService;
+    @Autowired
+    private IMenuService menuService;
+    @Autowired
+    private IDeptService deptService;
+
+    @Override
+    protected Response handlerCreate(UserModel model) {
+        model.setStatus(1);
+        model.setTenantId(deptService.getById(model.getDeptId()).getTenantId());
+        return super.handlerCreate(model);
+    }
+
+    @RequestMapping(value = "/userInfo/{userId}", method = RequestMethod.GET)
+    public Response userInfo(@PathVariable String userId) {
+        UserModel user = userService.getById(userId);
+        // 获取所有的菜单权限
+        List<String> access = menuService.getAllByUserId(userId, "1001");
+        user.setAccess(JSON.toJSONString(access));
+        return new SuccessResponse(user);
+    }
+
+}

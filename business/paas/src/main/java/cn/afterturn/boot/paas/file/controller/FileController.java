@@ -2,7 +2,6 @@ package cn.afterturn.boot.paas.file.controller;
 
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
-import cn.afterturn.boot.facade.paas.file.IFileInfoFacade;
 import cn.afterturn.boot.paas.file.service.IFileInfoService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +20,12 @@ import java.io.IOException;
 @Api("文件信息")
 @RestController
 @RequestMapping("/file")
-public class FileController implements IFileInfoFacade {
+public class FileController {
 
 
     @Autowired
     private IFileInfoService fileInfoService;
 
-    @Override
     @ApiOperation(value = "上传文件[Base64]")
     @PostMapping("/base64/upload")
     public Response upload(@RequestParam String file, @RequestParam String fileName, @RequestParam String tenantId) {

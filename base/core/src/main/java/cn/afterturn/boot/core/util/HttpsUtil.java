@@ -1,7 +1,6 @@
 package cn.afterturn.boot.core.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -99,7 +98,10 @@ public class HttpsUtil {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         } finally {
-            IOUtils.closeQuietly(pw);
+            try {
+                br.close();
+            } catch (IOException e) {
+            }
         }
         return null;
     }
@@ -117,7 +119,10 @@ public class HttpsUtil {
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         } finally {
-            IOUtils.closeQuietly(br);
+            try {
+                br.close();
+            } catch (IOException e) {
+            }
         }
         return content;
     }

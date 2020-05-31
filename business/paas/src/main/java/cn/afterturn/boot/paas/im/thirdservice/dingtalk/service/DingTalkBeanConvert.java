@@ -1,6 +1,6 @@
 package cn.afterturn.boot.paas.im.thirdservice.dingtalk.service;
 
-import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
+import cn.afterturn.boot.paas.im.controller.model.PaasUserRequestModel;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.model.DingTalkUserModel;
 
 import java.util.ArrayList;

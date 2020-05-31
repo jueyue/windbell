@@ -3,10 +3,9 @@ package cn.afterturn.boot.paas.im.controller;
 import cn.afterturn.boot.bussiness.request.RequestParams;
 import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
-import cn.afterturn.boot.facade.paas.im.IPaasUserFacade;
-import cn.afterturn.boot.facade.paas.im.model.PaasUserRequestModel;
 import cn.afterturn.boot.paas.common.context.ThirdServiceContext;
 import cn.afterturn.boot.paas.common.enums.PaasEnum;
+import cn.afterturn.boot.paas.im.controller.model.PaasUserRequestModel;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.clients.IDingTalkUserClient;
 import cn.afterturn.boot.paas.im.thirdservice.dingtalk.service.DingTalkBeanConvert;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -24,17 +23,15 @@ import java.util.List;
 @Api("Paas用户管理")
 @RestController
 @RequestMapping("/im/user")
-public class UserController implements IPaasUserFacade {
+public class UserController {
 
     @Autowired
     private IDingTalkUserClient dingTalkUserClient;
 
-    @Override
     public Response<Page<PaasUserRequestModel>> list(RequestParams<PaasUserRequestModel> params) {
         return null;
     }
 
-    @Override
     public Response create(@Valid PaasUserRequestModel model) {
         PaasEnum paas = ThirdServiceContext.getAppEnum(model.getTenantId());
         switch (paas) {
@@ -42,30 +39,5 @@ public class UserController implements IPaasUserFacade {
                 dingTalkUserClient.create(DingTalkBeanConvert.toUser(model));
         }
         return new SuccessResponse();
-    }
-
-    @Override
-    public Response delete(String id) {
-        return null;
-    }
-
-    @Override
-    public Response deleteBatchIds(List<String> ids) {
-        return null;
-    }
-
-    @Override
-    public Response update(PaasUserRequestModel model) {
-        return null;
-    }
-
-    @Override
-    public Response<PaasUserRequestModel> detail(String id) {
-        return null;
-    }
-
-    @Override
-    public Response<PaasUserRequestModel> detailByObj(PaasUserRequestModel model) {
-        return null;
     }
 }

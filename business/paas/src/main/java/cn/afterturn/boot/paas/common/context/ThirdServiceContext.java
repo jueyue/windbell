@@ -56,7 +56,7 @@ public class ThirdServiceContext {
         String              tenantId = map.get(TENANT_ID).toString();
         String              appCode  = map.get(APP_CODE).toString();
         String              appType  = getAppType(tenantId);
-        String              token    = RedisKit.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString()).toString();
+        String              token    = RedisKit.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString());
         if (token == null) {
             token = tokenService.getToken(tenantId, appType, appCode);
             RedisKit.put(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString(), token, 7000);

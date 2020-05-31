@@ -3,7 +3,7 @@
     <parent>
         <groupId>cn.afterturn</groupId>
         <artifactId>windbell-parent</artifactId>
-        <version>0.0.2</version>
+        <version>1.0.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway</module>
 		<module>core</module>
 		<module>doc</module>
     </modules>

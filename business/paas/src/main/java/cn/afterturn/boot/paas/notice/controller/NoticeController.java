@@ -20,19 +20,18 @@ import cn.afterturn.boot.bussiness.response.Response;
 import cn.afterturn.boot.bussiness.response.SuccessResponse;
 import cn.afterturn.boot.core.cache.CacheKey;
 import cn.afterturn.boot.core.cache.RedisKit;
-import cn.afterturn.boot.facade.common.enmus.StatusEnum;
-import cn.afterturn.boot.facade.paas.msg.INoticeFacade;
-import cn.afterturn.boot.facade.paas.msg.entity.NoticeRequestEntity;
-import cn.afterturn.boot.facade.paas.msg.entity.enums.NoticeTypeEnum;
+import cn.afterturn.boot.paas.common.enums.StatusEnum;
 import cn.afterturn.boot.paas.common.exception.BizException;
 import cn.afterturn.boot.paas.common.exception.BizExceptionEnum;
+import cn.afterturn.boot.paas.notice.controller.entity.NoticeRequestEntity;
+import cn.afterturn.boot.paas.notice.controller.entity.enums.NoticeTypeEnum;
 import cn.afterturn.boot.paas.notice.model.NoticeModel;
 import cn.afterturn.boot.paas.notice.model.NoticeTemplateModel;
 import cn.afterturn.boot.paas.notice.service.INoticeService;
 import cn.afterturn.boot.paas.notice.service.INoticeTemplateService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -55,7 +54,7 @@ import java.util.Map;
 @Api("通知表")
 @RestController
 @RequestMapping("/notice")
-public class NoticeController extends BaseController<INoticeService, NoticeModel> implements INoticeFacade {
+public class NoticeController extends BaseController<INoticeService, NoticeModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NoticeController.class);
 
@@ -64,7 +63,6 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
     @Autowired
     private INoticeTemplateService noticeTemplateService;
 
-    @Override
     @ApiOperation(value = "发送消息")
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     public Response send(NoticeRequestEntity data) {
@@ -96,8 +94,8 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
         data.setAddress(mobile);
         data.setTenantId(tenantId);
         data.setType(NoticeTypeEnum.MSG.getCode());
-        Map map = new HashMap();
-        map.put("code", RandomStringUtils.randomNumeric(6));
+            Map map = new HashMap();
+            map.put("code", RandomStringUtils.randomNumeric(6));
         RedisKit.put(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString(), map.get("code"), 5 * 60);
         data.setData(map);
         return send(data);

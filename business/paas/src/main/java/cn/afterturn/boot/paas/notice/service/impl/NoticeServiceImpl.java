@@ -16,8 +16,6 @@
 package cn.afterturn.boot.paas.notice.service.impl;
 
 import cn.afterturn.boot.bussiness.base.service.BaseServiceCacheImpl;
-import cn.afterturn.boot.facade.admin.ITenantFacade;
-import cn.afterturn.boot.facade.admin.entity.TenantEntity;
 import cn.afterturn.boot.paas.notice.model.NoticeModel;
 import cn.afterturn.boot.paas.notice.model.NoticeTemplateModel;
 import cn.afterturn.boot.paas.notice.repository.NoticeRepository;
@@ -47,18 +45,16 @@ public class NoticeServiceImpl extends BaseServiceCacheImpl<NoticeRepository, No
     private NoticeRepository noticeRepository;
 
     @Autowired
-    private ITenantFacade        tenantFacade;
-    @Autowired
     private SmsSendClientFactory smsSendClientFactory;
 
     @Override
     public Boolean send(NoticeTemplateModel templateModel, NoticeModel model, Map<String, Object> data) {
-        TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId()).getData();
+        //TenantEntity tenant = tenantFacade.getTenantByTenantId(model.getTenantId()).getData();
         model.setTemplateId(templateModel.getId());
         model.setStartTime(new Date());
         model.setChannel(templateModel.getChannelCode());
         ISmsSendClient client = smsSendClientFactory.get(templateModel.getChannelCode());
-        boolean        send   = client.send(model.getAddress(), templateModel.getThirdTemplateCode(), tenant.getSmsSign(), data, model.getContent());
+        boolean        send   = client.send(model.getAddress(), templateModel.getThirdTemplateCode(), "悟耘科技", data, model.getContent());
         model.setEndTime(new Date());
         model.setStatus(send ? "2" : "3");
         model.setTitle(templateModel.getName());
