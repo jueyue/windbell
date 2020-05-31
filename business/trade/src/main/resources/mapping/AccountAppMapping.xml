@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.afterturn.boot.trade.repository.AccountAppRepository">
+<mapper namespace="com.wupaas.boot.trade.repository.AccountAppRepository">
 
-    <resultMap id="BaseResultMap" type="cn.afterturn.boot.trade.model.AccountAppModel">
+    <resultMap id="BaseResultMap" type="com.wupaas.boot.trade.model.AccountAppModel">
         <result column="id" property="id"/>
         <result column="app_id" property="appId"/>
         <result column="tenant_id" property="tenantId"/>

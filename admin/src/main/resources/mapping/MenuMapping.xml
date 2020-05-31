@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.afterturn.boot.admin.repository.MenuRepository">
+<mapper namespace="com.wupaas.boot.admin.repository.MenuRepository">
 
-    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.MenuModel">
+    <resultMap id="BaseResultMap" type="com.wupaas.boot.admin.model.MenuModel">
         <result column="ID" property="id"/>
         <result column="WEB_TYPE" property="webType"/>
         <result column="CODE" property="code"/>
@@ -81,7 +81,7 @@
         </if>
     </sql>
 
-    <select id="getMenuByRoleId" resultType="cn.afterturn.boot.web.iview.IViewTree">
+    <select id="getMenuByRoleId" resultType="com.wupaas.boot.web.iview.IViewTree">
         SELECT m.id,m.`NAME` title,case WHEN lrm.id is not null THEN true else false end checked FROM t_system_menu m
         LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID and lrm.ROLE_ID = #{roleId}
         <where>

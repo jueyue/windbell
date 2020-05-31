@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cn.afterturn</groupId>
+        <groupId>com.wupaas</groupId>
         <artifactId>bussinses-parent</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <groupId>cn.afterturn</groupId>
+    <groupId>com.wupaas</groupId>
     <artifactId>paas</artifactId>
     <packaging>jar</packaging>
 
@@ -66,7 +66,7 @@
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.afterturn</groupId>
+            <groupId>com.wupaas</groupId>
             <artifactId>windbell-core</artifactId>
         </dependency>
         <dependency>

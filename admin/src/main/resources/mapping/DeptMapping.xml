@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.afterturn.boot.admin.repository.DeptRepository">
+<mapper namespace="com.wupaas.boot.admin.repository.DeptRepository">
 
-    <resultMap id="BaseResultMap" type="cn.afterturn.boot.admin.model.DeptModel">
+    <resultMap id="BaseResultMap" type="com.wupaas.boot.admin.model.DeptModel">
         <result column="ID" property="id"/>
         <result column="NUM" property="num"/>
         <result column="P_ID" property="pid"/>

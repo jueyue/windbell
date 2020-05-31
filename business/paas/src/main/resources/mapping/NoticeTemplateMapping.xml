@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.afterturn.boot.paas.notice.repository.NoticeTemplateRepository">
+<mapper namespace="com.wupaas.boot.paas.notice.repository.NoticeTemplateRepository">
 
-    <resultMap id="BaseResultMap" type="cn.afterturn.boot.paas.notice.model.NoticeTemplateModel">
+    <resultMap id="BaseResultMap" type="com.wupaas.boot.paas.notice.model.NoticeTemplateModel">
         <result column="ID" property="id"/>
         <result column="NAME" property="name"/>
         <result column="CODE" property="code"/>
@@ -68,7 +68,7 @@
             AND t.MDF_TIME = #{ew.entity.mdfTime}
         </if>
     </sql>
-    <select id="allTemplate" resultType="cn.afterturn.boot.paas.notice.model.NoticeTemplateModel">
+    <select id="allTemplate" resultType="com.wupaas.boot.paas.notice.model.NoticeTemplateModel">
         select id ,name from p_notice_template where STATUS = 1
     </select>
 

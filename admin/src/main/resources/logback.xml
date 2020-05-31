@@ -30,7 +30,7 @@
         <appender-ref ref="FILE"/>
     </root>
 
-    <logger name="cn.afterturn" level="debug" additivity="false">
+    <logger name="com.wupaas" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
     <logger name="org.apache.ibatis" level="debug" additivity="false">

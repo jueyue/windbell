@@ -4,13 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cn.afterturn</groupId>
+        <groupId>com.wupaas</groupId>
         <artifactId>bussinses-parent</artifactId>
         <version>1.0.1</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>cn.afterturn</groupId>
+    <groupId>com.wupaas</groupId>
     <artifactId>trade</artifactId>
     <packaging>jar</packaging>
 
@@ -31,18 +30,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -76,7 +63,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>cn.afterturn</groupId>
+            <groupId>com.wupaas</groupId>
             <artifactId>windbell-core</artifactId>
         </dependency>
         <dependency>
