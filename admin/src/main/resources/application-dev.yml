@@ -1,12 +1,29 @@
 spring:
-  profiles:
-    active: dev
   application:
     name: lemur-admin
   cache:
     type: GENERIC
   main:
     allow-bean-definition-overriding: true
+  http:
+    converters:
+      preferred-json-mapper: fastjson
+    devtools:
+      restart:
+        enabled: false #是否开启开发者工具（true/false）
+        additional-paths: src/main/java
+    aop:
+      proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
+    datasource:
+      url: jdbc:mysql://localhost:3306/windbell?autoReconnect=true&useUnicode=true&characterEncoding=utf8&erverTimezone=UTC
+      username: root
+      password: root
+      filters: wall,mergeStat
+    redis:
+      host: localhost
+      port: 16379
+      password: 94456456421321&&&Gdsfs
+      database: 2
 server:
   port: 9001 #项目端口
 
@@ -19,37 +36,12 @@ management:
     health:
       show-details: always #默认是never
 
-
----
-
 jwt:
   header: Authorization   #http请求头所需要的字段
   secret: lemur_boot        #jwt秘钥
   expiration: 604800      #7天 单位:秒
   auth-path: auth         #认证请求的路径
   md5-key: randomKey      #md5加密混淆key
-
-spring:
-  profiles: dev
-  http:
-    converters:
-      preferred-json-mapper: fastjson
-  devtools:
-    restart:
-      enabled: false #是否开启开发者工具（true/false）
-      additional-paths: src/main/java
-  aop:
-    proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
-  datasource:
-    url: jdbc:mysql://localhost:3306/windbell?autoReconnect=true&useUnicode=true&characterEncoding=utf8&erverTimezone=UTC
-    username: root
-    password: root
-    filters: wall,mergeStat
-  redis:
-    host: localhost
-    port: 16379
-    password: 94456456421321&&&Gdsfs
-    database: 2
 
 mybatis-plus:
   mapper-locations: classpath*:mapping/*.xml
@@ -84,15 +76,15 @@ feign:
 
 im:
   aliyun:
-    accessKeyId: LTAIG2qHsp0gTk8T
-    accessSecret: S1JfejIVVmWkpa4bE7Gs3N5qUPeEwz
+    accessKeyId: #
+    accessSecret: #
 
 file:
   channelId: qiniu
   qiniu:
-    accesskey: 38RsCIgUhpw5U_bop-1_RcvL8uv58muqU6MAZmG8
-    secretkey: GPllmtf48VdPhD15gW3VZYXf8RXC6NksHCnL12iz
-    bucket: wucloud-wrsc
+    accesskey: #
+    secretkey: #
+    bucket: #
 
 risk:
   idcard:
@@ -101,11 +93,11 @@ risk:
     channelId: tencent
   juhe:
     idcard:
-      appKey: b1823bc1351b50b3a7909ecb598633d6
+      appKey: #
   tencent:
     fraud:
-      secretId: AKIDIVKP9orfu6AGHDFZM3LgvzBC0EdwL6wd
-      secretKey: dBEJG0ay9Mjz97xtdDgx5PYWIrQs8CIH
+      secretId: #
+      secretKey: #
 
 
 info:
