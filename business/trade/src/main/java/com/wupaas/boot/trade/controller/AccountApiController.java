@@ -34,7 +34,7 @@ import java.util.Map;
  *
  * @author by jueyue on 18-5-26.
  */
-@Api("API")
+@Api("交易API")
 @Controller
 @RestController("/account")
 public class AccountApiController {
