@@ -72,6 +72,7 @@ export const getMenuByRouter = (list, access) => {
         obj.children = getMenuByRouter(item.children, access)
       }
       if (item.meta && item.meta.href) obj.href = item.meta.href
+      if (item.meta && item.meta.iframe) obj.iframe = item.meta.iframe
       if (showThisMenuEle(item, access)) res.push(obj)
     }
   })

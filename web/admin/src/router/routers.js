@@ -535,9 +535,9 @@ export default [
         name: '连接池',
         meta: {
           icon: 'ios-bulb',
-          title: '连接池'
-        },
-        component: () => import('@/view/monitor/server/monitor.vue')
+          title: '连接池',
+          iframe: '/api/druid/wall.html'
+        }
       }
     ]
   },

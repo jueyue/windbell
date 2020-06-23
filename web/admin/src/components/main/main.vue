@@ -24,7 +24,12 @@
             <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
           </div>
           <Content class="content-wrapper">
-            <keep-alive :include="cacheList">
+            <iframe
+              v-if="routeType === 'iframe'"
+              :src="iframeUrl"
+              width="100%" height="100%" frameborder="0" scrolling="yes">
+            </iframe>
+            <keep-alive v-else :include="cacheList">
               <router-view/>
             </keep-alive>
           </Content>
@@ -62,6 +67,8 @@ export default {
       collapsed: false,
       minLogo,
       maxLogo,
+      routeType: 'vue',
+      iframeUrl: '',
       isFullscreen: false
     }
   },
@@ -113,6 +120,16 @@ export default {
         window.open(name.split('_')[1])
         return
       }
+      this.routeType = 'vue'
+      if (name.indexOf('isTurnByIframe_') > -1) {
+        this.routeType = 'iframe'
+        this.iframeUrl = name.split('_')[2]
+        name = name.split('_')[1]
+      }
+      if (route.meta && route.meta.iframe) {
+        this.routeType = 'iframe'
+        this.iframeUrl = route.meta.iframe
+      }
       this.$router.push({
         name,
         params,
@@ -129,7 +146,7 @@ export default {
         if (type === 'others') {
         } else {
           const nextRoute = getNextRoute(this.tagNavList, route)
-          this.$router.push(nextRoute)
+          this.turnToPage(nextRoute)
         }
       }
       this.setTagNavList(res)
@@ -159,6 +176,7 @@ export default {
       route: this.$store.state.app.homeRoute
     })
     this.setBreadCrumb(this.$route)
+    this.turnToPage(this.$route)
     // 设置初始语言
     this.setLocal(this.$i18n.locale)
     // 如果当前打开页面不在标签栏中，跳到homeName页
