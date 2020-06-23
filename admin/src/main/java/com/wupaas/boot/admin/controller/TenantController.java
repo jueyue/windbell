@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 控制器
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api("")
 @RestController
-@RequestMapping("/tenant")
+@RequestMapping(ADMIN + "/tenant")
 public class TenantController extends BaseController<ITenantService, TenantModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TenantController.class);

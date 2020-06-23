@@ -35,6 +35,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.wupaas.boot.paas.common.Constant.PAAS;
+
 
 /**
  * 通知模板控制器
@@ -44,7 +46,7 @@ import java.util.Map;
  */
 @Api("通知模板")
 @RestController
-@RequestMapping("/notice/template")
+@RequestMapping(PAAS + "/notice/template")
 public class NoticeTemplateController extends BaseController<INoticeTemplateService, NoticeTemplateModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NoticeTemplateController.class);

@@ -41,10 +41,12 @@ export default {
           account,
           password
         }).then(res => {
-          const data = res
-          commit('setToken', data.token)
-          commit('setUserId', data.userId)
-          resolve()
+          if (res) {
+            const data = res
+            commit('setToken', data.token)
+            commit('setUserId', data.userId)
+            resolve()
+          }
         }).catch(err => {
           reject(err)
         })

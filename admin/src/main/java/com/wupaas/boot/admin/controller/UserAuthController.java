@@ -41,6 +41,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.Map;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 用户秘钥控制器
@@ -50,7 +52,7 @@ import java.util.Map;
  */
 @Api("用户秘钥")
 @RestController
-@RequestMapping("/userAuth")
+@RequestMapping(ADMIN + "/userAuth")
 public class UserAuthController extends BaseController<IUserAuthService, UserAuthModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserAuthController.class);

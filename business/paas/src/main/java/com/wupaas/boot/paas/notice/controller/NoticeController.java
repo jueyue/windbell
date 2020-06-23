@@ -44,6 +44,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.wupaas.boot.paas.common.Constant.PAAS;
+
 
 /**
  * 通知表控制器
@@ -53,7 +55,7 @@ import java.util.Map;
  */
 @Api("通知表")
 @RestController
-@RequestMapping("/notice")
+@RequestMapping(PAAS + "/notice")
 public class NoticeController extends BaseController<INoticeService, NoticeModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NoticeController.class);

@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+import static com.wupaas.boot.paas.common.Constant.PAAS;
+
 /**
  * @author by jueyue on 19-6-30.
  */
 @Api("Paas用户管理")
 @RestController
-@RequestMapping("/im/user")
+@RequestMapping(PAAS + "/im/user")
 public class ImUserController {
 
     @Autowired

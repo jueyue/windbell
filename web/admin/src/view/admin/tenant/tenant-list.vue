@@ -120,12 +120,12 @@ export default {
       this.sureInitModel = true
     },
     handleInitSure () {
-      let ids = getIds(this.selectedData);
-      if(ids.length != 1){
-        this.$Message.error("只允许选一个客户")
+      let ids = getIds(this.selectedData)
+      if (ids.length !== 1) {
+        this.$Message.error('只允许选一个客户')
         return
       }
-      this.P('admin/tenant/paasInit/' + ids[0], ).then(data => {
+      this.P('admin/tenant/paasInit/' + ids[0]).then(data => {
         this.$Message.success(data)
         this.handleSearch()
       })

@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 菜单表控制器
@@ -42,7 +44,7 @@ import java.util.List;
  */
 @Api("菜单表")
 @RestController
-@RequestMapping("/menu")
+@RequestMapping(ADMIN + "/menu")
 public class MenuController extends BaseController<IMenuService, MenuModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);

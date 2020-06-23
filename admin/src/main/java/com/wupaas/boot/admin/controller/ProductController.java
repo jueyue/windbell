@@ -25,6 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 产品配置控制器
@@ -34,8 +36,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api("产品配置")
 @RestController
-@RequestMapping("/product")
-public class ProductController extends BaseController<IProductService, ProductModel>{
+@RequestMapping(ADMIN + "/product")
+public class ProductController extends BaseController<IProductService, ProductModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 

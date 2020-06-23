@@ -119,8 +119,11 @@ export const U = (path, params) => {
     params.mdfUserId = getUserId()
   }
   return axios.post(path + '/update', params).then(data => {
-    if (data) {
+    if (data && data.success) {
       Message.success('修改成功')
+      return data
+    } else {
+      Message.error('修改失败')
       return data
     }
   })

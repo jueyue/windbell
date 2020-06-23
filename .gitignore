@@ -27,3 +27,4 @@ node_modules
 target
 .idea
 application-test.yml
+*.iml

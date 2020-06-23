@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 字典表控制器
@@ -43,7 +45,7 @@ import java.util.List;
  */
 @Api("字典表")
 @RestController
-@RequestMapping("/dict")
+@RequestMapping(ADMIN + "/dict")
 public class DictController extends BaseController<IDictService, DictModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DictController.class);

@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 角色表控制器
@@ -41,7 +43,7 @@ import java.util.List;
  */
 @Api("角色表")
 @RestController
-@RequestMapping("/role")
+@RequestMapping(ADMIN + "/role")
 public class RoleController extends BaseController<IRoleService, RoleModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);

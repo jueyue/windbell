@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 序列管理控制器
@@ -39,7 +41,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api("序列管理")
 @RestController
-@RequestMapping("/sequence")
+@RequestMapping(ADMIN + "/sequence")
 public class SequenceController extends BaseController<ISequenceService, SequenceModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SequenceController.class);

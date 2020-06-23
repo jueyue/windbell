@@ -25,8 +25,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import static com.wupaas.boot.paas.common.Constant.PAAS;
 
-/**
+
+        /**
  * 三方平台APP信息控制器
  *
  * @author JueYue
@@ -34,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api("三方平台APP信息")
 @RestController
-@RequestMapping("/appinfoconfig")
+@RequestMapping(PAAS + "/appinfoconfig")
 public class AppInfoConfigController extends BaseController<IAppInfoConfigService, AppInfoConfigModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppInfoConfigController.class);

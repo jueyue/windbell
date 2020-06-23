@@ -15,6 +15,7 @@
  */
 package com.wupaas.boot.admin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wupaas.boot.admin.model.DeptModel;
 import com.wupaas.boot.admin.service.IDeptService;
 import com.wupaas.boot.admin.service.ISequenceService;
@@ -23,7 +24,6 @@ import com.wupaas.boot.bussiness.request.RequestParams;
 import com.wupaas.boot.bussiness.response.Response;
 import com.wupaas.boot.bussiness.response.SuccessResponse;
 import com.wupaas.boot.core.support.BeanKit;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -37,6 +37,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 部门表控制器
@@ -46,8 +48,8 @@ import java.util.List;
  */
 @Api("部门表")
 @RestController
-@RequestMapping("/dept")
-public class DeptController extends BaseController<IDeptService, DeptModel>{
+@RequestMapping(ADMIN + "/dept")
+public class DeptController extends BaseController<IDeptService, DeptModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DeptController.class);
 

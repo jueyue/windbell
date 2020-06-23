@@ -25,6 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 行业信息表控制器
@@ -34,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api("行业信息表")
 @RestController
-@RequestMapping("/industry")
+@RequestMapping(ADMIN + "/industry")
 public class IndustryController extends BaseController<IIndustryService, IndustryModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndustryController.class);

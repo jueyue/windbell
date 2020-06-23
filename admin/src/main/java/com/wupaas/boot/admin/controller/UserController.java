@@ -15,6 +15,7 @@
  */
 package com.wupaas.boot.admin.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.wupaas.boot.admin.model.UserModel;
 import com.wupaas.boot.admin.service.IDeptService;
 import com.wupaas.boot.admin.service.IMenuService;
@@ -22,7 +23,6 @@ import com.wupaas.boot.admin.service.IUserService;
 import com.wupaas.boot.bussiness.base.controller.BaseController;
 import com.wupaas.boot.bussiness.response.Response;
 import com.wupaas.boot.bussiness.response.SuccessResponse;
-import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 用户管理控制器
@@ -43,7 +45,7 @@ import java.util.List;
  */
 @Api("用户管理")
 @RestController
-@RequestMapping("/user")
+@RequestMapping(ADMIN + "/user")
 public class UserController extends BaseController<IUserService, UserModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);

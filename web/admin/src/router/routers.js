@@ -503,6 +503,45 @@ export default [
     ]
   },
   {
+    path: '/monitor',
+    name: '监控服务',
+    meta: {
+      //access: 'monitor',
+      icon: 'ios-book',
+      title: '监控服务'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'monitor',
+        name: '系统监控',
+        meta: {
+          icon: 'ios-bulb',
+          title: '系统监控'
+        },
+        component: () => import('@/view/monitor/server/monitor.vue')
+      },
+      {
+        path: 'task',
+        name: '定时任务',
+        meta: {
+          icon: 'ios-bulb',
+          title: '定时任务'
+        },
+        component: () => import('@/view/monitor/task/task-list.vue')
+      },
+      {
+        path: 'druid',
+        name: '连接池',
+        meta: {
+          icon: 'ios-bulb',
+          title: '连接池'
+        },
+        component: () => import('@/view/monitor/server/monitor.vue')
+      }
+    ]
+  },
+  {
     path: '/401',
     name: 'error_401',
     meta: {

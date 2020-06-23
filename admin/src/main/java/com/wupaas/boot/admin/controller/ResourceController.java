@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.wupaas.boot.admin.common.Constant.ADMIN;
+
 
 /**
  * 资源管理控制器
@@ -41,7 +43,7 @@ import java.util.List;
  */
 @Api("资源管理")
 @RestController
-@RequestMapping("/resource")
+@RequestMapping(ADMIN + "/resource")
 public class ResourceController extends BaseController<IResourceService, ResourceModel> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResourceController.class);
