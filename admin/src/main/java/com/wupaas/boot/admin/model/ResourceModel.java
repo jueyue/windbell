@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.admin.model;
 
-import com.wupaas.boot.bussiness.model.IdBaseModel;
+import com.wupaas.boot.core.business.model.IdBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.SqlCondition;

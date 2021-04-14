@@ -18,7 +18,7 @@ package com.wupaas.boot.admin.service.impl;
 import com.wupaas.boot.admin.model.DictModel;
 import com.wupaas.boot.admin.repository.DictRepository;
 import com.wupaas.boot.admin.service.IDictService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

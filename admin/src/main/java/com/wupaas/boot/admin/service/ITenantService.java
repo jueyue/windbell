@@ -1,7 +1,7 @@
 package com.wupaas.boot.admin.service;
 
 import com.wupaas.boot.admin.model.TenantModel;
-import com.wupaas.boot.bussiness.base.service.IBaseService;
+import com.wupaas.boot.core.business.base.service.IBaseService;
 
 
 /**

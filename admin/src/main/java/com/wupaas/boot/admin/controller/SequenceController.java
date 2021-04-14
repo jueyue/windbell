@@ -17,9 +17,9 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.admin.model.SequenceModel;
 import com.wupaas.boot.admin.service.ISequenceService;
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

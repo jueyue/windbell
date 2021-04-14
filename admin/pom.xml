@@ -75,7 +75,8 @@
         <!-- 自己的项目 -->
         <dependency>
             <groupId>com.wupaas</groupId>
-            <artifactId>windbell-core</artifactId>
+            <artifactId>core-business</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.wupaas</groupId>

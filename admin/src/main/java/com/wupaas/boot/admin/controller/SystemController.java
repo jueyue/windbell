@@ -1,7 +1,7 @@
 package com.wupaas.boot.admin.controller;
 
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.core.monitor.MonitorUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

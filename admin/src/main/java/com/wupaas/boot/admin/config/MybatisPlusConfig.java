@@ -1,7 +1,7 @@
 package com.wupaas.boot.admin.config;
 
-import com.wupaas.boot.bussiness.intercept.CodeInsertInterceptor;
-import com.wupaas.boot.bussiness.intercept.CodeUpdateInterceptor;
+import com.wupaas.boot.core.business.intercept.CodeInsertInterceptor;
+import com.wupaas.boot.core.business.intercept.CodeUpdateInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;

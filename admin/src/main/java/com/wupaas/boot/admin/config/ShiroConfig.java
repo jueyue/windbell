@@ -1,7 +1,7 @@
 package com.wupaas.boot.admin.config;
 
-import com.wupaas.boot.bussiness.security.shiro.*;
-import com.wupaas.boot.bussiness.security.shiro.cache.RedisCacheManager;
+import com.wupaas.boot.core.business.security.shiro.*;
+import com.wupaas.boot.core.business.security.shiro.cache.RedisCacheManager;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.mgt.SessionManager;

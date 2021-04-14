@@ -22,7 +22,7 @@ import com.wupaas.boot.admin.repository.UserRepository;
 import com.wupaas.boot.admin.service.ILinkUserRoleService;
 import com.wupaas.boot.admin.service.IUserAuthService;
 import com.wupaas.boot.admin.service.IUserService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;

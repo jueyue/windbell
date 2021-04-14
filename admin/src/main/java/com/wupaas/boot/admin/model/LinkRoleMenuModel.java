@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.admin.model;
 
-import com.wupaas.boot.bussiness.model.IdBaseModel;
+import com.wupaas.boot.core.business.model.IdBaseModel;
 import com.baomidou.mybatisplus.annotation.*;
 
 import lombok.Data;

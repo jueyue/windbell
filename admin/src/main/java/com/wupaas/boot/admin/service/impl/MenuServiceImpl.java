@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wupaas.boot.admin.model.MenuModel;
 import com.wupaas.boot.admin.repository.MenuRepository;
 import com.wupaas.boot.admin.service.IMenuService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.core.support.CollectionKit;
 import com.wupaas.boot.web.iview.IViewMenu;
 import com.wupaas.boot.web.iview.IViewTree;

@@ -17,7 +17,7 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.admin.model.IndustryModel;
 import com.wupaas.boot.admin.service.IIndustryService;
-import com.wupaas.boot.bussiness.base.controller.BaseController;
+import com.wupaas.boot.core.business.base.controller.BaseController;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

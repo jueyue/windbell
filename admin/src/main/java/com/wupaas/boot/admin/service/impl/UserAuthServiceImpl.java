@@ -18,7 +18,7 @@ package com.wupaas.boot.admin.service.impl;
 import com.wupaas.boot.admin.model.UserAuthModel;
 import com.wupaas.boot.admin.repository.UserAuthRepository;
 import com.wupaas.boot.admin.service.IUserAuthService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;

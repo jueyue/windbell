@@ -20,7 +20,7 @@ import com.wupaas.boot.admin.model.RoleModel;
 import com.wupaas.boot.admin.repository.RoleRepository;
 import com.wupaas.boot.admin.service.ILinkRoleMenuService;
 import com.wupaas.boot.admin.service.IRoleService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

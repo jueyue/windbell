@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.admin.model;
 
-import com.wupaas.boot.bussiness.model.BaseModel;
+import com.wupaas.boot.core.business.model.BaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;

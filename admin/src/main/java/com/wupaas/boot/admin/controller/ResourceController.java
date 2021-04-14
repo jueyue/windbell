@@ -17,10 +17,10 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.admin.model.ResourceModel;
 import com.wupaas.boot.admin.service.IResourceService;
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.bussiness.request.RequestParams;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.business.request.RequestParams;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;

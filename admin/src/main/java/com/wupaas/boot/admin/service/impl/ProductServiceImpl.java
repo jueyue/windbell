@@ -18,7 +18,7 @@ package com.wupaas.boot.admin.service.impl;
 import com.wupaas.boot.admin.model.ProductModel;
 import com.wupaas.boot.admin.repository.ProductRepository;
 import com.wupaas.boot.admin.service.IProductService;
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

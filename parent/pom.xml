@@ -66,7 +66,17 @@
             <!--windbell-->
             <dependency>
                 <groupId>com.wupaas</groupId>
-                <artifactId>windbell-core</artifactId>
+                <artifactId>core-business</artifactId>
+                <version>${windbell.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wupaas</groupId>
+                <artifactId>core-common</artifactId>
+                <version>${windbell.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wupaas</groupId>
+                <artifactId>core-web</artifactId>
                 <version>${windbell.version}</version>
             </dependency>
             <dependency>

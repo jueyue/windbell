@@ -17,12 +17,12 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.admin.model.DictModel;
 import com.wupaas.boot.admin.service.IDictService;
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.bussiness.base.page.PageInfo;
-import com.wupaas.boot.bussiness.constant.factory.PageFactory;
-import com.wupaas.boot.bussiness.request.RequestParams;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.business.base.page.PageInfo;
+import com.wupaas.boot.core.business.constant.factory.PageFactory;
+import com.wupaas.boot.core.business.request.RequestParams;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -82,7 +82,7 @@ public class DictController extends BaseController<IDictService, DictModel> {
     public Response<List<DictModel>> subByKey(@PathVariable String key) {
         return new SuccessResponse(dictService.list(new QueryWrapper<DictModel>().eq("PKEY", key)));
     }
-    
+
     @ApiOperation(value = "查询子字典状态")
     @RequestMapping(value = "/subDetail/{key}/{pkey}", method = RequestMethod.GET)
     public Response<DictModel> detail(@PathVariable String key,@PathVariable String pkey ) {
