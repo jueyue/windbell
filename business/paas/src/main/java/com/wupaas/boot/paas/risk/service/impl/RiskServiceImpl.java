@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.risk.service.impl;
 
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.paas.risk.model.RiskIdcardModel;
 import com.wupaas.boot.paas.risk.repository.RiskIdcardRepository;
 import com.wupaas.boot.paas.risk.service.IRiskService;

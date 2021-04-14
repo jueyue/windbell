@@ -15,11 +15,11 @@
  */
 package com.wupaas.boot.paas.notice.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
-import com.wupaas.boot.core.cache.CacheKey;
-import com.wupaas.boot.core.cache.RedisKit;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
+import com.wupaas.boot.core.common.cache.CacheKey;
+import com.wupaas.boot.core.business.cache.RedisUtil;
 import com.wupaas.boot.paas.common.enums.StatusEnum;
 import com.wupaas.boot.paas.common.exception.PaasBizException;
 import com.wupaas.boot.paas.common.exception.PaasBizExceptionEnum;
@@ -87,8 +87,8 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
     @RequestMapping(value = "/sendVerificationCode/{tenantId}/{templateCode}/{mobile}", method = RequestMethod.GET)
     public Response sendVerificationCode(@PathVariable String tenantId, @PathVariable String templateCode, @PathVariable String mobile) {
         // 一分钟内不再发送验证码,默认返回成功
-        if (RedisKit.exists(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString())
-                || RedisKit.getExpire(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString()) > 230) {
+        if (RedisUtil.exists(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString())
+                || RedisUtil.getExpire(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString()) > 230) {
             return SUCCESS_RESPONSE;
         }
         NoticeRequestEntity data = new NoticeRequestEntity();
@@ -98,7 +98,7 @@ public class NoticeController extends BaseController<INoticeService, NoticeModel
         data.setType(NoticeTypeEnum.MSG.getCode());
             Map map = new HashMap();
             map.put("code", RandomStringUtils.randomNumeric(6));
-        RedisKit.put(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString(), map.get("code"), 5 * 60);
+        RedisUtil.put(CacheKey.get("VerificationCode").append(templateCode).append(mobile).toString(), map.get("code"), 5 * 60);
         data.setData(map);
         return send(data);
     }

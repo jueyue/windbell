@@ -21,7 +21,7 @@ import com.wupaas.boot.core.business.base.controller.BaseController;
 import com.wupaas.boot.core.business.request.RequestParams;
 import com.wupaas.boot.core.business.response.Response;
 import com.wupaas.boot.core.business.response.SuccessResponse;
-import com.wupaas.boot.web.iview.IViewTree;
+import com.wupaas.boot.core.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

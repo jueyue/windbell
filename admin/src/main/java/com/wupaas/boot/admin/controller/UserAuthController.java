@@ -24,7 +24,7 @@ import com.wupaas.boot.core.business.response.ErrorResponse;
 import com.wupaas.boot.core.business.response.Response;
 import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.core.business.security.jwt.JwtUtil;
-import com.wupaas.boot.core.util.ToolUtil;
+import com.wupaas.boot.core.common.util.ToolUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

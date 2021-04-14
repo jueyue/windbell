@@ -23,7 +23,7 @@ import com.wupaas.boot.core.business.base.controller.BaseController;
 import com.wupaas.boot.core.business.request.RequestParams;
 import com.wupaas.boot.core.business.response.Response;
 import com.wupaas.boot.core.business.response.SuccessResponse;
-import com.wupaas.boot.core.support.BeanKit;
+import com.wupaas.boot.core.common.support.BeanKit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

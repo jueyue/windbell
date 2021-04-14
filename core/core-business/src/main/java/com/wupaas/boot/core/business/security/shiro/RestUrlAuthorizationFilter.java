@@ -1,7 +1,7 @@
 package com.wupaas.boot.core.business.security.shiro;
 
-import com.wupaas.boot.core.exception.BootException;
-import com.wupaas.boot.core.exception.BootExceptionEnum;
+import com.wupaas.boot.core.common.exception.BootException;
+import com.wupaas.boot.core.common.exception.BootExceptionEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;

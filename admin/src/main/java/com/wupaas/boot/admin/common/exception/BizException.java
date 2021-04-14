@@ -1,6 +1,6 @@
 package com.wupaas.boot.admin.common.exception;
 
-import com.wupaas.boot.core.exception.BootException;
+import com.wupaas.boot.core.common.exception.BootException;
 
 /**
  * @author JueYue

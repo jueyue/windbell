@@ -1,7 +1,7 @@
 package com.wupaas.boot.trade.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.core.util.ToolUtil;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.common.util.ToolUtil;
 import com.wupaas.boot.trade.common.exception.TradeBizException;
 import com.wupaas.boot.trade.common.exception.TradeBizExceptionEnum;
 import com.wupaas.boot.trade.common.util.SerialNumberUtil;

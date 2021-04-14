@@ -1,6 +1,6 @@
 package com.wupaas.boot.trade.service;
 
-import com.wupaas.boot.bussiness.base.service.IBaseService;
+import com.wupaas.boot.core.business.base.service.IBaseService;
 import com.wupaas.boot.trade.model.AccountSubjectModel;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

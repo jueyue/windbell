@@ -2,7 +2,7 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.core.business.response.Response;
 import com.wupaas.boot.core.business.response.SuccessResponse;
-import com.wupaas.boot.core.monitor.MonitorUtil;
+import com.wupaas.boot.core.common.monitor.MonitorUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

@@ -1,8 +1,8 @@
 package com.wupaas.boot.paas.im.controller;
 
-import com.wupaas.boot.bussiness.request.RequestParams;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.request.RequestParams;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.paas.common.context.ThirdServiceContext;
 import com.wupaas.boot.paas.common.enums.PaasEnum;
 import com.wupaas.boot.paas.im.controller.model.PaasUserRequestModel;

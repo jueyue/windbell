@@ -1,7 +1,7 @@
 package com.wupaas.boot.core.business.security.shiro;
 
 import com.wupaas.boot.core.business.security.jwt.JwtToken;
-import com.wupaas.boot.core.util.CookieUtil;
+import com.wupaas.boot.core.common.util.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;

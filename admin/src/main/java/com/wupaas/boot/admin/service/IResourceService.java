@@ -17,7 +17,7 @@ package com.wupaas.boot.admin.service;
 
 import com.wupaas.boot.admin.model.ResourceModel;
 import com.wupaas.boot.core.business.base.service.IBaseService;
-import com.wupaas.boot.web.iview.IViewTree;
+import com.wupaas.boot.core.web.iview.IViewTree;
 
 import java.util.List;
 

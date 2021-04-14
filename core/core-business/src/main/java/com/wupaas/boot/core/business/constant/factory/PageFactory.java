@@ -2,7 +2,7 @@ package com.wupaas.boot.core.business.constant.factory;
 
 import com.wupaas.boot.core.business.constant.Order;
 import com.wupaas.boot.core.business.request.PageParams;
-import com.wupaas.boot.core.util.ToolUtil;
+import com.wupaas.boot.core.common.util.ToolUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
 

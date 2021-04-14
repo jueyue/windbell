@@ -1,6 +1,6 @@
 package com.wupaas.boot.trade.service.impl;
 
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.trade.repository.AccountSubjectRepository;
 import com.wupaas.boot.trade.model.AccountSubjectModel;
 import com.wupaas.boot.trade.service.IAccountSubjectService;

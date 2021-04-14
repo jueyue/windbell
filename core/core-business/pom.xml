@@ -94,8 +94,8 @@
             <artifactId>core-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.wupaas</groupId>
-            <artifactId>easypoi</artifactId>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
         </dependency>
 
     </dependencies>

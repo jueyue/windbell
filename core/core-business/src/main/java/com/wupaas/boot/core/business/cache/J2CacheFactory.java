@@ -1,7 +1,7 @@
 package com.wupaas.boot.core.business.cache;
 
 import com.wupaas.boot.core.business.context.SpringContextHolder;
-import com.wupaas.boot.core.cache.ICache;
+import com.wupaas.boot.core.common.cache.ICache;
 import net.oschina.j2cache.CacheChannel;
 import org.apache.commons.lang3.NotImplementedException;
 

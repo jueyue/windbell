@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.trade.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
+import com.wupaas.boot.core.business.base.controller.BaseController;
 import com.wupaas.boot.trade.model.PayOrderModel;
 import com.wupaas.boot.trade.service.IPayOrderService;
 import io.swagger.annotations.Api;

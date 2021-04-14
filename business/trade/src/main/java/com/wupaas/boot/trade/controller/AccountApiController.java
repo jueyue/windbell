@@ -1,8 +1,8 @@
 package com.wupaas.boot.trade.controller;
 
-import com.wupaas.boot.bussiness.response.ErrorResponse;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.response.ErrorResponse;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.trade.common.exception.TradeBizException;
 import com.wupaas.boot.trade.model.*;
 import com.wupaas.boot.trade.model.*;

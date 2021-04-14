@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.notice.service;
 
-import com.wupaas.boot.bussiness.base.service.IBaseService;
+import com.wupaas.boot.core.business.base.service.IBaseService;
 import com.wupaas.boot.paas.notice.model.NoticeTemplateModel;
 
 import java.util.List;

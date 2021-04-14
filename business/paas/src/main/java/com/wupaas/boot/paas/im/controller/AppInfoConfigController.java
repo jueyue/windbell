@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.im.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
+import com.wupaas.boot.core.business.base.controller.BaseController;
 import com.wupaas.boot.paas.im.model.AppInfoConfigModel;
 import com.wupaas.boot.paas.im.service.IAppInfoConfigService;
 

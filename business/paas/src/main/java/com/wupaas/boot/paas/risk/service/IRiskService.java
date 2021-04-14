@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.risk.service;
 
-import com.wupaas.boot.bussiness.base.service.IBaseService;
+import com.wupaas.boot.core.business.base.service.IBaseService;
 import com.wupaas.boot.paas.risk.model.RiskIdcardModel;
 
 import java.util.Map;

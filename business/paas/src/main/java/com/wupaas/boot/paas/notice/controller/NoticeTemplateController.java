@@ -15,9 +15,9 @@
  */
 package com.wupaas.boot.paas.notice.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.base.controller.BaseController;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.paas.notice.model.NoticeTemplateModel;
 import com.wupaas.boot.paas.notice.service.INoticeTemplateService;
 import io.swagger.annotations.Api;

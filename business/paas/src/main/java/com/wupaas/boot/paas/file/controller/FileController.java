@@ -1,7 +1,7 @@
 package com.wupaas.boot.paas.file.controller;
 
-import com.wupaas.boot.bussiness.response.Response;
-import com.wupaas.boot.bussiness.response.SuccessResponse;
+import com.wupaas.boot.core.business.response.Response;
+import com.wupaas.boot.core.business.response.SuccessResponse;
 import com.wupaas.boot.paas.file.service.IFileInfoService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;

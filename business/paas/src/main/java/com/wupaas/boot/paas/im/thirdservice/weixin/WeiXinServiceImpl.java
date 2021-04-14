@@ -1,7 +1,7 @@
 package com.wupaas.boot.paas.im.thirdservice.weixin;
 
-import com.wupaas.boot.core.cache.CacheKey;
-import com.wupaas.boot.core.cache.CacheKit;
+import com.wupaas.boot.core.common.cache.CacheKey;
+import com.wupaas.boot.core.business.cache.CacheUtil;
 import com.wupaas.boot.paas.common.exception.PaasBizException;
 import com.wupaas.boot.paas.common.exception.PaasBizExceptionEnum;
 import com.wupaas.boot.paas.im.controller.model.enums.AppIdEnum;
@@ -32,7 +32,7 @@ public class WeiXinServiceImpl {
     private IWeiXinTokenClient    weiXinTokenClient;
 
     public String getToken(String tenantId, int appCode) {
-        String token = CacheKit.get(applicationName, CacheKey.get(tenantId).append(appCode).toString());
+        String token = CacheUtil.get(applicationName, CacheKey.get(tenantId).append(appCode).toString());
         if (StringUtils.isEmpty(token)) {
             AppInfoConfigModel companyCode = appInfoConfigService.getOne(new AppInfoConfigModel(PassTypeEnum.WEI_XIN.getCode(), tenantId, AppIdEnum.ENTERPRISE.getAppId() + ""));
             if (companyCode == null || StringUtils.isEmpty(companyCode.getSecret())) {
@@ -47,7 +47,7 @@ public class WeiXinServiceImpl {
                 log.error("获取app应用失败,appCode " + appCode + ",错误详情" + JSON.toJSONString(resultModel));
                 throw new PaasBizException(PaasBizExceptionEnum.GET_TOKEN_ERROR);
             }
-            CacheKit.put(applicationName, CacheKey.get(tenantId).append(appCode).toString(), resultModel.getAccessToken(), resultModel.getExpiresIn() - 60);
+            CacheUtil.put(applicationName, CacheKey.get(tenantId).append(appCode).toString(), resultModel.getAccessToken(), resultModel.getExpiresIn() - 60);
             token = resultModel.getAccessToken();
         }
         return token;

@@ -23,6 +23,17 @@
         <result column="MDF_TIME" property="mdfTime"/>
     </resultMap>
 
+    <resultMap id="ViewMenuMap" type="com.wupaas.boot.core.web.iview.IViewMenu">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="ICON" property="icon"/>
+        <result column="URL" property="path"/>
+        <result column="NUM" property="num"/>
+        <result column="ISMENU" property="menu"/>
+        <result column="ISOPEN" property="open"/>
+        <result column="code" property="meta.access"/>
+        <result column="ICON" property="meta.icon"/>
+    </resultMap>
 
     <sql id="select_content">
         <if test="ew.entity.id != null and ew.entity.id != '' ">
@@ -81,7 +92,7 @@
         </if>
     </sql>
 
-    <select id="getMenuByRoleId" resultType="com.wupaas.boot.web.iview.IViewTree">
+    <select id="getMenuByRoleId" resultType="com.wupaas.boot.core.web.iview.IViewTree">
         SELECT m.id,m.`NAME` title,case WHEN lrm.id is not null THEN true else false end checked FROM t_system_menu m
         LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID and lrm.ROLE_ID = #{roleId}
         <where>
@@ -98,9 +109,28 @@
         LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID
         LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
         WHERE lur.USER_ID = #{userId}
-        <if test="productCode != null and productCode != ''">
-            and m.PRO_CODE = #{productCode}
+        <if test="webType != null and webType != ''">
+            and m.web_type = #{webType}
         </if>
+    </select>
+    <select id="getMenuByUserId" resultMap="ViewMenuMap">
+        SELECT m.id,m.`NAME`,m.url, m.code, m.icon icon,m.num num,m.ismenu,m.isopen
+        FROM t_system_menu m
+        LEFT JOIN t_system_link_role_menu lrm on m.id = lrm.MENU_ID
+        LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
+        <where>
+            lur.USER_ID = #{userId}
+            and m.web_type = #{webType}
+            and m.status = 1
+            and (m.ismenu = 1 or m.ismenu = 3)
+            <if test="pid != null and pid != ''">
+               and m.P_ID = #{pid}
+            </if>
+            <if test="pid == null ">
+                and m.P_ID is null
+            </if>
+        </where>
+        order by m.num
     </select>
 
 </mapper>

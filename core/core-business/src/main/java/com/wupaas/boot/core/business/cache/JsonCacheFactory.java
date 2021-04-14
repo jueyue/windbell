@@ -1,7 +1,7 @@
 package com.wupaas.boot.core.business.cache;
 
 import com.wupaas.boot.core.business.context.SpringContextHolder;
-import com.wupaas.boot.core.cache.CacheKey;
+import com.wupaas.boot.core.common.cache.CacheKey;
 import com.alibaba.fastjson.JSON;
 import org.springframework.data.redis.core.RedisTemplate;
 

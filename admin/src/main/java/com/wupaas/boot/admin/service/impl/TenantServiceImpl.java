@@ -7,7 +7,7 @@ import com.wupaas.boot.admin.model.UserModel;
 import com.wupaas.boot.admin.repository.TenantRepository;
 import com.wupaas.boot.admin.service.*;
 import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
-import com.wupaas.boot.core.cache.CacheKey;
+import com.wupaas.boot.core.common.cache.CacheKey;
 import com.wupaas.boot.core.business.cache.RedisUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.time.DateUtils;

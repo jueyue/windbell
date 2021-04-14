@@ -1,7 +1,7 @@
 
 package com.wupaas.boot.trade.controller;
 
-import com.wupaas.boot.bussiness.base.controller.BaseController;
+import com.wupaas.boot.core.business.base.controller.BaseController;
 import com.wupaas.boot.trade.model.AccountBalanceCalcModel;
 import com.wupaas.boot.trade.service.IAccountBalanceCalcService;
 import org.slf4j.Logger;

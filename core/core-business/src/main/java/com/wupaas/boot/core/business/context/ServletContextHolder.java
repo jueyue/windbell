@@ -1,6 +1,6 @@
 package com.wupaas.boot.core.business.context;
 
-import com.wupaas.boot.core.support.WafRequestWrapper;
+import com.wupaas.boot.core.common.support.WafRequestWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

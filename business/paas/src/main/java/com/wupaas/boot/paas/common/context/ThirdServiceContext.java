@@ -1,7 +1,7 @@
 package com.wupaas.boot.paas.common.context;
 
-import com.wupaas.boot.core.cache.CacheKey;
-import com.wupaas.boot.core.cache.RedisKit;
+import com.wupaas.boot.core.common.cache.CacheKey;
+import com.wupaas.boot.core.business.cache.RedisUtil;
 import com.wupaas.boot.paas.common.enums.PaasEnum;
 import com.wupaas.boot.paas.im.service.ITokenService;
 
@@ -36,7 +36,7 @@ public class ThirdServiceContext {
         if (mapThreadLocal.get() != null && mapThreadLocal.get().get(APP_TYPE) != null) {
             return mapThreadLocal.get().get(APP_TYPE).toString();
         } else {
-            String appType = RedisKit.get(CacheKey.get("admin").append("tenant").append(tenantId).append(APP_TYPE).toString()).toString();
+            String appType = RedisUtil.get(CacheKey.get("admin").append("tenant").append(tenantId).append(APP_TYPE).toString()).toString();
             put(APP_TYPE, appType);
             return appType;
         }
@@ -56,10 +56,10 @@ public class ThirdServiceContext {
         String              tenantId = map.get(TENANT_ID).toString();
         String              appCode  = map.get(APP_CODE).toString();
         String              appType  = getAppType(tenantId);
-        String              token    = RedisKit.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString());
+        String              token    = RedisUtil.get(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString());
         if (token == null) {
             token = tokenService.getToken(tenantId, appType, appCode);
-            RedisKit.put(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString(), token, 7000);
+            RedisUtil.put(CacheKey.get("thirdservice").append("token").append(appType).append(tenantId).append(appCode).toString(), token, 7000);
         }
         return token;
     }

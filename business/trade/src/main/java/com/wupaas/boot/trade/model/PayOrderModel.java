@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.trade.model;
 
-import com.wupaas.boot.bussiness.model.IdTenantBaseModel;
+import com.wupaas.boot.core.business.model.IdTenantBaseModel;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.util.Date;

@@ -1,8 +1,8 @@
 package com.wupaas.boot.core.business.aop;
 
 import com.wupaas.boot.core.business.response.ErrorResponse;
-import com.wupaas.boot.core.exception.BootException;
-import com.wupaas.boot.core.exception.BootExceptionEnum;
+import com.wupaas.boot.core.common.exception.BootException;
+import com.wupaas.boot.core.common.exception.BootExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;

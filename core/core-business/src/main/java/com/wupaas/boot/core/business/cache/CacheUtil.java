@@ -16,7 +16,7 @@
 
 package com.wupaas.boot.core.business.cache;
 
-import com.wupaas.boot.core.cache.ICache;
+import com.wupaas.boot.core.common.cache.ICache;
 
 import java.util.Collection;
 

@@ -21,7 +21,7 @@ import com.wupaas.boot.admin.repository.DeptRepository;
 import com.wupaas.boot.admin.service.IDeptService;
 import com.wupaas.boot.admin.service.ILinkDeptDataAuthService;
 import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
-import com.wupaas.boot.core.support.CollectionKit;
+import com.wupaas.boot.core.common.support.CollectionKit;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

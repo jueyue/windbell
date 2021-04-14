@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.im.service.impl;
 
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.paas.im.model.AppInfoConfigModel;
 import com.wupaas.boot.paas.im.repository.AppInfoConfigRepository;
 import com.wupaas.boot.paas.im.service.IAppInfoConfigService;

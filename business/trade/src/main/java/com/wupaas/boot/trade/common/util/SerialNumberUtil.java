@@ -1,6 +1,6 @@
 package com.wupaas.boot.trade.common.util;
 
-import com.wupaas.boot.core.util.DateUtil;
+import com.wupaas.boot.core.common.util.DateUtil;
 import org.apache.commons.text.RandomStringGenerator;
 
 import java.util.Date;

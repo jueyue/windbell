@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.notice.service.impl;
 
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.paas.notice.model.NoticeTemplateModel;
 import com.wupaas.boot.paas.notice.repository.NoticeTemplateRepository;
 import com.wupaas.boot.paas.notice.service.INoticeTemplateService;

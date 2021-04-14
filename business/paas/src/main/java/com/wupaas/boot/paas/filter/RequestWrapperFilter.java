@@ -1,6 +1,6 @@
 package com.wupaas.boot.paas.filter;
 
-import com.wupaas.boot.core.aop.RequestWrapper;
+import com.wupaas.boot.core.business.aop.RequestWrapper;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

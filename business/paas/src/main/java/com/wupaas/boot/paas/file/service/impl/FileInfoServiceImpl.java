@@ -15,8 +15,8 @@
  */
 package com.wupaas.boot.paas.file.service.impl;
 
-import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
-import com.wupaas.boot.core.util.MD5Util;
+import com.wupaas.boot.core.business.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.core.common.util.MD5Util;
 import com.wupaas.boot.paas.file.model.FileInfoModel;
 import com.wupaas.boot.paas.file.repository.FileInfoRepository;
 import com.wupaas.boot.paas.file.service.IFileInfoService;

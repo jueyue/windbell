@@ -15,7 +15,7 @@
  */
 package com.wupaas.boot.paas.risk.model;
 
-import com.wupaas.boot.bussiness.model.IdTenantBaseModel;
+import com.wupaas.boot.core.business.model.IdTenantBaseModel;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;

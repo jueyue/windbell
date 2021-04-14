@@ -25,12 +25,12 @@
         LEFT JOIN t_system_link_role_menu lrm on lmr.MENU_ID = lrm.MENU_ID
         LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
         WHERE (lur.USER_ID = #{userId}
-        <if test="productCode != null and productCode != ''">
-            and m.PRO_CODE = #{productCode}
+        <if test="webType != null and webType != ''">
+            and m.web_type = #{webType}
         </if>)
         or  r.TYPE = 2
     </select>
-    <select id="getTreeByMenuId" resultType="com.wupaas.boot.web.iview.IViewTree">
+    <select id="getTreeByMenuId" resultType="com.wupaas.boot.core.web.iview.IViewTree">
         SELECT r.id,r.name title,case WHEN lrm.id is not null THEN true else false end checked FROM t_system_resource r
         LEFT JOIN t_system_link_menu_resource lrm on r.id = lrm.RESOURCE_ID and lrm.MENU_ID= #{menuId}
         <where>
@@ -41,6 +41,24 @@
                 r.P_ID is null
             </if>
         </where>
+    </select>
+    <select id="getResourceByUser" resultType="java.lang.String">
+        SELECT
+            DISTINCT r.URL
+        FROM
+            t_system_resource r
+                LEFT JOIN t_system_link_menu_resource lmr ON r.id = lmr.RESOURCE_ID
+                LEFT JOIN t_system_menu m on m.ID = lmr.MENU_ID
+                LEFT JOIN t_system_link_role_menu lrm on m.ID = lrm.MENU_ID
+                LEFT JOIN t_system_link_user_role lur on lur.ROLE_ID = lrm.ROLE_ID
+                LEFT JOIN t_system_user u on u.ID = lur.USER_ID
+        where r.TYPE = 2 or ( u.ACCOUNT = #{userName} and m.status = 1 and (m.ismenu = 1 or m.ismenu = 3))
+    </select>
+    <select id="getNotNeedPermissions" resultType="java.lang.String">
+        SELECT
+            DISTINCT r.URL
+        FROM
+            t_system_resource r where r.TYPE = 1
     </select>
 
 

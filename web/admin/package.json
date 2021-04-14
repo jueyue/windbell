@@ -20,7 +20,7 @@
     "dayjs": "^1.7.7",
     "echarts": "^4.0.4",
     "html2canvas": "^1.0.0-alpha.12",
-    "iview": "^3.2.2",
+    "view-design": "^4.4.0",
     "iview-area": "^1.5.17",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",

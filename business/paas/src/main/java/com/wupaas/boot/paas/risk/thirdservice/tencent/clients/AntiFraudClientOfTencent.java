@@ -1,6 +1,6 @@
 package com.wupaas.boot.paas.risk.thirdservice.tencent.clients;
 
-import com.wupaas.boot.core.util.HttpsUtil;
+import com.wupaas.boot.core.common.util.HttpsUtil;
 import com.wupaas.boot.paas.risk.thirdservice.IAntiFraudClient;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;

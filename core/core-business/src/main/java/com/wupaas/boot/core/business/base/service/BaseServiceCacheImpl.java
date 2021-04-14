@@ -1,7 +1,7 @@
 package com.wupaas.boot.core.business.base.service;
 
-import com.wupaas.boot.core.exception.BootException;
-import com.wupaas.boot.core.exception.BootExceptionEnum;
+import com.wupaas.boot.core.common.exception.BootException;
+import com.wupaas.boot.core.common.exception.BootExceptionEnum;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

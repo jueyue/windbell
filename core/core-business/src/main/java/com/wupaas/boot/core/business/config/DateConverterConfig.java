@@ -1,6 +1,6 @@
 package com.wupaas.boot.core.business.config;
 
-import com.wupaas.boot.core.util.DateUtil;
+import com.wupaas.boot.core.common.util.DateUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

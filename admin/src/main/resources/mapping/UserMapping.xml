@@ -69,5 +69,13 @@
             AND t.WXID = #{ew.entity.wxid}
         </if>
     </sql>
+    <select id="getUserByRole" resultMap="BaseResultMap">
+        select u.*
+        from t_system_user u
+                 LEFT JOIN t_system_link_user_role l on l.USER_ID = u.id
+                 LEFT JOIN t_system_role r on r.ID = l.ROLE_ID
+        where u.TENANT_ID = #{tenantId}
+          and r.NAME = #{roleName}
+    </select>
 
 </mapper>

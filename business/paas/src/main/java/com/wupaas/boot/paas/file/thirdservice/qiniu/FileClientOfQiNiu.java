@@ -41,8 +41,12 @@ public class FileClientOfQiNiu implements IFileClient {
         /**
          * 生成上传凭证
          */
-        auth = Auth.create(accesskey, secretkey);
-        uploadManager = new UploadManager(cfg);
+        try {
+            auth = Auth.create(accesskey, secretkey);
+            uploadManager = new UploadManager(cfg);
+        } catch (Exception e) {
+            log.error("7牛链接失败：",e);
+        }
 
     }
 

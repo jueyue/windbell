@@ -17,8 +17,8 @@ package com.wupaas.boot.admin.service;
 
 import com.wupaas.boot.admin.model.MenuModel;
 import com.wupaas.boot.core.business.base.service.IBaseService;
-import com.wupaas.boot.web.iview.IViewMenu;
-import com.wupaas.boot.web.iview.IViewTree;
+import com.wupaas.boot.core.web.iview.IViewMenu;
+import com.wupaas.boot.core.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.List;

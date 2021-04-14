@@ -17,8 +17,8 @@ package com.wupaas.boot.admin.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wupaas.boot.admin.model.MenuModel;
-import com.wupaas.boot.web.iview.IViewMenu;
-import com.wupaas.boot.web.iview.IViewTree;
+import com.wupaas.boot.core.web.iview.IViewMenu;
+import com.wupaas.boot.core.web.iview.IViewTree;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
