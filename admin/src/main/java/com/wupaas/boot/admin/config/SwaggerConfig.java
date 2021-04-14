@@ -1,7 +1,7 @@
 package com.wupaas.boot.admin.config;
 
 import com.wupaas.boot.admin.common.exception.BizExceptionEnum;
-import com.wupaas.boot.bussiness.exception.BootExceptionEnum;
+import com.wupaas.boot.core.exception.BootExceptionEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -1,5 +1,5 @@
 <template>
-  <error-content code="404" desc="Oh~~您的页面好像飞走了~" :src="src"/>
+  <error-content code="404" desc="您已抵达未知之地,我方正在查找中" :src="src"/>
 </template>
 
 <script>

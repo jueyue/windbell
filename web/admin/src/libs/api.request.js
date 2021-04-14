@@ -1,7 +1,7 @@
 import HttpRequest from '@/libs/axios'
 import config from '@/config/index'
-import { Message } from 'iview'
-import {getUserId} from '../api/user'
+import { Message } from 'view-design'
+import {getUserId} from './util'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
@@ -119,7 +119,7 @@ export const U = (path, params) => {
     params.mdfUserId = getUserId()
   }
   return axios.post(path + '/update', params).then(data => {
-    if (data && data.success) {
+    if (data) {
       Message.success('修改成功')
       return data
     } else {

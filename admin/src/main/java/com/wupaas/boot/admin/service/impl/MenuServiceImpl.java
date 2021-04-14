@@ -15,13 +15,14 @@
  */
 package com.wupaas.boot.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wupaas.boot.admin.model.MenuModel;
 import com.wupaas.boot.admin.repository.MenuRepository;
 import com.wupaas.boot.admin.service.IMenuService;
 import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.core.support.CollectionKit;
+import com.wupaas.boot.web.iview.IViewMenu;
 import com.wupaas.boot.web.iview.IViewTree;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -106,19 +107,36 @@ public class MenuServiceImpl extends BaseServiceCacheImpl<MenuRepository, MenuMo
     }
 
     @Override
-    public List<String> getAllByUserId(String userId, String productCode) {
-        return menuRepository.getAllByUserId(userId, productCode);
+    public List<String> getAllByUserId(String userId, String webType) {
+        return menuRepository.getAllByUserId(userId, webType);
+    }
+
+    @Override
+    public List<IViewMenu> getMenuTreeByUserId(String webType, String userId) {
+        List<IViewMenu> list = menuRepository.getMenuByUserId(userId, webType, null);
+        loadAllMenuSubTree(list, webType, userId);
+        return list;
+    }
+
+    private void loadAllMenuSubTree(List<IViewMenu> list, String webType, String userId) {
+        list.forEach(menu -> {
+            List<IViewMenu> tempList = menuRepository.getMenuByUserId(userId, webType, menu.getId());
+            if (CollectionKit.isNotEmpty(tempList)) {
+                menu.setChildren(tempList);
+                loadAllMenuSubTree(tempList, webType, userId);
+            }
+        });
     }
 
     private void loadAllSubTree(List<IViewTree> list, String roleId) {
-        for (int i = 0; i < list.size(); i++) {
-            List<IViewTree> tempList = menuRepository.getMenuByRoleId(roleId, list.get(i).getId());
+        list.forEach(tree -> {
+            List<IViewTree> tempList = menuRepository.getMenuByRoleId(roleId, tree.getId());
             if (CollectionKit.isNotEmpty(tempList)) {
-                list.get(i).setChildren(tempList);
+                tree.setChildren(tempList);
                 // 前端设置true会全选
-                list.get(i).setChecked(false);
+                tree.setChecked(false);
                 loadAllSubTree(tempList, roleId);
             }
-        }
+        });
     }
 }

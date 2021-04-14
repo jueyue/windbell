@@ -1,5 +1,5 @@
 import { login, logout, getUserInfo } from '@/api/user'
-import { setUserId, getUserId, setToken, getToken } from '@/libs/util'
+import { setUserId, getUserId, setToken, getToken, setTenantId, removeToken } from '@/libs/util'
 
 export default {
   state: {
@@ -17,6 +17,10 @@ export default {
     setUserId (state, id) {
       state.userId = id
       setUserId(id)
+    },
+    setTenantId (state, id) {
+      state.tenantId = id
+      setTenantId(id)
     },
     setUserName (state, name) {
       state.account = name
@@ -69,12 +73,18 @@ export default {
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
         try {
+          if (!state.userId || state.userId === 'undefined') {
+            removeToken()
+            window.location.href = '/#/login'
+            return
+          }
           getUserInfo(state.userId).then(res => {
             const data = res
             commit('setAvatar', data.avatar)
             commit('setUserName', data.name)
             commit('setAccess', JSON.parse(data.access))
             commit('setHasGetInfo', true)
+            commit('setTenantId', data.tenantId)
             resolve(data)
           }).catch(err => {
             reject(err)

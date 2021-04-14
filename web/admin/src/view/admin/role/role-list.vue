@@ -50,7 +50,7 @@ import Tables from '_c/tables'
 import { L, D, P } from '@/libs/api.request'
 import roleInfo from './role-info'
 import { getIds, getListByFieldJudge } from '@/libs/util'
-import { Message } from 'iview'
+import { Message } from 'view-design'
 
 export default {
   name: 'role-list',

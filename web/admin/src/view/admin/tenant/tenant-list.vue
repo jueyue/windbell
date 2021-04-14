@@ -67,7 +67,6 @@ export default {
             return h('span', this.getDictVal('tenant_type', params.row.merType))
           } },
 
-        { title: '营业执照', key: 'creditCode' },
         { title: '联系人', key: 'linkman' },
         { title: '联系电话', key: 'phone' },
         { title: '短信签名',
@@ -89,7 +88,7 @@ export default {
         {
           title: '操作',
           key: 'handle',
-          minWidth: 200,
+          minWidth: 240,
           options: ['update', 'detail']
         }
       ],

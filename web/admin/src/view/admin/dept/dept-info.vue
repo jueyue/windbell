@@ -40,7 +40,7 @@
 <script>
 
 import { C, U, P } from '@/libs/api.request'
-import { getTenantId } from '@/api/user'
+import { getTenantId } from '@/libs/util'
 
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'

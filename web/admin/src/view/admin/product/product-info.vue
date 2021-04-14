@@ -9,7 +9,7 @@
         <Row>
           <Col span="8">
             <FormItem label="产品代码" prop="proCode">
-              <Input v-model="form.proCode" :disabled="disable"></Input>
+              <Input v-model="form.proCode" :disabled="type !== 'create'"></Input>
             </FormItem>
           </Col>
           <Col span="8">

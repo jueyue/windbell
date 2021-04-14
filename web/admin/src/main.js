@@ -4,29 +4,29 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import iView from 'iview'
+import ViewUI from 'view-design'
 import i18n from '@/locale'
 import config from '@/config'
 import importDirective from '@/directive'
 import installPlugin from '@/plugin'
-import 'iview/dist/styles/iview.css'
+import 'view-design/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 // 风铃通用服务
 // 通用请求JS
-import {C, U, R, D, L, G, P} from '@/libs/api.request'
-import { dict, getDictVal, numDict } from '@/libs/common.request'
-import { getTenantId } from '@/api/user'
+import {C, U, R, D, L, G, P} from './libs/api.request'
+import { dict, getDictVal, numDict } from './libs/common.request'
+import { getTenantId } from './libs/util'
 // 通用CSS
 import '@/css/info-base.css'
 import '@/css/list-base.css'
-// 实际打包时应该不引入mock
-/* eslint-disable */
-if (process.env.NODE_ENV !== 'production') require('@/mock')
-
-Vue.use(iView, {
+// 全局自定义组件
+import Dict from './components/dict'
+Vue.use(Dict)
+Vue.use(ViewUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
+
 /**
  * @description 注册admin内置插件
  */
@@ -59,7 +59,6 @@ Vue.prototype.numDict = numDict
 Vue.prototype.getDictVal = getDictVal
 Vue.prototype.getTenantId = getTenantId
 Vue.prototype.PAGE_SIZE_MAX = 100
-
 
 /* eslint-disable no-new */
 new Vue({

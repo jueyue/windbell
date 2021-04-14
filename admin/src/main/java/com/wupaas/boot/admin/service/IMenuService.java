@@ -17,6 +17,7 @@ package com.wupaas.boot.admin.service;
 
 import com.wupaas.boot.admin.model.MenuModel;
 import com.wupaas.boot.bussiness.base.service.IBaseService;
+import com.wupaas.boot.web.iview.IViewMenu;
 import com.wupaas.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
@@ -49,8 +50,16 @@ public interface IMenuService extends IBaseService<MenuModel> {
     /**
      * 根据用户ID,获取用户的所有权限
      * @param userId
-     * @param productCode
+     * @param webType
      * @return
      */
-    List<String> getAllByUserId(String userId,String productCode);
+    List<String> getAllByUserId(String userId,String webType);
+
+    /**
+     * 根据用户ID,获取用户的菜单权限
+     * @param webType
+     * @param userId
+     * @return
+     */
+    List<IViewMenu> getMenuTreeByUserId(String webType, String userId);
 }

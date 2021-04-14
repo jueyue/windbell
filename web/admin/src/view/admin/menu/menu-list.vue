@@ -42,7 +42,7 @@
           </div>
         </template>
         <template slot="webType" slot-scope="scope">
-          {{ dictVal('menu_web_type', scope.row.webType) }}
+          {{ dictVal('web_type', scope.row.webType) }}
         </template>
         <template slot="ismenu" slot-scope="scope">
           {{ dictVal('yes_no', scope.row.ismenu) }}
@@ -93,7 +93,7 @@ export default {
         {
           label: '操作',
           type: 'template',
-          minWidth: 260,
+          minWidth: 300,
           template: 'options'
         }
       ],
@@ -149,7 +149,7 @@ export default {
   },
   mounted () {
     this.handleSearch()
-    dict('menu_web_type').then(data => {
+    dict('web_type').then(data => {
       this.webTypeOptions = data
     })
     dict('status').then(data => {

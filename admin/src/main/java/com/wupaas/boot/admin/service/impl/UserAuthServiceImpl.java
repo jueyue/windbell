@@ -44,7 +44,7 @@ public class UserAuthServiceImpl extends BaseServiceCacheImpl<UserAuthRepository
 
     @Override
     public boolean save(UserAuthModel model) {
-        model.setSalt(new RandomStringGenerator.Builder().withinRange('a', 'Z').build().generate(8));
+        model.setSalt(new RandomStringGenerator.Builder().withinRange('A', 'z').build().generate(8));
         if (StringUtils.isEmpty(model.getPassword())) {
             model.setPassword(model.getAccount());
         }

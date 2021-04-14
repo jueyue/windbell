@@ -1,4 +1,7 @@
 import axios from '@/libs/api.request'
+import {removeToken} from '@/libs/util'
+
+export const WBE_TYPE = '1001'
 
 export const login = ({account, password}) => {
   const data = {
@@ -15,32 +18,34 @@ export const login = ({account, password}) => {
 }
 
 export const getUserInfo = (userId) => {
+  if (!userId || userId === 'undefined') {
+    removeToken()
+    window.location.href = '/#/login'
+    return
+  }
   return axios.request({
-    url: '/admin/user/userInfo/' + userId,
+    url: `/admin/user/userInfo/${WBE_TYPE}/` + userId,
     method: 'get'
   }).then(data => {
-    sessionStorage.setItem('user', data)
-    sessionStorage.setItem('tenantId', data.tenantId)
-    sessionStorage.setItem('userId', data.userId)
     return data
+  })
+}
+
+export const getRouters = (userId) => {
+  if (!userId || userId === 'undefined') {
+    removeToken()
+    window.location.href = '/#/login'
+    return
+  }
+  return axios.request({
+    url: `/admin/menu/menuTree/${WBE_TYPE}/` + userId,
+    method: 'get'
   })
 }
 
 export const logout = (token) => {
   return axios.request({
-    url: '/admin/user/logout',
+    url: '/admin/userAuth/logout',
     method: 'post'
   })
-}
-
-export const getUser = () => {
-  return sessionStorage.getItem('user')
-}
-
-export const getTenantId = () => {
-  return sessionStorage.getItem('tenantId')
-}
-
-export const getUserId = () => {
-  return sessionStorage.getItem('userId')
 }

@@ -27,10 +27,7 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,13 +61,20 @@ public class UserController extends BaseController<IUserService, UserModel> {
         return super.handlerCreate(model);
     }
 
-    @RequestMapping(value = "/userInfo/{userId}", method = RequestMethod.GET)
-    public Response userInfo(@PathVariable String userId) {
+    @RequestMapping(value = "/userInfo/{webType}/{userId}", method = RequestMethod.GET)
+    public Response userInfo(@PathVariable String userId, @PathVariable(required = false) String webType) {
         UserModel user = userService.getById(userId);
         // 获取所有的菜单权限
-        List<String> access = menuService.getAllByUserId(userId, "1001");
+        List<String> access = menuService.getAllByUserId(userId, webType);
         user.setAccess(JSON.toJSONString(access));
         return new SuccessResponse(user);
     }
+
+
+    @RequestMapping(value = "/getUserByRole/{roleName}/{tenantId}", method = RequestMethod.GET)
+    public Response getUserByRole(@PathVariable String roleName, @PathVariable String tenantId) {
+        return new SuccessResponse(userService.getUserByRole(roleName, tenantId));
+    }
+
 
 }

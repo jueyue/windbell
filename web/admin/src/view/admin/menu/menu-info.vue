@@ -15,7 +15,7 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="编号" prop="code">
+            <FormItem label="权限" prop="code">
               <Input v-model="form.code" :disabled="disable"></Input>
             </FormItem>
           </Col>
@@ -30,20 +30,23 @@
             </FormItem>
           </Col>
           <Col span="8">
+            <FormItem label="地址" prop="url">
+              <Input v-model="form.url" :disabled="disable"></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
             <FormItem label="图标" prop="icon">
-              <Input v-model="form.icon" :disabled="disable"></Input>
+              <Input v-model="form.icon" :disabled="disable" @on-focus="selectIcon" :prefix="form.icon"></Input>
             </FormItem>
           </Col>
           <Col span="8">
             <FormItem label="排序号" prop="num">
-              <Input v-model="form.num" :disabled="disable"></Input>
+              <Input v-model="form.num" :disabled="disable" type="number"></Input>
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="是否菜单" prop="ismenu">
-              <Select v-model="form.ismenu" :disabled="disable">
-                <Option :value="item.key" v-for="(item, index) in yesNoOptions" :key="index">{{item.name}}</Option>
-              </Select>
+            <FormItem label="菜单" prop="ismenu">
+              <Dict dict="menu-type" v-model="form.ismenu" :disabled="disable"></Dict>
             </FormItem>
           </Col>
           <Col span="8">
@@ -66,7 +69,7 @@
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem label="是否打开" prop="isopen">
+            <FormItem label="打开" prop="isopen">
               <Select v-model="form.isopen" :disabled="disable">
                 <Option :value="item.key" v-for="(item, index) in yesNoOptions" :key="index">{{item.name}}</Option>
               </Select>
@@ -79,6 +82,7 @@
       <Button @click="closeModel">取消</Button>
       <Button type="primary" @click="submit"  v-show="!disable">提交</Button>
     </div>
+    <IconSelect ref="iconSelect" @on-select="iconSelected"></IconSelect>
   </Modal>
 </template>
 
@@ -88,22 +92,27 @@ import { C, U, P } from '@/libs/api.request'
 import { dict } from '@/libs/common.request'
 
 import Treeselect from '@riophae/vue-treeselect'
+import IconSelect from '@/components/icon-select/icon-select'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 export default {
   name: 'menu-info',
   components: {
-    Treeselect
+    Treeselect,
+    IconSelect
   },
   data () {
     return {
-      form: {},
+      form: {
+        icon: ''
+      },
       isShow: false,
       type: 'add',
       disable: false,
       webTypeOptions: [],
       statusOptions: [],
       yesNoOptions: [],
+      menuType: [],
       menuOptions: [],
       products: [],
       normalizer (node) {
@@ -129,7 +138,7 @@ export default {
           { required: true, message: 'URL地址不允许为空', trigger: 'blur' }
         ],
         num: [
-          { required: true, message: '排序号不允许为空', trigger: 'blur' }
+          { required: true, message: '排序号不允许为空', trigger: 'blur', type: 'number' }
         ],
         ismenu: [
           { required: true, message: '是否是不允许为空', trigger: 'blur' }
@@ -152,6 +161,7 @@ export default {
       this.type = type
       if (data) {
         this.form = data
+        this.form.webType = this.form.webType + ''
       } else {
         this.form = {}
       }
@@ -188,6 +198,13 @@ export default {
           this.$Message.error('请检查填写的数据')
         }
       })
+    },
+    selectIcon () {
+      this.$refs.iconSelect.select()
+    },
+    iconSelected (icon) {
+      // this.form['icon'] = icon
+      this.$set(this.form, 'icon', icon)
     }
   },
   mounted: function () {
@@ -197,8 +214,11 @@ export default {
     dict('status').then(data => {
       this.statusOptions = data
     })
-    dict('menu_web_type').then(data => {
+    dict('web_type').then(data => {
       this.webTypeOptions = data
+    })
+    dict('menu-type').then(data => {
+      this.menuType = data
     })
   }
 }

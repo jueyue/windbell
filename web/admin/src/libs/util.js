@@ -7,6 +7,8 @@ export const TOKEN_KEY = 'token'
 
 export const USER_ID = 'userId'
 
+export const TENANT_ID = 'tenantId'
+
 export const setToken = (token) => {
   Cookies.set(TOKEN_KEY, token, {expires: config.cookieExpires || 1})
 }
@@ -34,7 +36,20 @@ export const getUserId = () => {
   if (userId) {
     return userId
   } else {
-    return false
+    return null
+  }
+}
+
+export const setTenantId = (tenantId) => {
+  Cookies.set(TENANT_ID, tenantId, {expires: config.cookieExpires || 1})
+}
+
+export const getTenantId = () => {
+  const tenantId = Cookies.get(TENANT_ID)
+  if (tenantId) {
+    return tenantId
+  } else {
+    return null
   }
 }
 

@@ -22,6 +22,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Resource持久化
@@ -35,16 +36,25 @@ public interface ResourceRepository extends BaseMapper<ResourceModel> {
     /**
      * 获取用户的所有权限
      * @param userId
-     * @param productCode
+     * @param webType
      * @return
      */
-    List<String> getAllByUserId(@Param("userId") String userId, @Param("productCode") String productCode);
+    List<String> getAllByUserId(@Param("userId") String userId, @Param("webType") String webType);
 
     /**
      * 查询资源树
      * @param menuId
-     * @param o
+     * @param pid
      * @return
      */
     List<IViewTree> getTreeByMenuId(@Param("menuId") String menuId, @Param("pid") String pid);
+
+    /**
+     * 查询用户的资源权限
+     * @param user
+     * @return
+     */
+    Set<String> getResourceByUser(@Param("userName") String user);
+
+    Set<String> getNotNeedPermissions();
 }

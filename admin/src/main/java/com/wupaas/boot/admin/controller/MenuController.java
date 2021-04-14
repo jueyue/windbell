@@ -15,6 +15,7 @@
  */
 package com.wupaas.boot.admin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wupaas.boot.admin.model.MenuModel;
 import com.wupaas.boot.admin.service.IMenuService;
 import com.wupaas.boot.bussiness.base.controller.BaseController;
@@ -22,8 +23,8 @@ import com.wupaas.boot.bussiness.request.RequestParams;
 import com.wupaas.boot.bussiness.response.Response;
 import com.wupaas.boot.bussiness.response.SuccessResponse;
 import com.wupaas.boot.core.support.BeanKit;
+import com.wupaas.boot.web.iview.IViewMenu;
 import com.wupaas.boot.web.iview.IViewTree;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -52,7 +53,7 @@ public class MenuController extends BaseController<IMenuService, MenuModel> {
     @Autowired
     private IMenuService menuService;
 
-    @ApiOperation(value = "获取机构列表")
+    @ApiOperation(value = "获取菜单列表")
     @RequestMapping(value = "/treeList", method = RequestMethod.POST)
     public Response<List<MenuModel>> treeList(@RequestBody RequestParams<MenuModel> params) {
         QueryWrapper wrapper = new QueryWrapper<>(params.getModel());
@@ -67,17 +68,24 @@ public class MenuController extends BaseController<IMenuService, MenuModel> {
         return new SuccessResponse(list);
     }
 
-    @ApiOperation(value = "获取机构树")
+    @ApiOperation(value = "获取菜单树")
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
     public Response<List<IViewTree>> tree(@RequestParam String roleId) {
         List<IViewTree> list = menuService.getTreeByRoleId(roleId);
         return new SuccessResponse(list);
     }
 
+    @ApiOperation(value = "获取菜单树")
+    @RequestMapping(value = "/menuTree/{webType}/{userId}", method = RequestMethod.GET)
+    public Response<List<IViewMenu>> menuTree(@PathVariable String webType, @PathVariable String userId) {
+        List<IViewMenu> list = menuService.getMenuTreeByUserId(webType, userId);
+        return new SuccessResponse(list);
+    }
+
     @ApiOperation(value = "查询用户访问权限")
-    @GetMapping(value = "/queryUserPermissions/{productCode}/{userId}")
-    public Response<List<String>> queryUserPermissions(@PathVariable String productCode,@PathVariable String userId) {
-        List<String> access = menuService.getAllByUserId(userId,productCode);
+    @GetMapping(value = "/queryUserPermissions/{webType}/{userId}")
+    public Response<List<String>> queryUserPermissions(@PathVariable String webType, @PathVariable String userId) {
+        List<String> access = menuService.getAllByUserId(userId, webType);
         return new SuccessResponse(access);
     }
 

@@ -34,10 +34,10 @@ public interface IResourceService extends IBaseService<ResourceModel> {
      * 根据用户ID,获取用户的所有权限
      *
      * @param userId
-     * @param productCode
+     * @param webType
      * @return
      */
-    List<String> getAllByUserId(String userId, String productCode);
+    List<String> getAllByUserId(String userId, String webType);
 
     /**
      * 更加菜单查询资源

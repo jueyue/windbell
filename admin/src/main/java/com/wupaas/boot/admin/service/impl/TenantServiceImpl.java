@@ -8,9 +8,8 @@ import com.wupaas.boot.admin.repository.TenantRepository;
 import com.wupaas.boot.admin.service.*;
 import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
 import com.wupaas.boot.core.cache.CacheKey;
-import com.wupaas.boot.core.cache.RedisKit;
+import com.wupaas.boot.bussiness.cache.RedisUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wupaas.boot.admin.service.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +71,7 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
         linkTenantProductService.save(link);
 
         // 同步redis数据
-        RedisKit.put(CacheKey.get("admin").append("tenant").append(entity.getTenantId()).append("appType").toString(), entity.getPaas());
+        RedisUtil.put(CacheKey.get("admin").append("tenant").append(entity.getTenantId()).append("appType").toString(), entity.getPaas());
         return true;
     }
 
@@ -116,7 +115,7 @@ public class TenantServiceImpl extends BaseServiceCacheImpl<TenantRepository, Te
     public void init() {
         List<TenantModel> list = list();
         list.forEach(tenantModel ->
-                RedisKit.put(CacheKey.get("admin").append("tenant").append(tenantModel.getTenantId()).append("appType").toString(), tenantModel.getPaas())
+                RedisUtil.put(CacheKey.get("admin").append("tenant").append(tenantModel.getTenantId()).append("appType").toString(), tenantModel.getPaas())
         );
     }
 

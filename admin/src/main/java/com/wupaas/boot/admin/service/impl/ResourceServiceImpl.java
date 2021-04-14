@@ -21,6 +21,7 @@ import com.wupaas.boot.admin.repository.ResourceRepository;
 import com.wupaas.boot.admin.service.ILinkMenuResourceService;
 import com.wupaas.boot.admin.service.IResourceService;
 import com.wupaas.boot.bussiness.base.service.BaseServiceCacheImpl;
+import com.wupaas.boot.bussiness.security.shiro.IShiroPermissionsHandler;
 import com.wupaas.boot.core.support.CollectionKit;
 import com.wupaas.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -33,6 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 资源管理服务实现
@@ -41,7 +43,7 @@ import java.util.List;
  * @Date 2019-07-06 17:09:00
  */
 @Service("resourceService")
-public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository, ResourceModel> implements IResourceService {
+public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository, ResourceModel> implements IResourceService, IShiroPermissionsHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResourceServiceImpl.class);
 
@@ -84,8 +86,8 @@ public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository
     }
 
     @Override
-    public List<String> getAllByUserId(String userId, String productCode) {
-        return resourceRepository.getAllByUserId(userId, productCode);
+    public List<String> getAllByUserId(String userId, String webType) {
+        return resourceRepository.getAllByUserId(userId, webType);
     }
 
     @Override
@@ -116,4 +118,15 @@ public class ResourceServiceImpl extends BaseServiceCacheImpl<ResourceRepository
         }
     }
 
+    @Override
+    public Set<String> getPermissions(String user) {
+        Set<String> permissions = resourceRepository.getResourceByUser(user);
+        return toColon(permissions);
+    }
+
+    @Override
+    public Set<String> getNotNeedPermissions() {
+        Set<String> permissions = resourceRepository.getNotNeedPermissions();
+        return toColon(permissions);
+    }
 }

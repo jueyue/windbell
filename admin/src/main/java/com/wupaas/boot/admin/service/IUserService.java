@@ -18,6 +18,8 @@ package com.wupaas.boot.admin.service;
 import com.wupaas.boot.admin.model.UserModel;
 import com.wupaas.boot.bussiness.base.service.IBaseService;
 
+import java.util.List;
+
 
 /**
  * 用户管理服务
@@ -26,5 +28,12 @@ import com.wupaas.boot.bussiness.base.service.IBaseService;
  * @Date 2018-09-06 20:36:08
  */
 public interface IUserService extends IBaseService<UserModel> {
-
+    /**
+     * 获取某个角色下的用户
+     * @param roleName
+     * @param tenantId
+     * @return
+     */
+    List<UserModel> getUserByRole(String roleName, String tenantId);
 }
+

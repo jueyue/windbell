@@ -12,7 +12,7 @@ public class AppStart implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("-------------悟耘科技PAAS基础平台 启动成功............");
+        System.out.println("-------------悟耘科技 - 星晴平台 启动成功............");
     }
 
 

@@ -2,7 +2,7 @@ package com.wupaas.boot.admin.controller;
 
 import com.wupaas.boot.bussiness.response.Response;
 import com.wupaas.boot.bussiness.response.SuccessResponse;
-import com.wupaas.boot.core.monitor.ServerMonitor;
+import com.wupaas.boot.core.monitor.MonitorUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class SystemController {
     @ApiOperation(value = "系统监控")
     @RequestMapping(value = "/monitor", method = RequestMethod.GET)
     public Response<Map> monitor() {
-        return new SuccessResponse<>(ServerMonitor.getCurrentServer());
+        return new SuccessResponse<>(MonitorUtil.getCurrentServer());
     }
 
 }

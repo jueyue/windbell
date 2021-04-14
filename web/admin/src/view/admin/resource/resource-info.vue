@@ -32,7 +32,7 @@
           </Col>
           <Col span="8">
             <FormItem label="排序号" prop="num">
-              <Input v-model="form.num" :disabled="disable"></Input>
+              <Input v-model="form.num" :disabled="disable" type="number"></Input>
             </FormItem>
           </Col>
           <Col span="8">
@@ -94,9 +94,6 @@ export default {
         ],
         subSystem: [
           {required: true, message: '子系统不允许为空', trigger: 'blur'}
-        ],
-        num: [
-          {required: true, message: '排序号只允许数字并且不允许为空', trigger: 'blur', type: 'number'}
         ]
       }
     }

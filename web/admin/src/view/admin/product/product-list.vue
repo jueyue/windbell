@@ -71,14 +71,12 @@ export default {
           }
         },
         { title: '备注', key: 'memo' },
-        { title: '创建人', key: 'crtUserId' },
         { title: '创建时间', key: 'crtTime' },
-        { title: '修改人', key: 'mdfUserId' },
         { title: '修改时间', key: 'mdfTime' },
         {
           title: '操作',
           key: 'handle',
-          minWidth: 200,
+          minWidth: 300,
           options: ['update', 'detail']
         }
       ],

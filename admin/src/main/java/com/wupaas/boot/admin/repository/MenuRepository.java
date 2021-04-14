@@ -15,9 +15,10 @@
  */
 package com.wupaas.boot.admin.repository;
 
-import com.wupaas.boot.admin.model.MenuModel;
-import com.wupaas.boot.web.iview.IViewTree;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wupaas.boot.admin.model.MenuModel;
+import com.wupaas.boot.web.iview.IViewMenu;
+import com.wupaas.boot.web.iview.IViewTree;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +34,8 @@ import java.util.List;
 public interface MenuRepository extends BaseMapper<MenuModel> {
 
     /**
-     * 查询改角色的菜单
+     * 查询角色的菜单
+     *
      * @param roleId
      * @param pid
      * @return
@@ -42,10 +44,20 @@ public interface MenuRepository extends BaseMapper<MenuModel> {
 
     /**
      * 获取用户的所有权限
+     *
      * @param userId
-     * @param productCode
+     * @param webType
      * @return
      */
-    List<String> getAllByUserId(@Param("userId") String userId,@Param("productCode") String productCode);
+    List<String> getAllByUserId(@Param("userId") String userId, @Param("webType") String webType);
 
+    /**
+     * 查询用户的菜单
+     *
+     * @param userId
+     * @param webType
+     * @param pid
+     * @return
+     */
+    List<IViewMenu> getMenuByUserId(@Param("userId") String userId,@Param("webType") String webType, @Param("pid") String pid);
 }

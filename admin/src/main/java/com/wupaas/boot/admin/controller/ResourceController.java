@@ -74,9 +74,9 @@ public class ResourceController extends BaseController<IResourceService, Resourc
     }
 
     @ApiOperation(value = "查询用户访问权限")
-    @GetMapping(value = "/queryUserPermissions/{productCode}/{userId}")
-    public Response<List<String>> queryUserPermissions(@PathVariable String productCode, @PathVariable String userId) {
-        List<String> access = resourceService.getAllByUserId(userId, productCode);
+    @GetMapping(value = "/queryUserPermissions/{webType}/{userId}")
+    public Response<List<String>> queryUserPermissions(@PathVariable String webType, @PathVariable String userId) {
+        List<String> access = resourceService.getAllByUserId(userId, webType);
         return new SuccessResponse(access);
     }
 

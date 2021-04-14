@@ -110,4 +110,8 @@ public class UserServiceImpl extends BaseServiceCacheImpl<UserRepository, UserMo
         return true;
     }
 
+    @Override
+    public List<UserModel> getUserByRole(String roleName, String tenantId) {
+        return userRepository.getUserByRole(roleName,tenantId);
+    }
 }

@@ -5,7 +5,7 @@
  */
 import jQuery from 'jquery'
 import config from '@/config/index'
-import {Message} from 'iview'
+import {Message} from 'view-design'
 import {getToken} from '@/libs/util'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro

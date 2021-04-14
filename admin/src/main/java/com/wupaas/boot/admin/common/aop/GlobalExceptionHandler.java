@@ -1,6 +1,6 @@
 package com.wupaas.boot.admin.common.aop;
 
-import com.wupaas.boot.core.aop.BaseControllerExceptionHandler;
+import com.wupaas.boot.bussiness.aop.BaseControllerExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

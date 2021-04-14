@@ -13,7 +13,7 @@ public class BootServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(AdminApplication.class);
+        return builder.sources(StarryMoodApplication.class);
     }
 
 }

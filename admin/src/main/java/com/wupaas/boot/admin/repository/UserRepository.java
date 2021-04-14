@@ -17,7 +17,10 @@ package com.wupaas.boot.admin.repository;
 
 import com.wupaas.boot.admin.model.UserModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * User持久化
@@ -27,5 +30,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends BaseMapper<UserModel> {
-
+    /**
+     *
+     * @param roleName
+     * @param tenantId
+     * @return
+     */
+    List<UserModel> getUserByRole(@Param("roleName") String roleName,@Param("tenantId") String tenantId);
 }

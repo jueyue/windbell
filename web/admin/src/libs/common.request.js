@@ -65,7 +65,7 @@ export const getDictVal = (key, val) => {
   if (sessionStorage.getItem('dict_val_' + key + '_' + val)) {
     return sessionStorage.getItem('dict_val_' + key + '_' + val)
   }
-  var dict = syGet('admin/dict/subDetail/' + val + '/' + key)
+  let dict = syGet('admin/dict/subDetail/' + val + '/' + key)
   sessionStorage.setItem('dict_val_' + key + '_' + val, dict.name)
   return dict.name
 }

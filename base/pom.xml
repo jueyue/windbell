@@ -13,7 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-		<module>core</module>
+		<module>core-bussiness</module>
+		<module>core-common</module>
+		<module>core-web</module>
     </modules>
 
     <build>

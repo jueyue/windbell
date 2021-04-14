@@ -58,7 +58,7 @@
 
 import { arrRemove } from '@/libs/tools'
 import { C, U } from '@/libs/api.request'
-import { Message } from 'iview'
+import { Message } from 'view-design'
 
 export default {
   name: 'dict-info',

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken, removeToken, setToken } from '@/libs/util'
-import { Message } from 'iview'
-// import { Spin } from 'iview'
+import { Message } from 'view-design'
+// import { Spin } from 'view-design'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
   let info = {
@@ -23,7 +23,6 @@ class HttpRequest {
     const config = {
       baseURL: this.baseUrl,
       headers: {
-        productCode: 1001,
         token: getToken()
       }
     }
