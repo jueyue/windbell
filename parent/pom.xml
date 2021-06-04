@@ -40,7 +40,7 @@
         <lombok.version>1.16.20</lombok.version>
         <easypoi.version>4.0.0</easypoi.version>
         <j2cache.core.version>2.7.0-release</j2cache.core.version>
-        <httpclient.version>4.5</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
     </properties>
 
     <dependencyManagement>
