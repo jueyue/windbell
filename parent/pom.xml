@@ -34,7 +34,7 @@
         <swagger.bootstrap.ui.version>1.9.6</swagger.bootstrap.ui.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
-        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <postgre-connector-java.version>42.2.6</postgre-connector-java.version>
         <jwt.version>3.5.0</jwt.version>
         <lombok.version>1.16.20</lombok.version>
